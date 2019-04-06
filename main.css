@@ -1,0 +1,111 @@
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(100, auto);
+
+    padding: 0px;
+    background-color: #f76707;
+
+    border: 0px solid #ffa94d;
+    border-radius: 0px;
+
+    width: 50%;
+    box-align: center;
+    text-align: center;
+    margin: auto;
+}
+
+.grid-item {
+    background-color: rgba(255, 255, 255, 0.8);
+    
+    border: 1px solid #ffa94d;
+    border-radius: 0px;
+
+    font-size: 15px;
+    
+    text-align: right;
+    padding-top: 100%
+}
+
+/* Testcode */
+.dot {
+    height: 8%;
+    width: 8%;
+    background-color: #FF0000;
+    border-radius: 50%;
+
+    position: absolute;
+    margin: calc(-60px / 2) 0 0 calc(-60px / 2);
+  }
+
+html { 
+    background: url(black-gal.jpg) no-repeat center center fixed; 
+    background-size: cover;
+}
+
+body {
+    color: white;
+    text-align: center;
+}
+
+
+/****************/
+.btn-hover {
+    width: 40%;
+    height: 10%;
+
+    font-size: 10px;
+    font-weight: 600;
+    color: white;
+    cursor: pointer;
+    margin: 20px; 
+    text-align: center;
+    border: none;
+    background-size: 300% 100%;
+
+    border-radius: 5px;
+}
+
+.btn-hover:focus {
+    outline: none;
+}
+
+.btn-hover.color-1 {
+    background-image: linear-gradient(to top, #0a3100, #125200, #0a3100);
+    box-shadow: 0 2px 12px 0 rgba(0, 128, 0, 0.4);
+}
+
+.record {
+    margin: 0.5em auto;
+    width: 90%;
+    height: 1.5em;
+
+    padding: 0.5em;
+
+    text-align: center;
+
+    background: rgba(27, 28, 22, 0.8);
+    box-shadow: 0 2px 12px 0 rgba(0, 128, 0, 0.4);
+}
+
+#high-scores {
+    width: 50%;
+    height: 50vh;
+    margin: auto;
+
+    background: rgba(27, 28, 22, 0.5);
+    box-shadow: 0 2px 12px 0 rgba(0, 128, 0, 0.4);
+
+    overflow:hidden; 
+    overflow-y:scroll;
+}
+
+#high-scores-title {
+    padding-top: 0.5em;
+}
+
+#foobar {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
