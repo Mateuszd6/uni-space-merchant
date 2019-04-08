@@ -1,0 +1,151 @@
+body {
+    font-family: Arial, sans-serif;
+    background: url(black-gal.jpg) no-repeat center center fixed; 
+    background-size: cover;
+    /* height: 100vh; */
+  }
+  
+  h1 {
+    text-align: center;
+    color: #06D85F;
+    margin: 80px 0;
+  }
+  
+  .box {
+    width: 40%;
+    margin: 0 auto;
+    background: rgba(255,255,255,0.2);
+    padding: 35px;
+    border: 2px solid #fff;
+    border-radius: 20px/50px;
+    background-clip: padding-box;
+    text-align: center;
+  }
+  
+  .button {
+    font-size: 1.5em;
+    padding: 10px;
+    color: #fff;
+    border: 2px solid #06D85F;
+    border-radius: 20px/50px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease-out;
+  }
+  .button:hover {
+    background: #06D85F;
+  }
+  
+  .start_popup {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.7);
+    visibility: hidden;
+    opacity: 0;
+  }
+  .start_popup:target {
+    visibility: visible;
+    opacity: 1;
+  }
+  
+  .popup {
+    margin: 70px auto;
+    margin-top: 35vh;
+    margin-bottom: 35vh;
+
+    padding: 20px;
+    background-color: rgba(27, 28, 22, 0.5);
+    border-radius: 5px;
+    width: 30%;
+    height: 30vh;
+    position: relative;
+    transition: all 0s ease-in-out;
+  }
+  
+  .popup h2 {
+    margin-top: 0;
+    font-size: 1.5em;
+    color: #06D85F;
+    text-align: center;
+  }
+  
+  .popup .close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    transition: all 0ms;
+    font-size: 30px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #333;
+  }
+
+  /*
+  This is the x in the topleft corder hover fucntionality.
+  */
+  .popup .close:hover {
+    color: #06D85F;
+  }
+  .popup .content {
+    max-height: 30%;
+    overflow: auto;
+  }
+  
+  @media screen and (max-width: 700px){
+    .box{
+      width: 70%;
+    }
+    .popup{
+      width: 70%;
+    }
+  }
+
+.flex-form {
+  border: 2px solid white;
+  display: flex;
+  position: relative;
+  /* width: 500px; */
+  /* box-shadow: 4px 8px 16px rgba(0, 0, 0, 0.3); */
+}
+
+/* Probobly use class! */
+.flex-form > * {
+  border: 0;
+  padding: 0;
+  padding-left: 20px;
+  padding-right: 20px;
+  text-align: center;
+
+  width: 100%;
+  background: #000;
+  line-height: 50px;
+  font-size: 1.5em;
+  border-radius: 0;
+  outline: 0;
+  color: white;  
+  background-color: rgba(0, 0, 0, 0);
+}
+  
+/* label {
+	   box-shadow: inset -3px -3px 10px #eee;
+	   border-radius: 15px;
+}*/
+
+.start-button {
+  font-size: 1.5em;
+  padding: 10px;
+  color: #fff;
+  border: 2px solid #06D85F;
+  /* border-radius: 20px/50px; */
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease-out;
+}
+
+.start-button:hover {
+  background-color: #06D85F;
+  color: white;
+}

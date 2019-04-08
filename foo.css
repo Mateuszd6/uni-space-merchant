@@ -49,6 +49,26 @@ body {
     box-shadow: 0 2px 12px 0 rgba(0, 128, 0, 0.4);
 }
 
+.btn-hover.color-2 {
+    position: absolute;
+    padding: 0;
+    bottom: calc(2.5vh + 2.5vh + 7vh);
+    left: 0;
+    right: 0;
+    margin: 0;
+    margin-left: auto;
+    margin-right: auto;
+    /* padding-top: 0.5em;
+    padding-bottom: 0.5em; */
+
+    width: 50%;
+    height: 7vh;
+    font-size: 4vh;
+
+    background-image: linear-gradient(to top, #0a3100, #125200, #0a3100);
+    box-shadow: 0 2px 12px 0 rgba(0, 128, 0, 0.4);
+}
+
 .record {
     margin: 1em auto;
     width: 90%;
@@ -70,7 +90,7 @@ body {
     margin-right: 25%;
 
     width: 50%;
-    height: 75vh;
+    height: calc(75vh - 7vh - 2.5vh);
 
     background: rgba(27, 28, 22, 0.5);
     box-shadow: 0 2px 12px 0 rgba(0, 128, 0, 0.4);
