@@ -2,7 +2,6 @@ body {
     font-family: Arial, sans-serif;
     background: url(black-gal.jpg) no-repeat center center fixed; 
     background-size: cover;
-    /* height: 100vh; */
   }
   
   h1 {
@@ -52,13 +51,13 @@ body {
   }
   
   .popup {
-    margin: 70px auto;
+    margin: auto;
     margin-top: 35vh;
     margin-bottom: 35vh;
 
     padding: 20px;
-    background-color: rgba(27, 28, 22, 0.5);
-    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 50px/50px;
     width: 30%;
     height: 30vh;
     position: relative;
@@ -66,12 +65,23 @@ body {
   }
   
   .popup h2 {
-    margin-top: 0;
-    font-size: 1.5em;
     color: #06D85F;
     text-align: center;
+    margin-top: 0.5vh;
+    font-size: 5vh;
   }
   
+h3 {
+  color: #fff;
+  text-align: center;
+  vertical-align: middle; 
+  align-self: center;
+
+  margin: auto;
+}
+  /*
+    This is the x in the topleft corder hover fucntionality.
+  */
   .popup .close {
     position: absolute;
     top: 20px;
@@ -80,19 +90,17 @@ body {
     font-size: 30px;
     font-weight: bold;
     text-decoration: none;
-    color: #333;
+    color: rgb(1, 133, 56);
   }
-
-  /*
-  This is the x in the topleft corder hover fucntionality.
-  */
   .popup .close:hover {
     color: #06D85F;
   }
+
+  /* TODO: Find out what is this shit!
   .popup .content {
     max-height: 30%;
     overflow: auto;
-  }
+  }*/
   
   @media screen and (max-width: 700px){
     .box{
@@ -105,10 +113,14 @@ body {
 
 .flex-form {
   border: 2px solid white;
+  width: 100%;
   display: flex;
   position: relative;
-  /* width: 500px; */
-  /* box-shadow: 4px 8px 16px rgba(0, 0, 0, 0.3); */
+  border-radius: 5px;
+}
+
+#fname {
+  padding: 0;
 }
 
 /* Probobly use class! */
@@ -118,34 +130,74 @@ body {
   padding-left: 20px;
   padding-right: 20px;
   text-align: center;
-
   width: 100%;
+
+  height: 6vh;
   background: #000;
   line-height: 50px;
   font-size: 1.5em;
-  border-radius: 0;
   outline: 0;
   color: white;  
   background-color: rgba(0, 0, 0, 0);
 }
-  
-/* label {
-	   box-shadow: inset -3px -3px 10px #eee;
-	   border-radius: 15px;
-}*/
 
 .start-button {
+  position: relative;
+  padding: 0 0;
+  margin: 0;
+  margin-top: 2vh;
+
+  display: flex; 
+
   font-size: 1.5em;
-  padding: 10px;
+  height: 6vh;
+  width: 100%;
   color: #fff;
+
   border: 2px solid #06D85F;
-  /* border-radius: 20px/50px; */
+  border-radius: 5px;
+
   text-decoration: none;
   cursor: pointer;
-  transition: all 0.3s ease-out;
 }
 
 .start-button:hover {
   background-color: #06D85F;
   color: white;
+}
+
+/****************************************************************/
+.planet-popup {
+    position: relative;
+    margin: auto;
+    margin-top: calc(33vh / 2);
+
+    padding: 20px;
+    background-color: #333333;
+    border: 2px solid #fff;
+    border-radius: 25px/25px;
+    width: 50%;
+    height: 66vh;
+} 
+
+.planet-popup h2 {
+  color: #06D85F;
+  text-align: left;
+  margin-top: 0.5vh;
+  font-size: 2.5vh;
+}
+
+.planet-popup .close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 3vh;
+    font-weight: bold;
+    text-decoration: none;
+
+    color: #fff;
+}
+
+.planet-popup .close:hover {
+    color: #06D85F;
 }
