@@ -57,13 +57,14 @@ body {
     opacity: 1;
   }
   
-  .popup {
+  .startgame-popup {
     margin: auto;
     margin-top: 35vh;
     margin-bottom: 35vh;
 
     padding: 20px;
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: #333333;
+    border: 2px solid #fff;
     border-radius: 50px/50px;
     width: 30%;
     height: 30vh;
@@ -71,7 +72,7 @@ body {
     transition: all 0s ease-in-out;
   }
   
-  .popup h2 {
+  .startgame-popup h2 {
     color: #06D85F;
     text-align: center;
     margin-top: 0.5vh;
@@ -88,8 +89,9 @@ h3 {
 }
   /*
     This is the x in the topleft corder hover fucntionality.
+    TODO: Check if it is possible to merge it with .ingamepopup .close
   */
-  .popup .close {
+  .startgame-popup .close {
     position: absolute;
     top: 20px;
     right: 30px;
@@ -99,7 +101,7 @@ h3 {
     text-decoration: none;
     color: rgb(1, 133, 56);
   }
-  .popup .close:hover {
+  .startgame-popup .close:hover {
     color: #06D85F;
   }
   
