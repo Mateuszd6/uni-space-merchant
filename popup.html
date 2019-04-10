@@ -14,13 +14,16 @@
         <a class="button" href="#popup">Let me Pop up</a>
     </div>
     <div class="box">
-        <a class="button" href="#planet-popup">Check out the planet!</a>
+        <a class="button" href="#flyingspacecraft-popup">Flying!</a>
+    </div>
+    <div class="box">
+        <a class="button" href="#landedspacecraft-popup">Landed!</a>
     </div>
     
     <div id="popup" class="start_popup">
         <div class="popup">
-            <h2>Enter your name:</h2>
             <a class="close" href="#">&times;</a>
+            <h2>Enter your name:</h2>
             <form class="flex-form">
                 <input type="text" id="fname" name="fname">
             </form>
@@ -30,16 +33,63 @@
         </div>
     </div>
 
-    <div id="planet-popup" class="start_popup">
-        <div class="planet-popup">
-            <h2>Planet: Earth</h2>
+    <div id="flyingspacecraft-popup" class="start_popup">
+        <div class="ingame-popup">
             <a class="close" href="#">&times;</a>
-            <form class="flex-form">
-                <input type="text" id="fname" name="fname">
-            </form>
-            <a class="start-button" href="./foo.html">
-            <h3 id="start-btn-txt">Let's start!</h3>
-            </a>
+            <h2>Spacecraft: <span class="highlighted-info">Columbia</span></h2>
+            <h3>Moving towards: <a href="./foo.html">Earth</a></h3>
+            <h3>Arrival in: <span class="highlighted-info">10 sec</span></h3>
+            <h3>Current load: <span class="highlighted-info">100 / 128</span></h3>
+
+            <div class="space">
+                <li id="one"></li>
+                <img src="/home/mateusz/Downloads/planets/spacecraft.png", class="spacecraft-icon", alt="">
+            </div>
+        </div>
+    </div>
+
+    <div id="landedspacecraft-popup" class="start_popup">
+        <div class="ingame-popup">
+            <a class="close" href="#">&times;</a>
+            <h2>Spacecraft: <span class="highlighted-info">Columbia</span></h2>
+            <h3>On planet: <a href="./foo.html">Earth</a></h3>
+            <h3>Current load: <span class="highlighted-info">100 / 128</span></h3>
+
+            <div class="trade-board">
+                <div style="margin-bottom: 4vh;">
+                    <a href="#"><img src="/home/mateusz/arrow.png", id="next-mineral-arrow", class="mineral-arrow", alt="Next:"></a>
+                    <a href="#"><img src="/home/mateusz/arrow.png", id="prev-mineral-arrow", class="mineral-arrow", alt="Next:"></a>
+                </div>
+
+                <h3>Mineral: <span class="highlighted-info">Potato</span></h3>
+                <h3>Possessed: <span class="highlighted-info">30</span></h3>
+                <h3>Available: <span class="highlighted-info">2000</span></h3>
+                <h3>Sell price: <span class="highlighted-info">10$</span></h3>
+                
+                <form class="trade-form">
+                    <input type="text" name="tname">
+                </form>
+                <a id="tradebtn", href="#">trade</a>
+            </div>
+            
+            <div class="">
+                <a class="button" id="leaveplanet" href="#lunch-popup">Leave planet</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="lunch-popup" class="start_popup">
+        <div class="ingame-popup">
+            <a class="close" href="#">&times;</a>
+            <h2>Select next planet to explore:</h2>
+
+            <nav id="planets-scorllarea">
+                <ul>
+                    <div class="planets-record"> 
+                        <a class="no-color-link", href="#flyingspacecraft-popup"><span class="highlighted-info">Mateusz</span> (32AU, 1min 30sec)</a> 
+                    </div>
+                </ul>
+            </nav>
         </div>
     </div>
 </body>

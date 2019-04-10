@@ -17,15 +17,15 @@ body {
 .info-icon {
     margin: 0 0.5em;
     float: left;
-    width: 1.5em; 
-    height: 1.5em;
+    width: 2.5vh; 
+    height: 2.5vh;
 
     vertical-align: middle;
 }
 
 .info-txt {
     margin: 0 0.5em;
-    font-size: 1.5em;
+    font-size: 2.5vh;
     color: #fff;
 	float: left;
 }
