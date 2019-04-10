@@ -6,6 +6,10 @@ body {
     color: #fff;
 }
 
+.highlighted-info {
+    color: #06D85F;
+  }
+
 a {
     color:inherit;
     text-decoration: none;
@@ -80,7 +84,7 @@ a {
     overflow-y: auto;
   }
 
-  .game-list-scrollarea #record {
+.planet-record {
     color: #fff;
   
     margin: auto;
@@ -100,24 +104,57 @@ a {
     border-radius: 2.5px;
     border: 1px solid #fff;
     background: rgba(255,255,255,0);
-  }
+}
 
-  #record #planet-icon {
+.ship-record {
+    color: #fff;
+  
+    margin: auto;
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+    padding: 1.5vh;
+  
+    width: 90%;
+    height: 3vh;
+    
+    font-size: 2.5vh;
+  
+    overflow: hidden; 
+    text-overflow: ellipsis;
+    text-align: center;
+  
+    border-radius: 2.5px;
+    border: 1px solid #fff;
+    background: rgba(255,255,255,0);
+}
+
+  .planet-record #planet-icon {
     float: left; 
     width: 10vh; 
     height: auto; 
     margin-right: 2vh;
   }
 
-  #record #planet-name {
+  .planet-record #planet-name {
     padding-top: 1vh; 
     vertical-align: middle;
     float: left;
   }
 
-  #record #planet-coord {
+  .planet-record #planet-coord {
     padding-top: 1vh; 
     vertical-align: middle;
     float: right;
   }
   
+  #ship-name {
+    margin: 0;
+    vertical-align: middle;
+    float: left;
+  }
+
+  #ship-pos {
+    margin: 0;
+    vertical-align: middle;
+    float: right;
+  }
