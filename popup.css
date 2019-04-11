@@ -81,24 +81,7 @@ h3 {
 
   margin: auto;
 }
-  /*
-    This is the x in the topleft corder hover fucntionality.
-    TODO: Check if it is possible to merge it with .ingamepopup .close
-  */
-  .startgame-popup .close {
-    position: absolute;
-    top: 20px;
-    right: 30px;
-    transition: all 0ms;
-    font-size: 30px;
-    font-weight: bold;
-    text-decoration: none;
-    color: rgb(1, 133, 56);
-  }
-  .startgame-popup .close:hover {
-    color: #06D85F;
-  }
-  
+ 
   @media screen and (max-width: 700px){
     .box{
       width: 70%;
@@ -108,35 +91,6 @@ h3 {
     }
   }
 
-.flex-form {
-  border: 2px solid white;
-  width: 100%;
-  display: flex;
-  position: relative;
-  border-radius: 5px;
-}
-
-#fname {
-  padding: 0;
-}
-
-/* Probobly use class! */
-.flex-form > * {
-  border: 0;
-  padding: 0;
-  padding-left: 20px;
-  padding-right: 20px;
-  text-align: center;
-  width: 100%;
-
-  height: 6vh;
-  background: #000;
-  line-height: 50px;
-  font-size: 1.5em;
-  outline: 0;
-  color: white;  
-  background-color: rgba(0, 0, 0, 0);
-}
 
 .start-button {
   position: relative;

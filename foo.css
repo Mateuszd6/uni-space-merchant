@@ -1,5 +1,5 @@
 html { 
-    background: url(black-gal.jpg) no-repeat center center fixed; 
+    background: url(experiment.png) no-repeat center center fixed; 
     background-size: cover;
 }
 
@@ -11,14 +11,6 @@ body {
 
 /****************/
 .menu-button {
-    padding: 0;
-    padding-top: 1.5vh;
-    padding-bottom: 1.5vh;
-    left: 0;
-    right: 0;
-    margin: 0;
-    margin-left: auto;
-    margin-right: auto;
 
     font-size: 4vh;
     font-weight: 600;
@@ -32,8 +24,6 @@ body {
     font-size: 4vh;
 
     border-radius: 5px;
-
-    box-shadow: 0 2px 12px 0 rgba(0, 128, 0, 0.4);
 
     color: #fff;
     border: 2px solid #06D85F;
@@ -71,7 +61,7 @@ body {
     text-align: center;
 
     border-radius: 2.5px;
-    border: 1px solid #06D85F;
+    border: 1px solid #fff;
     background: rgba(255,255,255,0.2);
     box-shadow: 0 2px 12px 0 rgba(0, 128, 0, 0.4);
 }

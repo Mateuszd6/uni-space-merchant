@@ -15,6 +15,99 @@ a {
     text-decoration: none;
 }
 
+.fadein {
+    transition: all 0.3s ease-out;
+}
+
+#main-title {
+    position: relative;
+    padding: 0;
+    margin: 0;
+    margin-top: 1vh;
+    font-size: 6vh;
+    text-align: center;
+}
+
+#high-scores {
+    margin-top: 2.5vh;
+    margin-bottom: 2.5vh; 
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0;
+
+    width: 50%;
+    max-width: 700px;
+    height: calc(75vh - 7vh - 2.5vh);
+
+    border-radius: 5px;
+    background: rgba(0, 0, 0, 0);
+    border: 2px solid #06D85F;
+    box-shadow: 0 2px 12px 0 rgba(0, 128, 0, 0.4);
+}
+
+#high-scores-title {
+    position: relative;
+    padding: 0;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    margin: 0;
+    height: 5%;
+    font-size: 4vh;
+    text-align: center;
+}
+
+.highscore-record {
+    margin: 1em auto;
+    padding: 0.5vh;
+
+    width: 90%;
+    height: 2vh;
+    
+    font-size: 1.5vh;
+
+    overflow: hidden; 
+    text-overflow: ellipsis;
+    text-align: center;
+
+    border-radius: 2.5px;
+    border: 1px solid #fff;
+    background: rgba(255,255,255,0.2);
+    box-shadow: 0 2px 12px 0 rgba(0, 128, 0, 0.4);
+}
+
+#high-scores-scrollarea
+{
+    margin-left: 2vh;
+    margin-right: 2vh;
+    padding-left: 0;
+    padding-right: 0;
+
+    border-top: 2px solid #06D85F;
+    border-bottom: 2px solid #06D85F;
+    border-radius: 5px;
+    box-shadow: 0 2px 12px 0 rgba(0, 128, 0, 0.4);
+
+    height: 52vh;
+    overflow: hidden;
+    overflow-y: auto;
+}
+
+.highscore-record #user-name {
+    float:left;
+    font-size: 1.25em;
+
+    margin-left:10%;
+    text-align:center;
+}
+
+.highscore-record #score {
+    float:right;
+    font-size: 1.25em;
+
+    margin-right:10%;
+    text-align:center;
+}
+
 .player-stats {
     position: absolute;
     border: 2px solid #06D85F;
@@ -36,6 +129,39 @@ a {
     font-size: 2.5vh;
     color: #fff;
 	float: left;
+}
+
+.menu-button {
+    padding: 0;
+    padding-top: 1.5vh;
+    padding-bottom: 1.5vh;
+    left: 0;
+    right: 0;
+    margin: 0;
+    margin-left: auto;
+    margin-right: auto;
+
+    font-weight: 600;
+    color: white !important;
+    cursor: pointer;
+    text-align: center;
+    text-overflow: ellipsis;
+    width: 50%;
+    max-width: 700px;
+    font-size: 4vh;
+    border-radius: 5px;
+
+    box-shadow: 0 2px 12px 0 rgba(0, 128, 0, 0.4);
+}
+
+#menu-startnew {
+    position: absolute;
+    bottom: calc(2.5vh + 2.5vh + 7vh);
+}
+
+#menu-howtoplay {
+    position: absolute;
+    bottom: 2.5vh;
 }
 
 /***/
@@ -242,9 +368,29 @@ a {
 
     color: #fff;
 }
-
 .ingame-popup .close:hover {
     color: #06D85F;
+}
+
+#startgame-popup {
+    margin: auto;
+    margin-top: 35vh;
+    margin-bottom: 35vh;
+
+    padding: 20px;
+    background-color: #333333;
+    border: 2px solid #fff;
+    border-radius: 50px/50px;
+    width: 30%;
+    height: 30vh;
+    position: relative;
+}
+  
+#startgame-popup h2 {
+    color: #06D85F;
+    text-align: center;
+    margin-top: 0.5vh;
+    font-size: 4vh;
 }
 
   /******************************************************
@@ -474,6 +620,48 @@ a {
     background-color: rgba(0, 0, 0, 0);
     color: #666666;
 }
+
+#startgame-button {
+    width: 66%;
+    font-size: 2vh;
+
+    position: absolute;
+    bottom: 2.5vh;
+}
+
+#username-form {
+    position: absolute;
+    background: tomato;
+    margin: auto;
+    margin-top: 1.5vh;
+    border: 2px solid white;
+    width: 66%;
+    height: 5.5vh;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 10vh;
+
+    border-radius: 5px;
+}
+
+/* Probobly use class as this is only referenced once. */
+#username-form > * {
+    border: 0;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    vertical-align: middle;
+    width: 100%;
+    padding-top: 1vh;
+    font-size: 2.5vh;
+
+    background: #000;
+    outline: 0;
+    color: white;  
+    background-color: rgba(0, 0, 0, 0);
+}
+
 
 #leaveplanet {
     position: absolute;
