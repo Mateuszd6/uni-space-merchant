@@ -163,69 +163,73 @@
         <h3>On planet: <a href="./foo.html">Earth</a></h3>
         <h3>Current load: <span class="highlighted-info">100 / 128</span></h3>
 
-        <div class="trade-board">
-            <a href=#trade-popup>LINK</a>
+        <div class="trade-list-scrollarea">
+            <div class="trade-list-record">
+                <img style="float: left; margin-left: 0.5vh; width: 8vh; height: 8vh;" src="/home/mateusz/Downloads/planets/Dwimeryt.png"></img>
+                <p style="margin-left: 1vh; float: left; vertical-align: middle;">Dwimeryt</p>
+                <a class="button trade-start-button" disabled>Sell</a>
+                <a href="#trade-popup" class="button trade-start-button">Buy</a>
+            </div>
         </div>
-        
         <a class="button" id="leaveplanet" href="#lunch-popup">Leave planet</a>
     </div>
 </div>
 
 <!-- This is displayed when we are leaving the planet -->
 <div id="lunch-popup" class="popup-screenfader">
-    <div class="ingame-popup" style="min-width: 80%;">
+    <div class="ingame-popup">
         <a class="close" href="#landedspacecraft-popup">&times;</a>
         <h2>Select next planet to explore:</h2>
         <div class="game-list-scrollarea" style="height: 60vh;"> 
-                <div class=planet-record>
-                    <a href="#flyingspacecraft-popup">
-                        <img src="/home/mateusz/Downloads/planets/1.png" id="planet-icon"></img>
-                        <p id="planet-name">Alderaan</p>
-                        <p id="planet-coord">(15, 32)</p>
-                    </a>
-                </div>
-                <div class=planet-record>
-                    <a href="#flyingspacecraft-popup">
-                        <img src="/home/mateusz/Downloads/planets/2.png" id="planet-icon"></img>
-                        <p id="planet-name">Argolan</p>
-                        <p id="planet-coord">(59, 44)</p>
-                    </a>
-                </div>
-                <div class=planet-record>
-                    <a href="#flyingspacecraft-popup">
-                        <img src="/home/mateusz/Downloads/planets/3.png" id="planet-icon"></img>
-                        <p id="planet-name">Arrakis</p>
-                        <p id="planet-coord">(81, 34)</p>
-                    </a>
-                </div>
-                <div class=planet-record>
-                    <a href="#flyingspacecraft-popup">
-                        <img src="/home/mateusz/Downloads/planets/4.png" id="planet-icon"></img>
-                        <p id="planet-name">Corellia</p>
-                        <p id="planet-coord">(43, 69)</p>
-                    </a>
-                </div>
-                <div class=planet-record>
-                    <a href="#flyingspacecraft-popup">
-                        <img src="/home/mateusz/Downloads/planets/5.png" id="planet-icon"></img>
-                        <p id="planet-name">Encja</p>
-                        <p id="planet-coord">(91, 32)</p>
-                    </a>
-                </div>
-                <div class=planet-record>
-                    <a href="#flyingspacecraft-popup">
-                        <img src="/home/mateusz/Downloads/planets/6.png" id="planet-icon"></img>
-                        <p id="planet-name">Gaia</p>
-                        <p id="planet-coord">(75, 76)</p>
-                    </a>
-                </div>
-                <div class=planet-record>
-                    <a href="#flyingspacecraft-popup">
-                        <img src="/home/mateusz/Downloads/planets/7.png" id="planet-icon"></img>
-                        <p id="planet-name">Ksi</p>
-                        <p id="planet-coord">(91 71)</p>
-                    </a>
-                </div> 
+            <div class=planet-record>
+                <a href="#flyingspacecraft-popup">
+                    <img src="/home/mateusz/Downloads/planets/1.png" id="planet-icon"></img>
+                    <p id="planet-name">Alderaan</p>
+                    <p id="planet-coord">(15, 32)</p>
+                </a>
+            </div>
+            <div class=planet-record>
+                <a href="#flyingspacecraft-popup">
+                    <img src="/home/mateusz/Downloads/planets/2.png" id="planet-icon"></img>
+                    <p id="planet-name">Argolan</p>
+                    <p id="planet-coord">(59, 44)</p>
+                </a>
+            </div>
+            <div class=planet-record>
+                <a href="#flyingspacecraft-popup">
+                    <img src="/home/mateusz/Downloads/planets/3.png" id="planet-icon"></img>
+                    <p id="planet-name">Arrakis</p>
+                    <p id="planet-coord">(81, 34)</p>
+                </a>
+            </div>
+            <div class=planet-record>
+                <a href="#flyingspacecraft-popup">
+                    <img src="/home/mateusz/Downloads/planets/4.png" id="planet-icon"></img>
+                    <p id="planet-name">Corellia</p>
+                    <p id="planet-coord">(43, 69)</p>
+                </a>
+            </div>
+            <div class=planet-record>
+                <a href="#flyingspacecraft-popup">
+                    <img src="/home/mateusz/Downloads/planets/5.png" id="planet-icon"></img>
+                    <p id="planet-name">Encja</p>
+                    <p id="planet-coord">(91, 32)</p>
+                </a>
+            </div>
+            <div class=planet-record>
+                <a href="#flyingspacecraft-popup">
+                    <img src="/home/mateusz/Downloads/planets/6.png" id="planet-icon"></img>
+                    <p id="planet-name">Gaia</p>
+                    <p id="planet-coord">(75, 76)</p>
+                </a>
+            </div>
+            <div class=planet-record>
+                <a href="#flyingspacecraft-popup">
+                    <img src="/home/mateusz/Downloads/planets/7.png" id="planet-icon"></img>
+                    <p id="planet-name">Ksi</p>
+                    <p id="planet-coord">(91 71)</p>
+                </a>
+            </div> 
         </div>
     </div>
 </div>
@@ -234,19 +238,16 @@
 <div id="trade-popup" class="popup-screenfader">
     <div class="ingame-popup">
         <a class="close" href="#landedspacecraft-popup">&times;</a>
-        <h2>Buy <span class="highlighted-info">Potato</span>:</h2>
+        <h2>Buy <span class="highlighted-info">Dwimeryt</span>:</h2>
 
-        <img style="display: block; margin: auto; height: 20vh; width: auto;" src="/home/mateusz/Downloads/planets/mineral1.png"></img>
-        <h3 id="trade-txt">Mineral: <span class="highlighted-info">Potato</span></h3>
+        <img style="display: block; margin: auto; height: 20vh; width: auto;" src="/home/mateusz/Downloads/planets/Dwimeryt.png"></img>
+        <h3 id="trade-txt">Mineral: <span class="highlighted-info">Dwimeryt</span></h3>
         <h3 id="trade-txt">Possessed: <span class="highlighted-info">30</span></h3>
         <h3 id="trade-txt">Available: <span class="highlighted-info">2000</span></h3>
         <h3 id="trade-txt">Price: <span class="highlighted-info">10$</span></h3>
         <h3 id="trade-txt">Total: 0 * <span class="highlighted-info">10$</span> = 0</h3>
-        
-        <form class="trade-form">
-            <input type="text" name="tname">
-        </form>
-        <a class="button" id="tradebtn" href="#trade-popup">Trade</a>
+        <form class="trade-form"><input type="text" name="tname"></form>
+        <a class="button" id="tradebtn" href="#landedspacecraft-popup">Trade</a>
     </div>
 </div>
 

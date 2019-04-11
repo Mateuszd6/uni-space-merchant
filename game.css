@@ -78,7 +78,6 @@ a {
   .game-list-scrollarea {
     width: 100%; 
     height: 75vh;
-    background: color;
 
     overflow: hidden;
     overflow-y: auto;
@@ -318,6 +317,52 @@ a {
   /******************************************************
                      FLYING SPACESHIP
   ******************************************************/
+  .trade-list-scrollarea {
+    margin: auto;
+    margin-top: 2vh;
+    width: 95%; 
+    height: 42vh;
+
+    overflow: hidden;
+    overflow-y: auto;
+
+    border-top: 2px solid #fff;
+    border-bottom: 2px solid #fff;
+    border-radius: 5px;
+  }
+
+  .trade-list-record {
+    color: #fff;
+  
+    margin: auto;
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+    padding: 0;
+  
+    width: 90%;
+    /* height: 3vh; */
+    
+    font-size: 2.5vh;
+  
+    overflow: hidden; 
+    text-overflow: ellipsis;
+    text-align: center;
+  
+    border-radius: 2.5px;
+    border: 1px solid #fff;
+    background: rgba(255,255,255,0);
+  }
+
+  .trade-start-button {
+    padding: 1vh; 
+    margin-top: 1.5vh !important;
+    margin-bottom: 1.5vh !important;
+    margin-left: 0.75vh !important;
+    margin-right: 0.75vh !important;
+    float: right;
+    vertical-align: middle;
+  }
+
 .trade-form {
     margin: auto;
     margin-top: 1.5vh;
@@ -360,6 +405,17 @@ a {
 .button:hover {
   background-color: #06D85F;
   color: white;
+}
+
+.button:disabled,
+.button[disabled]{
+  border: 2px solid #666666;
+  color: #666666;
+}
+
+.button[disabled]:hover {
+    background-color: rgba(0, 0, 0, 0);
+    color: #666666;
 }
 
 #leaveplanet {
