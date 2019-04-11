@@ -20,7 +20,6 @@ a {
     border: 2px solid #06D85F;
     border-radius: 5px;
     padding: 0.2em 0.2em;
-    /* text-align: center; */
 }
 
 .info-icon {
@@ -280,22 +279,80 @@ a {
   top: 20%;
   left: 10%;  
 
+  z-index: 99;
+
   animation: spacemove 3s linear infinite;
 }
 
 /** SPARKS **/
-#one {
+.spark {
     background-color: #fff;
-	height: 3px;
-	width: 5px;
-    top: 100px;
-    z-index: 1;
     margin: 0;
-    margin-top: 5vh;
     float: right;
     border-radius: 50%;
 
 	animation: twinkle 2s linear infinite;
+}
+
+#sp-one {
+	height: 0.3vh;
+	width: 0.9vh;
+    margin-top: 5vh;
+}
+
+#sp-two {
+	height: 0.35vh;
+	width: 0.9vh;
+    margin-top: 12vh;
+    margin-right: -70vh;
+}
+
+#sp-three {
+	height: 0.3vh;
+	width: 0.8vh;
+    margin-top: 28vh;
+    margin-right: -25vh;
+}
+
+#sp-four {
+	height: 0.2vh;
+	width: 0.8vh;
+    margin-top: 33vh;
+    margin-right: 15vh;
+}
+
+#sp-five {
+	height: 0.3vh;
+	width: 0.8vh;
+    margin-top: 30vh;
+    margin-right: -25vh;
+}
+
+#sp-six {
+	height: 0.3vh;
+	width: 0.8vh;
+    margin-top: 30vh;
+    margin-right: -25vh;
+
+    animation-delay: 1s;
+}
+
+#sp-seven {
+	height: 0.2vh;
+	width: 0.5vh;
+    margin-top: 18vh;
+    margin-right: -20vh;
+
+    animation-delay: 1s;
+}
+
+#sp-eigth {
+	height: 0.4vh;
+	width: 0.8vh;
+    margin-top: 6vh;
+    margin-right: -20vh;
+
+    animation-delay: 1s;
 }
 
 @keyframes  spacemove { 
@@ -445,7 +502,6 @@ a {
     padding-top: 0.5vh;
 
     width: 66%;
-
 }
 
 #trade-txt {
