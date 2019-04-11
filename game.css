@@ -106,6 +106,27 @@ a {
     background: rgba(255,255,255,0);
 }
 
+.planet-record-small {
+    color: #fff;
+  
+    margin: auto;
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+    padding: 1.5vh;
+  
+    width: 90%;
+    
+    font-size: 1vh;
+  
+    overflow: hidden; 
+    text-overflow: ellipsis;
+    text-align: center;
+  
+    border-radius: 2.5px;
+    border: 1px solid #fff;
+    background: rgba(255,255,255,0);
+}
+
 .ship-record {
     color: #fff;
   
@@ -139,12 +160,14 @@ a {
     padding-top: 1vh; 
     vertical-align: middle;
     float: left;
+    color: #fff;
   }
 
   .planet-record #planet-coord {
     padding-top: 1vh; 
     vertical-align: middle;
     float: right;
+    color: #fff;
   }
   
   #ship-name {
@@ -158,3 +181,231 @@ a {
     vertical-align: middle;
     float: right;
   }
+
+  /******************************************************
+                      FLYING SPACESHIP
+  ******************************************************/
+  .popup-screenfader {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.7);
+    visibility: hidden;
+    opacity: 0;
+  }
+  .popup-screenfader:target {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .ingame-popup {
+    position: relative;
+    margin: auto;
+    margin-top: calc(33vh / 2);
+
+    padding: 20px;
+    background-color: #333333;
+    border: 2px solid #fff;
+    border-radius: 25px/25px;
+    width: 50%;
+    height: 66vh;
+} 
+
+.ingame-popup h2 {
+  color: #fff;
+  text-align: left;
+  margin-top: 0.5vh;
+  font-size: 2.5vh;
+}
+
+.ingame-popup h3 {
+  color: #FFF;
+  text-align: left;
+  margin: 0;
+  font-size: 2vh;
+}
+
+.ingame-popup a {
+  color: #06D85F;
+  margin-top: 0.5vh;
+
+  text-decoration: none;
+}
+
+.ingame-popup .close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 3vh;
+    font-weight: bold;
+    text-decoration: none;
+
+    color: #fff;
+}
+
+.ingame-popup .close:hover {
+    color: #06D85F;
+}
+
+  /******************************************************
+                      FLYING SPACESHIP
+  ******************************************************/
+  #flyingspacecraft-popup .space {
+    background-color: #000; 
+    border: solid 2px #fff;
+
+    margin: 0;
+    margin-top: 10vh;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%; 
+    height: 35vh;
+
+    overflow: hidden;
+}
+
+#flyingspacecraft-popup .spacecraft-icon {
+  /* These are base values for all planets: */
+  position: relative;
+  margin: auto;
+
+  width: 80%;
+  height: auto;
+
+  max-height: 20vh;
+  max-width: calc(20vh * 1600 / 864);
+
+  position: relative;
+  top: 20%;
+  left: 10%;  
+
+  animation: spacemove 3s linear infinite;
+}
+
+/** SPARKS **/
+#one {
+    background-color: #fff;
+	height: 3px;
+	width: 5px;
+    top: 100px;
+    z-index: 1;
+    margin: 0;
+    margin-top: 5vh;
+    float: right;
+    border-radius: 50%;
+
+	animation: twinkle 2s linear infinite;
+}
+
+@keyframes  spacemove { 
+  10% {top: calc(20% + 0px); }
+  35% { transform: rotate(-2deg);}
+  40% {top: calc(20% + 5px); }
+  60% { transform: rotate(0deg);}
+  80% { transform: rotate(1deg); }
+  100% {top: calc(20% + 0px); } 
+}
+
+@keyframes twinkle {
+  0% { opacity: 1;}
+  50% { opacity: 1;}
+  100% { opacity:0; } 
+  100% {transform: translate(-1000px, 0);} 
+}
+
+  /******************************************************
+                     FLYING SPACESHIP
+  ******************************************************/
+.trade-form {
+    margin: auto;
+    margin-top: 1.5vh;
+    border: 2px solid white;
+    width: 66%;
+    height: 3.5vh;
+    position: relative;
+    border-radius: 5px;
+}
+.trade-label {
+    margin: auto;
+    text-align: right;
+}
+
+/* Probobly use class! */
+.trade-form > * {
+    border: 0;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    vertical-align: middle;
+    width: 100%;
+    font-size: 2vh;
+
+    background: #000;
+    outline: 0;
+    color: white;  
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.button {
+    color: #06D85F;
+    text-align: center;
+    margin: auto;
+    margin-top: 0.5vh;
+    font-size: 2vh;
+    border: 2px solid #06D85F;
+    text-decoration: none;
+}
+.button:hover {
+  background-color: #06D85F;
+  color: white;
+}
+
+#leaveplanet {
+    position: absolute;
+  
+    padding: 0;
+    padding-top: 1.5vh;
+    padding-bottom: 1.5vh;
+    left: 0;
+    right: 0;
+    margin: 0;
+    margin-left: auto;
+    margin-right: auto;
+    bottom: 2.5vh;
+    width: 70%;
+}
+
+#tradebtn {
+    border-radius: 5px;
+    height: 3vh;
+
+    display: block;
+    margin: 0;
+    margin-top: 1vh;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 0.5vh;
+
+    width: 66%;
+
+}
+
+#trade-txt {
+    text-align: center;
+}
+
+.mineral-arrow {
+  width: 8vh; 
+  height: 5vh;
+}
+
+#next-mineral-arrow {
+  float: right;
+}
+
+#prev-mineral-arrow {
+  transform: scaleX(-1);
+  float: left;
+}
