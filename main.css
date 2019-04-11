@@ -2,7 +2,6 @@ body {
     font-family: Arial, sans-serif;
     background: url(black-gal.jpg) no-repeat center center fixed; 
     background-size: cover;
-
     color: #fff;
 }
 
@@ -16,7 +15,25 @@ a {
 }
 
 .heavy-bordered {
+    border-radius: 5px;
     border: 2px solid #06D85F;
+}
+
+.heavy-bordered-vert-only {
+    border-top: 2px solid #06D85F;
+    border-bottom: 2px solid #06D85F;
+    border-radius: 5px;
+}
+
+.lightly-bordered {
+    border-radius: 2.5px;
+    border: 1px solid #fff;
+}
+
+.lightly-bordered-vert-only {
+    border-radius: 2.5px;
+    border-top: 2px solid #fff;
+    border-bottom: 2px solid #fff;
 }
 
 .fadein {
@@ -42,11 +59,9 @@ a {
     width: 50%;
     max-width: 700px;
     height: calc(75vh - 7vh - 2.5vh);
-
-    border-radius: 5px;
 }
 
-#high-scores-title {
+.highscores-title {
     position: relative;
     padding: 0;
     padding-top: 0.5em;
@@ -57,54 +72,41 @@ a {
     text-align: center;
 }
 
-.highscore-record {
+.highscores-record {
     margin: 1em auto;
     padding: 0.5vh;
-
     width: 90%;
     height: 2vh;
-    
     font-size: 1.5vh;
-
     overflow: hidden; 
     text-overflow: ellipsis;
     text-align: center;
-
-    border-radius: 2.5px;
-    border: 1px solid #fff;
-    background: rgba(51, 51, 51); /* Fallback */
+    background: rgb(51, 51, 51); /* Fallback */
     background: rgba(255,255,255,0.2);
 }
 
-#high-scores-scrollarea
+.highscores-scrollarea
 {
     margin-left: 2vh;
     margin-right: 2vh;
     padding-left: 0;
     padding-right: 0;
-
-    border-top: 2px solid #06D85F;
-    border-bottom: 2px solid #06D85F;
-    border-radius: 5px;
-
     height: 52vh;
     overflow: hidden;
     overflow-y: auto;
 }
 
-.highscore-record #user-name {
+.highscores-record .uname {
     float:left;
     font-size: 1.25em;
-
-    margin-left:10%;
+    margin-left: 10%;
     text-align:center;
 }
 
-.highscore-record #score {
+.highscores-record .score {
     float:right;
     font-size: 1.25em;
-
-    margin-right:10%;
+    margin-right: 10%;
     text-align:center;
 }
 
@@ -120,7 +122,6 @@ a {
     float: left;
     width: 2.5vh; 
     height: 2.5vh;
-
     vertical-align: middle;
 }
 
@@ -140,57 +141,46 @@ a {
     margin: 0;
     margin-left: auto;
     margin-right: auto;
-
+    border-radius: 5px;
     font-weight: 600;
-    color: white !important;
+    color: white;
     cursor: pointer;
     text-align: center;
-    text-overflow: ellipsis;
     width: 50%;
     max-width: 700px;
     font-size: 4vh;
-    border-radius: 5px;
 }
 
 #menu-startnew {
     position: absolute;
     font-size: 4vh;
-
     bottom: calc(2.5vh + 2.5vh + 7vh);
 }
 
 #menu-howtoplay {
     position: absolute;
     font-size: 4vh;
-
     bottom: 2.5vh;
 }
 
-/***/
 .flex-container {
     margin: 0;
     padding: 0;
     list-style: none;
-    
     display: flex;
-    
-    -webkit-flex-flow: row wrap;
+    -webkit-flex-flow: row wrap; /* Needed for Webkit based engines */
     justify-content: space-around;
   }
   
   .flex-item {
+    background: rgb(0, 0, 0); /* Fallback */
     background: rgba(255, 255, 255, 0);
     padding: 2vh;
     margin: 0;
     margin-top: 10vh;
-    
     width: 70vh;
     height: 80vh;
-
-    border: 2px solid #06D85F;
     border-radius: 25px;
-
-    color: white;
     font-weight: bold;
     text-align: center;
   }
@@ -205,7 +195,6 @@ a {
   .game-list-scrollarea {
     width: 100%; 
     height: 75vh;
-
     overflow: hidden;
     overflow-y: auto;
   }
@@ -229,50 +218,29 @@ a {
   
     border-radius: 2.5px;
     border: 1px solid #fff;
-    background: rgba(255,255,255,0);
-}
-
-.planet-record-small {
-    color: #fff;
-  
-    margin: auto;
-    margin-top: 1vh;
-    margin-bottom: 1vh;
-    padding: 1.5vh;
-  
-    width: 90%;
-    
-    font-size: 1vh;
-  
-    overflow: hidden; 
-    text-overflow: ellipsis;
-    text-align: center;
-  
-    border-radius: 2.5px;
-    border: 1px solid #fff;
+    background: rgb(0, 0, 0); /* Fallback */
     background: rgba(255,255,255,0);
 }
 
 .ship-record {
     color: #fff;
-  
-    margin: auto;
-    margin-top: 1vh;
-    margin-bottom: 1vh;
-    padding: 1.5vh;
-  
+    margin: 1vh auto;
+    padding: 0 1.5vh;
     width: 90%;
-    height: 3vh;
-    
+    height: 8vh;
     font-size: 2.5vh;
-  
     overflow: hidden; 
     text-overflow: ellipsis;
     text-align: center;
-  
-    border-radius: 2.5px;
-    border: 1px solid #fff;
+    background: rgb(0,0,0); /* Fallback */
     background: rgba(255,255,255,0);
+}
+
+.ship-record .icon {
+    margin: auto .5vh;
+    float: left; 
+    height: 8vh; 
+    width: auto;
 }
 
   .planet-record #planet-icon {
@@ -599,7 +567,6 @@ a {
 }
 
 .button {
-    color: #06D85F;
     text-align: center;
     margin: auto;
     margin-top: 0.5vh;
