@@ -156,11 +156,15 @@ a {
 
 #menu-startnew {
     position: absolute;
+    font-size: 4vh;
+
     bottom: calc(2.5vh + 2.5vh + 7vh);
 }
 
 #menu-howtoplay {
     position: absolute;
+    font-size: 4vh;
+
     bottom: 2.5vh;
 }
 
@@ -623,7 +627,7 @@ a {
 
 #startgame-button {
     width: 66%;
-    font-size: 2vh;
+    font-size: 2.5vh;
 
     position: absolute;
     bottom: 2.5vh;
@@ -631,7 +635,6 @@ a {
 
 #username-form {
     position: absolute;
-    background: tomato;
     margin: auto;
     margin-top: 1.5vh;
     border: 2px solid white;
