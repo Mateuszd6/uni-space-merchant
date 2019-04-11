@@ -6,11 +6,11 @@ body {
 }
 
 .title-walp {
-  background: url(experiment.png) no-repeat center center fixed; 
+  background: url(./art/bgfull.png) no-repeat center center fixed; 
 }
 
 .ingame-walp {
-  background: url(black-gal.jpg) no-repeat center center fixed; 
+  background: url(./art/bgmin.png) no-repeat center center fixed; 
 }
 
 a {
