@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="main.css">
 </head>
-<body>
-<div class="player-stats">
+<body class="ingame-walp">
+<div class="player-stats heavy-bordered shadowed">
     <div>
         <img src="/home/mateusz/clock.png", class="info-icon", alt="Time:">
         <p class="info-txt">2h 14min</p>
@@ -23,102 +23,102 @@
     </div>
 </div>
 
-<ul class="flex-container">
-    <li class="flex-item heavy-bordered shadowed">
+<ul class="game-container">
+    <li class="game-panel heavy-bordered shadowed">
         <div class="game-list-item">Planets</div>
         <div class="game-list-scrollarea"> 
-            <div class=planet-record>
+            <div class="planet-record lightly-bordered">
                 <a href="#planet-details-popup">
                     <img src="/home/mateusz/Downloads/planets/Alderaan.png" id="planet-icon"></img>
                     <p id="planet-name">Alderaan</p>
                     <p id="planet-coord">(15, 32)</p>
                 </a>
             </div>
-            <div class=planet-record>
+            <div class="planet-record lightly-bordered">
                 <a href="#planet-details-popup">
                     <img src="/home/mateusz/Downloads/planets/Argoland.png" id="planet-icon"></img>
                     <p id="planet-name">Alderaan</p>
                     <p id="planet-coord">(15, 32)</p>
                 </a>
             </div>
-            <div class=planet-record>
+            <div class="planet-record lightly-bordered">
                 <a href="#planet-details-popup">
                     <img src="/home/mateusz/Downloads/planets/Arrakis.png" id="planet-icon"></img>
                     <p id="planet-name">Arrakis</p>
                     <p id="planet-coord">(15, 32)</p>
                 </a>
             </div>
-            <div class=planet-record>
+            <div class="planet-record lightly-bordered">
                 <a href="#planet-details-popup">
                     <img src="/home/mateusz/Downloads/planets/Corellia.png" id="planet-icon"></img>
                     <p id="planet-name">Corellia</p>
                     <p id="planet-coord">(15, 32)</p>
                 </a>
             </div>
-            <div class=planet-record>
+            <div class="planet-record lightly-bordered">
                 <a href="#planet-details-popup">
                     <img src="/home/mateusz/Downloads/planets/Encja.png" id="planet-icon"></img>
                     <p id="planet-name">Encja</p>
                     <p id="planet-coord">(15, 32)</p>
                 </a>
             </div>
-            <div class=planet-record>
+            <div class="planet-record lightly-bordered">
                 <a href="#planet-details-popup">
                     <img src="/home/mateusz/Downloads/planets/Gaia.png" id="planet-icon"></img>
                     <p id="planet-name">Gaia</p>
                     <p id="planet-coord">(15, 32)</p>
                 </a>
             </div>
-            <div class=planet-record>
+            <div class="planet-record lightly-bordered">
                 <a href="#planet-details-popup">
                     <img src="/home/mateusz/Downloads/planets/Ksi.png" id="planet-icon"></img>
                     <p id="planet-name">Ksi</p>
                     <p id="planet-coord">(15, 32)</p>
                 </a>
             </div>
-            <div class=planet-record>
+            <div class="planet-record lightly-bordered">
                 <a href="#planet-details-popup">
                     <img src="/home/mateusz/Downloads/planets/Leonida.png" id="planet-icon"></img>
                     <p id="planet-name">Leonida</p>
                     <p id="planet-coord">(15, 32)</p>
                 </a>
             </div>
-            <div class=planet-record>
+            <div class="planet-record lightly-bordered">
                 <a href="#planet-details-popup">
                     <img src="/home/mateusz/Downloads/planets/NowWhat.png" id="planet-icon"></img>
                     <p id="planet-name">NowWhat</p>
                     <p id="planet-coord">(15, 32)</p>
                 </a>
             </div>
-            <div class=planet-record>
+            <div class="planet-record lightly-bordered">
                 <a href="#planet-details-popup">
                     <img src="/home/mateusz/Downloads/planets/Sur'Kesh.png" id="planet-icon"></img>
                     <p id="planet-name">Sur'Kesh</p>
                     <p id="planet-coord">(15, 32)</p>
                 </a>
             </div>
-            <div class=planet-record>
+            <div class="planet-record lightly-bordered">
                 <a href="#planet-details-popup">
                     <img src="/home/mateusz/Downloads/planets/Tairia.png" id="planet-icon"></img>
                     <p id="planet-name">Tairia</p>
                     <p id="planet-coord">(15, 32)</p>
                 </a>
             </div>
-            <div class=planet-record>
+            <div class="planet-record lightly-bordered">
                 <a href="#planet-details-popup">
                     <img src="/home/mateusz/Downloads/planets/Tatooine.png" id="planet-icon"></img>
                     <p id="planet-name">Tatooine</p>
                     <p id="planet-coord">(15, 32)</p>
                 </a>
             </div>
-            <div class=planet-record>
+            <div class="planet-record lightly-bordered">
                 <a href="#planet-details-popup">
                     <img src="/home/mateusz/Downloads/planets/Tuchanka.png" id="planet-icon"></img>
                     <p id="planet-name">Tuchanka</p>
                     <p id="planet-coord">(15, 32)</p>
                 </a>
             </div>
-            <div class=planet-record>
+            <div class="planet-record lightly-bordered">
                 <a href="#planet-details-popup">
                     <img src="/home/mateusz/Downloads/planets/Ziemia.png" id="planet-icon"></img>
                     <p id="planet-name">Ziemia</p>
@@ -127,7 +127,7 @@
             </div>
         </div>
     </li>
-    <li class="flex-item heavy-bordered shadowed">
+    <li class="game-panel heavy-bordered shadowed">
         <div class="game-list-item">Spaceships</div>
         <div class="game-list-scrollarea"> 
             <div class="ship-record lightly-bordered">
@@ -229,37 +229,39 @@
         <h3>Current load: <span class="highlighted-info">100 / 128</span></h3>
 
         <div class="trade-list-scrollarea">
-            <div class="trade-list-record">
+            <!-- Wether the button should be clickable or not will be decied 
+                by the backend code. This is just an example.-->
+            <div class="list-record lightly-bordered">
                 <img style="float: left; margin-left: 0.5vh; width: 8vh; height: 8vh;" src="/home/mateusz/Downloads/planets/Dwimeryt.png"></img>
                 <p style="margin-left: 1vh; float: left; vertical-align: middle;">Dwimeryt</p>
                 <a href="#trade-popup" class="button trade-start-button">Sell</a>
                 <a class="button trade-start-button" disabled>Buy</a>
             </div>
-            <div class="trade-list-record">
+            <div class="list-record lightly-bordered">
                 <img style="float: left; margin-left: 0.5vh; width: 8vh; height: 8vh;" src="/home/mateusz/Downloads/planets/Unobtainium.png"></img>
                 <p style="margin-left: 1vh; float: left; vertical-align: middle;">Unobtainium</p>
                 <a href="#trade-popup" class="button trade-start-button">Sell</a>
                 <a class="button trade-start-button" disabled>Buy</a>
             </div>
-            <div class="trade-list-record">
+            <div class="list-record lightly-bordered">
                 <img style="float: left; margin-left: 0.5vh; width: 8vh; height: 8vh;" src="/home/mateusz/Downloads/planets/Cynamon.png"></img>
                 <p style="margin-left: 1vh; float: left; vertical-align: middle;">Cynamon</p>
                 <a class="button trade-start-button" disabled>Sell</a>
                 <a href="#trade-popup" class="button trade-start-button">Buy</a>
             </div>
-            <div class="trade-list-record">
+            <div class="list-record lightly-bordered">
                 <img style="float: left; margin-left: 0.5vh; width: 8vh; height: 8vh;" src="/home/mateusz/Downloads/planets/Lyrium.png"></img>
                 <p style="margin-left: 1vh; float: left; vertical-align: middle;">Lyrium</p>
                 <a href="#trade-popup" class="button trade-start-button">Sell</a>
                 <a href="#trade-popup" class="button trade-start-button">Buy</a>
             </div>
-            <div class="trade-list-record">
+            <div class="list-record lightly-bordered">
                 <img style="float: left; margin-left: 0.5vh; width: 8vh; height: 8vh;" src="/home/mateusz/Downloads/planets/Nuka-Cola.png"></img>
                 <p style="margin-left: 1vh; float: left; vertical-align: middle;">Nuka-Cola</p>
                 <a href="#trade-popup" class="button trade-start-button">Sell</a>
                 <a class="button trade-start-button" disabled>Buy</a>
             </div>
-            <div class="trade-list-record">
+            <div class="list-record lightly-bordered">
                 <img style="float: left; margin-left: 0.5vh; width: 8vh; height: 8vh;" src="/home/mateusz/Downloads/planets/Woda.png"></img>
                 <p style="margin-left: 1vh; float: left; vertical-align: middle;">Woda</p>
                 <a class="button trade-start-button" disabled>Sell</a>
@@ -276,98 +278,98 @@
         <a class="close" href="#landedspacecraft-popup">&times;</a>
         <h2>Select next planet to explore:</h2>
         <div class="game-list-scrollarea" style="height: 60vh;"> 
-            <div class=planet-record>
+            <div class="planet-record lightly-bordered">
             <a href="#flyingspacecraft-popup">
                 <img src="/home/mateusz/Downloads/planets/Alderaan.png" id="planet-icon"></img>
                 <p id="planet-name">Alderaan</p>
                 <p id="planet-coord">35sec</p>
             </a>
             </div>
-            <div class=planet-record>
+            <div class="planet-record lightly-bordered">
             <a href="#flyingspacecraft-popup">
                 <img src="/home/mateusz/Downloads/planets/Argoland.png" id="planet-icon"></img>
                 <p id="planet-name">Argoland</p>
                 <p id="planet-coord">1min 13sec</p>
             </a>
             </div>
-            <div class=planet-record>
+            <div class="planet-record lightly-bordered">
             <a href="#flyingspacecraft-popup">
                 <img src="/home/mateusz/Downloads/planets/Arrakis.png" id="planet-icon"></img>
                 <p id="planet-name">Arrakis</p>
                 <p id="planet-coord">1min 27sec</p>
             </a>
             </div>
-            <div class=planet-record>
+            <div class="planet-record lightly-bordered">
             <a href="#flyingspacecraft-popup">
                 <img src="/home/mateusz/Downloads/planets/Corellia.png" id="planet-icon"></img>
                 <p id="planet-name">Corellia</p>
                 <p id="planet-coord">1min 21sec</p>
             </a>
             </div>
-            <div class=planet-record>
+            <div class="planet-record lightly-bordered">
             <a href="#flyingspacecraft-popup">
                 <img src="/home/mateusz/Downloads/planets/Encja.png" id="planet-icon"></img>
                 <p id="planet-name">Encja</p>
                 <p id="planet-coord">1min 36sec</p>
             </a>
             </div>
-            <div class=planet-record>
+            <div class="planet-record lightly-bordered">
             <a href="#flyingspacecraft-popup">
                 <img src="/home/mateusz/Downloads/planets/Gaia.png" id="planet-icon"></img>
                 <p id="planet-name">Gaia</p>
                 <p id="planet-coord">1min 46sec</p>
             </a>
             </div>
-            <div class=planet-record>
+            <div class="planet-record lightly-bordered">
             <a href="#flyingspacecraft-popup">
                 <img src="/home/mateusz/Downloads/planets/Ksi.png" id="planet-icon"></img>
                 <p id="planet-name">Ksi</p>
                 <p id="planet-coord">1min 55sec</p>
             </a>
             </div>
-            <div class=planet-record>
+            <div class="planet-record lightly-bordered">
             <a href="#flyingspacecraft-popup">
                 <img src="/home/mateusz/Downloads/planets/Leonida.png" id="planet-icon"></img>
                 <p id="planet-name">Leonida</p>
                 <p id="planet-coord">32sec</p>
             </a>
             </div>
-            <div class=planet-record>
+            <div class="planet-record lightly-bordered">
             <a href="#flyingspacecraft-popup">
                 <img src="/home/mateusz/Downloads/planets/NowWhat.png" id="planet-icon"></img>
                 <p id="planet-name">NowWhat</p>
                 <p id="planet-coord">53sec</p>
             </a>
             </div>
-            <div class=planet-record>
+            <div class="planet-record lightly-bordered">
             <a href="#flyingspacecraft-popup">
                 <img src="/home/mateusz/Downloads/planets/Sur'Kesh.png" id="planet-icon"></img>
                 <p id="planet-name">Sur'Kesh</p>
                 <p id="planet-coord">49sec</p>
             </a>
             </div>
-            <div class=planet-record>
+            <div class="planet-record lightly-bordered">
             <a href="#flyingspacecraft-popup">
                 <img src="/home/mateusz/Downloads/planets/Tairia.png" id="planet-icon"></img>
                 <p id="planet-name">Tairia</p>
                 <p id="planet-coord">1min 31sec</p>
             </a>
             </div>
-            <div class=planet-record>
+            <div class="planet-record lightly-bordered">
             <a href="#flyingspacecraft-popup">
                 <img src="/home/mateusz/Downloads/planets/Tatooine.png" id="planet-icon"></img>
                 <p id="planet-name">Tatooine</p>
                 <p id="planet-coord">1min 22sec</p>
             </a>
             </div>
-            <div class=planet-record>
+            <div class="planet-record lightly-bordered">
             <a href="#flyingspacecraft-popup">
                 <img src="/home/mateusz/Downloads/planets/Tuchanka.png" id="planet-icon"></img>
                 <p id="planet-name">Tuchanka</p>
                 <p id="planet-coord">1min 20sec</p>
             </a>
             </div>
-            <div class=planet-record>
+            <div class="planet-record lightly-bordered">
             <a href="#flyingspacecraft-popup">
                 <img src="/home/mateusz/Downloads/planets/Ziemia.png" id="planet-icon"></img>
                 <p id="planet-name">Ziemia</p>
@@ -390,7 +392,7 @@
         <h3 id="trade-txt">Available: <span class="highlighted-info">2000</span></h3>
         <h3 id="trade-txt">Price: <span class="highlighted-info">10$</span></h3>
         <h3 id="trade-txt">Total: 0 * <span class="highlighted-info">10$</span> = 0</h3>
-        <form class="trade-form"><input type="text" name="tname"></form>
+        <form class="trade-form"><input class="input" type="text" name="tname"></form>
         <a class="button" id="tradebtn" href="#landedspacecraft-popup">Trade</a>
     </div>
 </div>
@@ -403,63 +405,63 @@
         <div style="border-radius: 5px; border-top: 2px solid #fff; border-bottom: 2px solid #fff; width: 100%; height: 60vh; overflow: hidden; overflow-y: auto;"> 
             <h2>Minerals:</h2>
             <div style="margin:auto; width: 95%; border-top: 2px solid #fff; border-bottom: 2px solid #fff; border-radius: 5px;">
-                <div class="trade-list-record">
+                <div class="list-record lightly-bordered">
                     <img style="float: left; margin-left: 0.5vh; width: 8vh; height: 8vh;" src="/home/mateusz/Downloads/planets/Dwimeryt.png"></img>
-                    <h3 style="margin-left: 1vh; float: left; vertical-align: middle;">Dwimeryt</h3>
+                    <h3 style="margin-top: 3vh; margin-left: 1vh; float: left; vertical-align: middle;">Dwimeryt</h3>
                     <h3 style="margin-left: 1vh; margin-right: 1vh; float: right; vertical-align: middle;">Price: <span class="highlighted-info">10$</span></h3>
                     <h3 style="margin-left: 1vh; margin-right: 1vh; float: right; vertical-align: middle;">Available: <span class="highlighted-info">4</span></h3>
                 </div>
-                <div class="trade-list-record">
+                <div class="list-record lightly-bordered">
                     <img style="float: left; margin-left: 0.5vh; width: 8vh; height: 8vh;" src="/home/mateusz/Downloads/planets/Cynamon.png"></img>
-                    <h3 style="margin-left: 1vh; float: left; vertical-align: middle;">Cynamon</h3>
+                    <h3 style="margin-top: 3vh; margin-left: 1vh; float: left; vertical-align: middle;">Cynamon</h3>
                     <h3 style="margin-left: 1vh; margin-right: 1vh; float: right; vertical-align: middle;">Price: <span class="highlighted-info">10$</span></h3>
                     <h3 style="margin-left: 1vh; margin-right: 1vh; float: right; vertical-align: middle;">Available: <span class="highlighted-info">4</span></h3>
                 </div>
-                <div class="trade-list-record">
+                <div class="list-record lightly-bordered">
                     <img style="float: left; margin-left: 0.5vh; width: 8vh; height: 8vh;" src="/home/mateusz/Downloads/planets/Nuka-Cola.png"></img>
-                    <h3 style="margin-left: 1vh; float: left; vertical-align: middle;">Nuka-Cola</h3>
+                    <h3 style="margin-top: 3vh; margin-left: 1vh; float: left; vertical-align: middle;">Nuka-Cola</h3>
                     <h3 style="margin-left: 1vh; margin-right: 1vh; float: right; vertical-align: middle;">Price: <span class="highlighted-info">10$</span></h3>
                     <h3 style="margin-left: 1vh; margin-right: 1vh; float: right; vertical-align: middle;">Available: <span class="highlighted-info">4</span></h3>
                 </div>
-                <div class="trade-list-record">
+                <div class="list-record lightly-bordered">
                     <img style="float: left; margin-left: 0.5vh; width: 8vh; height: 8vh;" src="/home/mateusz/Downloads/planets/Złoto.png"></img>
-                    <h3 style="margin-left: 1vh; float: left; vertical-align: middle;">Złoto</h3>
+                    <h3 style="margin-top: 3vh; margin-left: 1vh; float: left; vertical-align: middle;">Złoto</h3>
                     <h3 style="margin-left: 1vh; margin-right: 1vh; float: right; vertical-align: middle;">Price: <span class="highlighted-info">10$</span></h3>
                     <h3 style="margin-left: 1vh; margin-right: 1vh; float: right; vertical-align: middle;">Available: <span class="highlighted-info">4</span></h3>
                 </div>
-                <div class="trade-list-record">
+                <div class="list-record lightly-bordered">
                     <img style="float: left; margin-left: 0.5vh; width: 8vh; height: 8vh;" src="/home/mateusz/Downloads/planets/Unobtainium.png"></img>
-                    <h3 style="margin-left: 1vh; float: left; vertical-align: middle;">Unobtainium</h3>
+                    <h3 style="margin-top: 3vh; margin-left: 1vh; float: left; vertical-align: middle;">Unobtainium</h3>
                     <h3 style="margin-left: 1vh; margin-right: 1vh; float: right; vertical-align: middle;">Price: <span class="highlighted-info">10$</span></h3>
                     <h3 style="margin-left: 1vh; margin-right: 1vh; float: right; vertical-align: middle;">Available: <span class="highlighted-info">4</span></h3>
                 </div>
-                <div class="trade-list-record">
+                <div class="list-record lightly-bordered">
                     <img style="float: left; margin-left: 0.5vh; width: 8vh; height: 8vh;" src="/home/mateusz/Downloads/planets/Proteańskie dyski.png"></img>
-                    <h3 style="margin-left: 1vh; float: left; vertical-align: middle;">Proteańskie dyski</h3>
+                    <h3 style="margin-top: 3vh; margin-left: 1vh; float: left; vertical-align: middle;">Proteańskie dyski</h3>
                     <h3 style="margin-left: 1vh; margin-right: 1vh; float: right; vertical-align: middle;">Price: <span class="highlighted-info">10$</span></h3>
                     <h3 style="margin-left: 1vh; margin-right: 1vh; float: right; vertical-align: middle;">Available: <span class="highlighted-info">4</span></h3>
                 </div>
-                <div class="trade-list-record">
+                <div class="list-record lightly-bordered">
                     <img style="float: left; margin-left: 0.5vh; width: 8vh; height: 8vh;" src="/home/mateusz/Downloads/planets/Ziemniaki.png"></img>
-                    <h3 style="margin-left: 1vh; float: left; vertical-align: middle;">Ziemniaki</h3>
+                    <h3 style="margin-top: 3vh; margin-left: 1vh; float: left; vertical-align: middle;">Ziemniaki</h3>
                     <h3 style="margin-left: 1vh; margin-right: 1vh; float: right; vertical-align: middle;">Price: <span class="highlighted-info">10$</span></h3>
                     <h3 style="margin-left: 1vh; margin-right: 1vh; float: right; vertical-align: middle;">Available: <span class="highlighted-info">4</span></h3>
                 </div>
-                <div class="trade-list-record">
+                <div class="list-record lightly-bordered">
                     <img style="float: left; margin-left: 0.5vh; width: 8vh; height: 8vh;" src="/home/mateusz/Downloads/planets/Lyrium.png"></img>
-                    <h3 style="margin-left: 1vh; float: left; vertical-align: middle;">Lyrium</h3>
+                    <h3 style="margin-top: 3vh; margin-left: 1vh; float: left; vertical-align: middle;">Lyrium</h3>
                     <h3 style="margin-left: 1vh; margin-right: 1vh; float: right; vertical-align: middle;">Price: <span class="highlighted-info">10$</span></h3>
                     <h3 style="margin-left: 1vh; margin-right: 1vh; float: right; vertical-align: middle;">Available: <span class="highlighted-info">4</span></h3>
                 </div>
-                <div class="trade-list-record">
+                <div class="list-record lightly-bordered">
                     <img style="float: left; margin-left: 0.5vh; width: 8vh; height: 8vh;" src="/home/mateusz/Downloads/planets/Murkwie.png"></img>
-                    <h3 style="margin-left: 1vh; float: left; vertical-align: middle;">Murkwie</h3>
+                    <h3 style="margin-top: 3vh; margin-left: 1vh; float: left; vertical-align: middle;">Murkwie</h3>
                     <h3 style="margin-left: 1vh; margin-right: 1vh; float: right; vertical-align: middle;">Price: <span class="highlighted-info">10$</span></h3>
                     <h3 style="margin-left: 1vh; margin-right: 1vh; float: right; vertical-align: middle;">Available: <span class="highlighted-info">4</span></h3>
                 </div>
-                <div class="trade-list-record">
+                <div class="list-record lightly-bordered">
                     <img style="float: left; margin-left: 0.5vh; width: 8vh; height: 8vh;" src="/home/mateusz/Downloads/planets/Woda.png"></img>
-                    <h3 style="margin-left: 1vh; float: left; vertical-align: middle;">Woda</h3>
+                    <h3 style="margin-top: 3vh; margin-left: 1vh; float: left; vertical-align: middle;">Woda</h3>
                     <h3 style="margin-left: 1vh; margin-right: 1vh; float: right; vertical-align: middle;">Price: <span class="highlighted-info">10$</span></h3>
                     <h3 style="margin-left: 1vh; margin-right: 1vh; float: right; vertical-align: middle;">Available: <span class="highlighted-info">4</span></h3>
                 </div>
@@ -467,43 +469,43 @@
 
             <h2 style="margin-top: 5vh;">Stationed spaceships:</h2>
             <div style="margin:auto; margin-bottom: 1vh; width: 95%; border-top: 2px solid #fff; border-bottom: 2px solid #fff; border-radius: 5px;">
-                <div class="trade-list-record">
+                <div class="list-record lightly-bordered">
                     <img style="float: left; margin-left: 0.5vh; width: auto; height: 8vh;" src="/home/mateusz/Downloads/planets/Axiom.png"></img>
                     <h3><a href="#landedspacecraft-popup" style="margin-bottom: 3vh; margin-top: 3vh; margin-left: 1vh; float: left; vertical-align: middle;">Goliath</a></h3>
                 </div>
-                <div class="trade-list-record">
+                <div class="list-record lightly-bordered">
                     <img style="float: left; margin-left: 0.5vh; width: auto; height: 8vh;" src="/home/mateusz/Downloads/planets/Enterprise.png"></img>
                     <h3><a href="#landedspacecraft-popup" style="margin-bottom: 3vh; margin-top: 3vh; margin-left: 1vh; float: left; vertical-align: middle;">Enterprise</a></h3>
                 </div>
-                <div class="trade-list-record">
+                <div class="list-record lightly-bordered">
                     <img style="float: left; margin-left: 0.5vh; width: auto; height: 8vh;" src="/home/mateusz/Downloads/planets/Goliath.png"></img>
                     <h3><a href="#landedspacecraft-popup" style="margin-bottom: 3vh; margin-top: 3vh; margin-left: 1vh; float: left; vertical-align: middle;">Goliath</a></h3>
                 </div>
-                <div class="trade-list-record">
+                <div class="list-record lightly-bordered">
                     <img style="float: left; margin-left: 0.5vh; width: auto; height: 8vh;" src="/home/mateusz/Downloads/planets/Hermes.png"></img>
                     <h3><a href="#landedspacecraft-popup" style="margin-bottom: 3vh; margin-top: 3vh; margin-left: 1vh; float: left; vertical-align: middle;">Hermes</a></h3>
                 </div>
-                <div class="trade-list-record">
+                <div class="list-record lightly-bordered">
                     <img style="float: left; margin-left: 0.5vh; width: auto; height: 8vh;" src="/home/mateusz/Downloads/planets/Millenium Falcon.png"></img>
                     <h3><a href="#landedspacecraft-popup" style="margin-bottom: 3vh; margin-top: 3vh; margin-left: 1vh; float: left; vertical-align: middle;">Millenium Falcon</a></h3>
                 </div>
-                <div class="trade-list-record">
+                <div class="list-record lightly-bordered">
                     <img style="float: left; margin-left: 0.5vh; width: auto; height: 8vh;" src="/home/mateusz/Downloads/planets/Niezwyciężony.png"></img>
                     <h3><a href="#landedspacecraft-popup" style="margin-bottom: 3vh; margin-top: 3vh; margin-left: 1vh; float: left; vertical-align: middle;">Niezwyciężony</a></h3>
                 </div>
-                <div class="trade-list-record">
+                <div class="list-record lightly-bordered">
                     <img style="float: left; margin-left: 0.5vh; width: auto; height: 8vh;" src="/home/mateusz/Downloads/planets/Normandy SR-2.png"></img>
                     <h3><a href="#landedspacecraft-popup" style="margin-bottom: 3vh; margin-top: 3vh; margin-left: 1vh; float: left; vertical-align: middle;">Normandy SR-2</a></h3>
                 </div>
-                <div class="trade-list-record">
+                <div class="list-record lightly-bordered">
                     <img style="float: left; margin-left: 0.5vh; width: auto; height: 8vh;" src="/home/mateusz/Downloads/planets/Nostromo.png"></img>
                     <h3><a href="#landedspacecraft-popup" style="margin-bottom: 3vh; margin-top: 3vh; margin-left: 1vh; float: left; vertical-align: middle;">Nostromo</a></h3>
                 </div>
-                <div class="trade-list-record">
+                <div class="list-record lightly-bordered">
                     <img style="float: left; margin-left: 0.5vh; width: auto; height: 8vh;" src="/home/mateusz/Downloads/planets/Rocinante.png"></img>
                     <h3><a href="#landedspacecraft-popup" style="margin-bottom: 3vh; margin-top: 3vh; margin-left: 1vh; float: left; vertical-align: middle;">Rocinante</a></h3>
                 </div>
-                <div class="trade-list-record">
+                <div class="list-record lightly-bordered">
                     <img style="float: left; margin-left: 0.5vh; width: auto; height: 8vh;" src="/home/mateusz/Downloads/planets/Космонавт Алексе́й Лео́нов.png"></img>
                     <h3><a href="#landedspacecraft-popup" style="margin-bottom: 3vh; margin-top: 3vh; margin-left: 1vh; float: left; vertical-align: middle;">Космонавт Алексе́й Лео́нов</a></h3>
                 </div>                                                                                                                  
