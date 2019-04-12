@@ -66,7 +66,7 @@ a {
   padding: 0;
   width: 90%;
   max-width: 550px;
-  height: calc(75vh - 7vh - 2.5vh);f
+  height: calc(75vh - 7vh - 2.5vh);
 }
 
 .highscores-title {
@@ -82,8 +82,7 @@ a {
 
 .highscores-record {
   margin: 1em auto;
-  padding: 2.5vh 0;
-  padding-top: 1.5vh;
+  padding: 1.5vh 0;
   width: 85%;
   font-size: 1.5vh;
   overflow: hidden; 
