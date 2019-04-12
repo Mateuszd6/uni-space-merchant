@@ -64,9 +64,9 @@ a {
 .highscores-field {
   margin: 2.5vh auto;
   padding: 0;
-  width: 50%;
-  max-width: 700px;
-  height: calc(75vh - 7vh - 2.5vh);
+  width: 90%;
+  max-width: 550px;
+  height: calc(75vh - 7vh - 2.5vh);f
 }
 
 .highscores-title {
@@ -82,19 +82,17 @@ a {
 
 .highscores-record {
   margin: 1em auto;
-  padding: 0.5vh;
-  width: 90%;
-  height: 2vh;
+  padding: 2.5vh 0;
+  padding-top: 1.5vh;
+  width: 85%;
   font-size: 1.5vh;
   overflow: hidden; 
-  text-overflow: ellipsis;
   text-align: center;
   background: rgb(51, 51, 51); /* Fallback */
   background: rgba(56,56,56,0.9);
 }
 
-.highscores-scrollarea
-{
+.highscores-scrollarea {
   margin-left: 2vh;
   margin-right: 2vh;
   padding-left: 0;
@@ -106,14 +104,14 @@ a {
 
 .highscores-record .uname {
   float:left;
-  font-size: 1.25em;
+  font-size: 2.5vh;
   margin-left: 10%;
   text-align:center;
 }
 
 .highscores-record .score {
   float:right;
-  font-size: 1.25em;
+  font-size: 2.5vh;
   margin-right: 10%;
   text-align:center;
 }
@@ -152,8 +150,8 @@ float: left;
   color: white;
   cursor: pointer;
   text-align: center;
-  width: 50%;
-  max-width: 700px;
+  width: 90%;
+  max-width: 550px;
   font-size: 4vh;
 }
 
@@ -241,7 +239,6 @@ float: left;
   margin: 1vh auto;
   padding: 0 1.5vh;
   width: 90%;
-  height: 8vh;
   font-size: 2.5vh;
   overflow: hidden; 
   text-overflow: ellipsis;
