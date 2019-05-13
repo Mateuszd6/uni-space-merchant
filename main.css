@@ -116,6 +116,7 @@ a {
 }
 
 .player-stats {
+  display: grid;
   position: absolute;
   padding: 0.2em 0.2em;
 }

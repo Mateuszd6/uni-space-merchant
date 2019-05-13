@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+      "outDir": "./dist/",
+      "allowJs": true,
+      "resolveJsonModule": true,
+      "noImplicitAny": false,
+      "moduleResolution": "node",
+      "module": "esnext",
+      "target": "es5",
+      "lib": ["es5", "dom"],
+      "baseUrl": "./",
+  },
+  "include": [ "*" ],
+}
