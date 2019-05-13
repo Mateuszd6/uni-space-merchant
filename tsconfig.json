@@ -6,9 +6,7 @@
       "noImplicitAny": false,
       "moduleResolution": "node",
       "module": "esnext",
-      "target": "es5",
-      "lib": ["es5", "dom"],
-      "baseUrl": "./",
+      "target": "es2017"
   },
-  "include": [ "*" ],
+  "include": [ "*" ]
 }

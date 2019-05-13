@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Space Merchant</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script type="text/javascript" src="dist/game.js"></script>
+    <script type="module" src="dist/game.js"></script>
     <link rel="stylesheet" type="text/css" media="screen" href="main.css">
 </head>
 <body class="ingame-walp">
@@ -27,9 +27,10 @@
 <ul class="game-container">
     <li class="game-panel heavy-bordered shadowed">
         <div class="game-list-item">Planets</div>
-        <div id="planets-list" class="game-list-scrollarea"> 
+        <div id="planets-list" class="game-list-scrollarea">
             <div class="planet-record lightly-bordered">
-                <a href="#planet-details-popup">
+                <!-- Make this appear as a ref, but logic is handled with JS -->
+                <a href="javascript:void(0);">
                     <img id="planet-icon" src=""></img>
                     <p id="planet-name">NAME</p>
                     <p id="planet-coord">COORDS</p>
@@ -39,9 +40,9 @@
     </li>
     <li class="game-panel heavy-bordered shadowed">
         <div class="game-list-item">Spaceships</div>
-        <div id="ships-list" class="game-list-scrollarea"> 
+        <div id="ships-list" class="game-list-scrollarea">
             <div class="ship-record lightly-bordered">
-                <a href="#landedspacecraft-popup"> 
+                <a href="javascript:void(0);">
                     <img id="ship-icon" class="icon" src=""></img>
                     <p id="ship-name">NAME</p>
                     <p id="ship-pos">STATE</p>
@@ -54,8 +55,8 @@
 <!-- This is the popup for displaying flying spaceship. -->
 <div id="flyingspacecraft-popup" class="popup-screenfader">
     <div class="ingame-popup">
-        <a class="close" href="#">&times;</a>
-        <h2>Spacecraft: <span class="highlighted-info">Goliath</span></h2>
+        <a class="close" href="javascript:void(0);">&times;</a>
+        <h2>Spacecraft: <span id="flyingspacecraft-name" class="highlighted-info">Goliath</span></h2>
         <h3>Moving towards: <a href="#planet-details-popup">Earth</a></h3>
         <h3>Arrival in: <span class="highlighted-info">10 sec</span></h3>
         <h3>Current load: <span class="highlighted-info">100 / 128</span></h3>
@@ -83,7 +84,7 @@
         <h3>Current load: <span class="highlighted-info">100 / 128</span></h3>
 
         <div class="trade-list-scrollarea">
-            <!-- Wether the button should be clickable or not will be decied 
+            <!-- Wether the button should be clickable or not will be decied
                 by the backend code. This is just an example.-->
             <div class="list-record lightly-bordered">
                 <img style="float: left; margin-left: 0.5vh; width: 8vh; height: 8vh;" src="./art/Dwimeryt.png"></img>
@@ -131,7 +132,7 @@
     <div class="ingame-popup">
         <a class="close" href="#landedspacecraft-popup">&times;</a>
         <h2>Select next planet to explore:</h2>
-        <div class="game-list-scrollarea" style="height: 60vh;"> 
+        <div class="game-list-scrollarea" style="height: 60vh;">
             <div class="planet-record lightly-bordered">
             <a href="#flyingspacecraft-popup">
                 <img src="./art/Alderaan.png" id="planet-icon"></img>
@@ -254,9 +255,9 @@
 <!-- This is the popup displayed when asking for the planet details. -->
 <div id="planet-details-popup" class="popup-screenfader">
     <div class="ingame-popup">
-        <a class="close" href="#">&times;</a>
+        <a class="close" href="javascript:void(0);" onclick="popupPlanetDetailsClose()">&times;</a>
         <h2>Planet <span class="highlighted-info">Earth</span>:</h2>
-        <div style="border-radius: 5px; border-top: 2px solid #fff; border-bottom: 2px solid #fff; width: 100%; height: 60vh; overflow: hidden; overflow-y: auto;"> 
+        <div style="border-radius: 5px; border-top: 2px solid #fff; border-bottom: 2px solid #fff; width: 100%; height: 60vh; overflow: hidden; overflow-y: auto;">
             <h2>Minerals:</h2>
             <div style="margin:auto; width: 95%; border-top: 2px solid #fff; border-bottom: 2px solid #fff; border-radius: 5px;">
                 <div class="list-record lightly-bordered">
@@ -362,7 +363,7 @@
                 <div class="list-record lightly-bordered">
                     <img style="float: left; margin-left: 0.5vh; width: auto; height: 8vh;" src="./art/Космонавт Алексе́й Лео́нов.png"></img>
                     <h3><a href="#landedspacecraft-popup" style="margin-bottom: 3vh; margin-top: 3vh; margin-left: 1vh; float: left; vertical-align: middle;">Космонавт Алексе́й Лео́нов</a></h3>
-                </div>                                                                                                                  
+                </div>
             </div>
         </div>
     </div>

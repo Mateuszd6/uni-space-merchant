@@ -732,8 +732,6 @@ let jsonString: string = `{
         }
     }
 }`;
-// const word = data.name;
-// console.log(word); // output 'testing'
 
 class TimeUpdater {
     element: HTMLElement;
@@ -748,12 +746,12 @@ class TimeUpdater {
 
     formatTime(timeMS: number) {
         // TODO: Substract elapsed seconds from the total game time
-        var allSeconds: number = 20 - Math.floor(timeMS / 1000);
-        var minutes: number = Math.floor(allSeconds / 60);
-        var seconds: number = allSeconds % 60;
+        let allSeconds: number = 20 - Math.floor(timeMS / 1000);
+        let minutes: number = Math.floor(allSeconds / 60);
+        let seconds: number = allSeconds % 60;
 
-        var minutesStr: string = minutes == 0 ? "" : (minutes.toString() + "min ");
-        var secondsStr: string = seconds == 0 ? "" : (seconds.toString() + "sec");
+        let minutesStr: string = minutes == 0 ? "" : (minutes.toString() + "min ");
+        let secondsStr: string = seconds == 0 ? "" : (seconds.toString() + "sec");
 
         return minutesStr + secondsStr;
     }
@@ -808,6 +806,34 @@ export interface IShip {
     }
 }
 
+class Popup {
+    content : HTMLDivElement;
+    initFun : Function
+
+    constructor(id : string, init : Function) {
+        let popup = <HTMLDivElement>(document.querySelector(id));
+        let closeBtn = <HTMLElement>(popup.querySelector(".close"));
+        closeBtn.onclick = () => popupClose(popup);
+
+        this.content = popup;
+        this.initFun = init;
+    }
+
+    display() 
+    {
+        this.initFun();
+    
+        this.content.style.visibility = "visible";
+        this.content.style.opacity = "1";
+    }
+    
+    close() {
+        console.log("Closing popup!");
+        this.content.style.visibility = "hidden";
+        this.content.style.opacity = "0";
+    }
+}
+
 console.log(jsonString);
 let dataStructure = JSON.parse(jsonString);
 console.log(dataStructure.planets);
@@ -815,39 +841,60 @@ console.log(dataStructure.planets);
 const planets = dataStructure.planets as IPlanet;
 const ships = dataStructure.starships as IShip;
 
-var selectedShip : string;
-var selectedPlanet : string;
+let selectedShip : string;
+let selectedPlanet : string;
 
-var timeUpdater : TimeUpdater;
-var cashUpdater : CashUpdater;
+let timeUpdater : TimeUpdater;
+let cashUpdater : CashUpdater;
 
 // Some prototypes.
-var planetRecordProto : HTMLElement;
-var shipRecordProto : HTMLElement;
+let planetRecordProto : HTMLElement;
+let shipRecordProto : HTMLElement;
 
-function populatePlanetsList(recordPrototype: HTMLElement, 
+function populatePlanetsList(recordPrototype: HTMLElement,
                              planetsList: HTMLElement) {
     // TODO.
 }
 
+let planetPopup : Popup;
+let flyingSpacecraftPopup : Popup;
+let landedSpacecraftPopup : Popup;
+
 function popupLandedShipInit() {
-    document.querySelector("#landedspacecraft-name")
-            .textContent = selectedShip;
+    document.querySelector("#landedspacecraft-name").textContent = selectedShip;
+}
+
+function popupClose(popup: HTMLDivElement) {
+    console.log("Closing popup!");
+
+    popup.style.visibility = "hidden";
+    popup.style.opacity = "0";
 }
 
 window.onload = () =>  {
+
     console.log("Hello world!");
 
-    // TODO: Get rid.
-    // let dataStructure = JSON.parse(jsonString);
-    // console.log(dataStructure);
+    planetPopup = new Popup("#planet-details-popup", 
+                            function() {
+                                console.log("Planet popup displayed!");
+                            });
+
+    flyingSpacecraftPopup = new Popup("#flyingspacecraft-popup", 
+                                      function() {
+                                          console.log("Flying spacecraft popup displayed!");
+                                      });
+    
+    landedSpacecraftPopup = new Popup("#landedspacecraft-popup", 
+                                      function() {
+                                          console.log("Landed spacecraft popup displayed!");
+                                      });
 
     timeUpdater = new TimeUpdater(document.getElementById("info-time"));
     cashUpdater = new CashUpdater(document.getElementById("info-credits"));
 
     // Set up that the ship is not moving as all ships starts on a planet
     for (let key in ships) {
-        
         ships[key].moving = Math.floor(Math.random() * 10) < 5 ? true : false;
     }
 
@@ -855,9 +902,9 @@ window.onload = () =>  {
     cashUpdater.updateCash(1008);
 
     document.getElementById("info-player_name").textContent =
-        sessionStorage.getItem("var_playerName");
+        sessionStorage.getItem("let_playerName");
 
-    // Get and save planet record prototype. 
+    // Get and save planet record prototype.
     planetRecordProto = document.querySelector(".planet-record");
     shipRecordProto = document.querySelector(".ship-record");
 
@@ -868,23 +915,29 @@ window.onload = () =>  {
     // Fill the planets list:
     for (let key in planets) {
         let value = planets[key];
-        var newRecord = <HTMLElement>(planetRecordProto).cloneNode(true);
-        var planetName = newRecord.querySelector("#planet-name") as HTMLElement;
-        var planetCoords = newRecord.querySelector("#planet-coord") as HTMLElement;
-        var planetIcon = newRecord.querySelector("#planet-icon") as HTMLImageElement;
+        let newRecord = <HTMLElement>(planetRecordProto).cloneNode(true);
+        let planetName = newRecord.querySelector("#planet-name") as HTMLElement;
+        let planetCoords = newRecord.querySelector("#planet-coord") as HTMLElement;
+        let planetIcon = newRecord.querySelector("#planet-icon") as HTMLImageElement;
         planetName.textContent = key;
         planetCoords.textContent = "(" + value.x + ", " + value.y + ")";
         planetIcon.src = "./art/" + key + ".png";
+        newRecord.onclick =
+                function() {
+                    selectedPlanet = key;
+                    planetPopup.display();
+                }
+
         document.getElementById("planets-list").append(newRecord);
     }
 
     // Fill the ships list:
     for (let key in ships) {
         let value = ships[key];
-        var newRecord = <HTMLElement>(shipRecordProto).cloneNode(true);
-        var shipName = newRecord.querySelector("#ship-name") as HTMLElement;
-        var shipPos = newRecord.querySelector("#ship-pos") as HTMLElement;
-        var shipIcon = newRecord.querySelector("#ship-icon") as HTMLImageElement;
+        let newRecord = <HTMLElement>(shipRecordProto).cloneNode(true);
+        let shipName = newRecord.querySelector("#ship-name") as HTMLElement;
+        let shipPos = newRecord.querySelector("#ship-pos") as HTMLElement;
+        let shipIcon = newRecord.querySelector("#ship-icon") as HTMLImageElement;
         shipName.textContent = key;
         shipIcon.src = "./art/" + key + ".png";
 
@@ -894,15 +947,18 @@ window.onload = () =>  {
             newRecord.onclick =
                 function() {
                     selectedShip = key;
+                    landedSpacecraftPopup.display();
                 }
         }
         else {
             shipPos.textContent = "Moving...";
-            newRecord.onclick = 
+            newRecord.onclick =
                 function() {
                     selectedShip = key;
-                    // document.querySelector("#landedspacecraft-name")
-                    //        .textContent = selectedShip;
+                    document.querySelector("#flyingspacecraft-name")
+                            .textContent = selectedShip;
+
+                    flyingSpacecraftPopup.display();
                 }
         }
 
