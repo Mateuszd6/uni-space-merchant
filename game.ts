@@ -829,14 +829,7 @@ class Popup {
         let popup = <HTMLDivElement>(document.querySelector(id));
         let closeBtn = <HTMLElement>(popup.querySelector(".close"));
 
-        closeBtn.onclick = 
-            function() {
-                console.log("Closing popup!");
-
-                popup.style.visibility = "hidden";
-                popup.style.opacity = "0";
-            }
-
+        closeBtn.onclick = () => this.close();
         this.content = popup;
         this.onOpen = onOpen;
     }
@@ -851,6 +844,13 @@ class Popup {
         this.content.style.visibility = "visible";
         this.content.style.opacity = "1";
     }
+
+    close() {
+        console.log("Closing popup!");
+
+        this.content.style.visibility = "hidden";
+        this.content.style.opacity = "0";
+    }
 }
 
 console.log(jsonString);
@@ -859,9 +859,6 @@ console.log(dataStructure.planets);
 
 const planets = dataStructure.planets as IPlanet;
 const ships = dataStructure.starships as IShip;
-
-let selectedShip : string;
-let selectedPlanet : string;
 
 let planetPopup : Popup;
 let flyingSpacecraftPopup : Popup;
@@ -889,6 +886,33 @@ window.onload = () =>  {
                       let planetName : string = val;
                       
                       obj.querySelector("#planet-details-name").textContent = planetName;
+
+                      let recordProto = <HTMLElement>(obj.querySelector("#planet-details-stationed-spaceship"));
+                      recordProto.hidden = false;
+
+                      // We may have some garbage in the list from the previous call, so 
+                      // we just remove all but the prototype.
+                      obj.querySelectorAll("#planet-details-stationed-spaceship")
+                         .forEach(function(x) { if (x !== recordProto) { x.remove(); }});
+
+                      for (let ship in ships)
+                          if (ships[ship].position === planetName)
+                          {
+                              console.log("Ship " + ship + " is avail. on " + planetName);
+
+                              let newRecord = <HTMLElement>(recordProto.cloneNode(true));
+                              (<HTMLImageElement>newRecord.querySelector("#planet-details-ship-img")).src = "./art/" + ship + ".png";
+                              (<HTMLImageElement>newRecord.querySelector("#planet-details-ship-name")).textContent = ship;
+                              newRecord.onclick = function() {
+                                  planetPopup.close();
+                                  landedSpacecraftPopup.display(ship);    
+                              }
+
+                              obj.querySelector("#planet-detials-ship-list").append(newRecord);
+                          }
+
+                      recordProto.hidden = true;    
+                      
                   });
 
     flyingSpacecraftPopup = 
@@ -903,8 +927,9 @@ window.onload = () =>  {
 
                       let planetLnk = <HTMLElement>(obj.querySelector("#flyingspacecraft-dest"));
                       planetLnk.onclick = function() {
+                          flyingSpacecraftPopup.close();
                           planetPopup.display(ships[shipName].position);
-                      }
+                      };
                   });
     
     landedSpacecraftPopup = 
@@ -917,6 +942,12 @@ window.onload = () =>  {
                       obj.querySelector("#landedspacecraft-dest").textContent = ships[shipName].position;
                       obj.querySelector("#landedspacecraft-load").textContent = 
                           ships[shipName].cargo + " / " + ships[shipName].cargo_hold_size;                  
+
+                      let planetLnk = <HTMLElement>(obj.querySelector("#landedspacecraft-dest"));
+                      planetLnk.onclick = function() {
+                          landedSpacecraftPopup.close();
+                          planetPopup.display(ships[shipName].position);
+                      };
                  });
 
     timeUpdater = new TimeUpdater(document.getElementById("info-time"));
@@ -953,7 +984,6 @@ window.onload = () =>  {
         planetIcon.src = "./art/" + key + ".png";
         newRecord.onclick =
                 function() {
-                    selectedPlanet = key;
                     planetPopup.display(key);
                 };
 
