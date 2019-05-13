@@ -887,20 +887,20 @@ window.onload = () =>  {
                       
                       obj.querySelector("#planet-details-name").textContent = planetName;
 
-                      let recordProto = <HTMLElement>(obj.querySelector("#planet-details-stationed-spaceship"));
-                      recordProto.hidden = false;
+                      let shipRecordProto = <HTMLElement>(obj.querySelector("#planet-details-stationed-spaceship"));
+                      shipRecordProto.hidden = false;
 
                       // We may have some garbage in the list from the previous call, so 
                       // we just remove all but the prototype.
                       obj.querySelectorAll("#planet-details-stationed-spaceship")
-                         .forEach(function(x) { if (x !== recordProto) { x.remove(); }});
+                         .forEach(function(x) { if (x !== shipRecordProto) { x.remove(); }});
 
                       for (let ship in ships)
                           if (ships[ship].position === planetName)
                           {
                               console.log("Ship " + ship + " is avail. on " + planetName);
 
-                              let newRecord = <HTMLElement>(recordProto.cloneNode(true));
+                              let newRecord = <HTMLElement>(shipRecordProto.cloneNode(true));
                               (<HTMLImageElement>newRecord.querySelector("#planet-details-ship-img")).src = "./art/" + ship + ".png";
                               (<HTMLImageElement>newRecord.querySelector("#planet-details-ship-name")).textContent = ship;
                               newRecord.onclick = function() {
@@ -911,8 +911,19 @@ window.onload = () =>  {
                               obj.querySelector("#planet-detials-ship-list").append(newRecord);
                           }
 
-                      recordProto.hidden = true;    
-                      
+                      shipRecordProto.hidden = true;    
+
+                      // TOOD: copypaste
+                      let mineralRecordProto = <HTMLElement>(obj.querySelector("#planet-details-mineral"));
+                      mineralRecordProto.hidden = false;
+
+                    //   let newRecord = <HTMLElement>(mineralRecordProto.cloneNode());
+                    //   newRecord.querySelector("#planet-details-mineral-name").textContent = "foobar";
+                    //   newRecord.querySelector("#planet-details-mineral-price").textContent = "troll";
+                    //   newRecord.querySelector("#planet-details-mineral-amount").textContent = "hehe";
+                    //   obj.querySelector("#planet-detials-mineral-list").append(newRecord);
+
+                      mineralRecordProto.hidden = true;
                   });
 
     flyingSpacecraftPopup = 
