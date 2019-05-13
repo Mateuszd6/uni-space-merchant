@@ -771,14 +771,27 @@ class TimeUpdater {
 }
 
 class CashUpdater {
-    element: HTMLElement;
+    content : HTMLElement;
+    credits : number;
 
-    constructor(element: HTMLElement) {
-        this.element = element;
+    constructor(element: HTMLElement, initialCr : number) {
+        this.content = element;
+        this.credits = initialCr;
+
+        this.updateCash();
     }
 
-    updateCash(credits: number) {
-        this.element.textContent = credits.toString() + "cr";
+    updateCash() {
+        this.content.textContent = this.credits.toString() + "cr";
+    }
+
+    canPay(price : number) {
+        return this.credits >= price;
+    }
+
+    pay(price : number) {
+        this.credits -= price;
+        this.updateCash();
     }
 }
 
@@ -802,35 +815,41 @@ export interface IShip {
     [name: string]: {
         cargo_hold_size: number,
         position: string,
+        cargo: number,
         moving: boolean
     }
 }
 
 class Popup {
     content : HTMLDivElement;
-    initFun : Function
+    onOpen : Function;
+    val : string; // This is value that can be interpreted by the fucntions passed in ctor.
 
-    constructor(id : string, init : Function) {
+    constructor(id : string, onOpen : Function) {
         let popup = <HTMLDivElement>(document.querySelector(id));
         let closeBtn = <HTMLElement>(popup.querySelector(".close"));
-        closeBtn.onclick = () => popupClose(popup);
+
+        closeBtn.onclick = 
+            function() {
+                console.log("Closing popup!");
+
+                popup.style.visibility = "hidden";
+                popup.style.opacity = "0";
+            }
 
         this.content = popup;
-        this.initFun = init;
+        this.onOpen = onOpen;
     }
 
-    display() 
+    display(val : string)
     {
-        this.initFun();
-    
+        this.val = val;
+        this.onOpen(this.content, this.val);
+
+        // TODO: Find the scrollarea and reset the scrollbar.
+        // this.content.scrollTop = 0;
         this.content.style.visibility = "visible";
         this.content.style.opacity = "1";
-    }
-    
-    close() {
-        console.log("Closing popup!");
-        this.content.style.visibility = "hidden";
-        this.content.style.opacity = "0";
     }
 }
 
@@ -844,6 +863,10 @@ const ships = dataStructure.starships as IShip;
 let selectedShip : string;
 let selectedPlanet : string;
 
+let planetPopup : Popup;
+let flyingSpacecraftPopup : Popup;
+let landedSpacecraftPopup : Popup;
+
 let timeUpdater : TimeUpdater;
 let cashUpdater : CashUpdater;
 
@@ -856,53 +879,59 @@ function populatePlanetsList(recordPrototype: HTMLElement,
     // TODO.
 }
 
-let planetPopup : Popup;
-let flyingSpacecraftPopup : Popup;
-let landedSpacecraftPopup : Popup;
-
-function popupLandedShipInit() {
-    document.querySelector("#landedspacecraft-name").textContent = selectedShip;
-}
-
-function popupClose(popup: HTMLDivElement) {
-    console.log("Closing popup!");
-
-    popup.style.visibility = "hidden";
-    popup.style.opacity = "0";
-}
-
 window.onload = () =>  {
-
     console.log("Hello world!");
 
-    planetPopup = new Popup("#planet-details-popup", 
-                            function() {
-                                console.log("Planet popup displayed!");
-                            });
+    planetPopup = 
+        new Popup("#planet-details-popup", 
+                  function(obj : HTMLDivElement, val : any) {
+                      console.log("Planet popup displayed!");
+                      let planetName : string = val;
+                      
+                      obj.querySelector("#planet-details-name").textContent = planetName;
+                  });
 
-    flyingSpacecraftPopup = new Popup("#flyingspacecraft-popup", 
-                                      function() {
-                                          console.log("Flying spacecraft popup displayed!");
-                                      });
+    flyingSpacecraftPopup = 
+        new Popup("#flyingspacecraft-popup", 
+                  function(obj : HTMLDivElement, val : any) {
+                      let shipName : string = val;
+
+                      obj.querySelector("#flyingspacecraft-name").textContent = shipName;
+                      obj.querySelector("#flyingspacecraft-dest").textContent = ships[shipName].position;
+                      obj.querySelector("#flyingspacecraft-load").textContent = 
+                          ships[shipName].cargo + " / " + ships[shipName].cargo_hold_size;
+
+                      let planetLnk = <HTMLElement>(obj.querySelector("#flyingspacecraft-dest"));
+                      planetLnk.onclick = function() {
+                          planetPopup.display(ships[shipName].position);
+                      }
+                  });
     
-    landedSpacecraftPopup = new Popup("#landedspacecraft-popup", 
-                                      function() {
-                                          console.log("Landed spacecraft popup displayed!");
-                                      });
+    landedSpacecraftPopup = 
+        new Popup("#landedspacecraft-popup", 
+                  function(obj : HTMLDivElement, val : any) {
+                    let shipName : string = <string>(val);
+                      console.log("Landed spacecraft popup displ. Ship name: " + shipName);
+  
+                      obj.querySelector("#landedspacecraft-name").textContent = shipName;
+                      obj.querySelector("#landedspacecraft-dest").textContent = ships[shipName].position;
+                      obj.querySelector("#landedspacecraft-load").textContent = 
+                          ships[shipName].cargo + " / " + ships[shipName].cargo_hold_size;                  
+                 });
 
     timeUpdater = new TimeUpdater(document.getElementById("info-time"));
-    cashUpdater = new CashUpdater(document.getElementById("info-credits"));
+    cashUpdater = new CashUpdater(document.getElementById("info-credits"), 1008);
 
     // Set up that the ship is not moving as all ships starts on a planet
     for (let key in ships) {
         ships[key].moving = Math.floor(Math.random() * 10) < 5 ? true : false;
+        ships[key].cargo = 0;
     }
 
     timeUpdater.start();
-    cashUpdater.updateCash(1008);
 
     document.getElementById("info-player_name").textContent =
-        sessionStorage.getItem("let_playerName");
+        sessionStorage.getItem("var_playerName");
 
     // Get and save planet record prototype.
     planetRecordProto = document.querySelector(".planet-record");
@@ -925,8 +954,8 @@ window.onload = () =>  {
         newRecord.onclick =
                 function() {
                     selectedPlanet = key;
-                    planetPopup.display();
-                }
+                    planetPopup.display(key);
+                };
 
         document.getElementById("planets-list").append(newRecord);
     }
@@ -946,20 +975,15 @@ window.onload = () =>  {
             shipPos.textContent = value.position;
             newRecord.onclick =
                 function() {
-                    selectedShip = key;
-                    landedSpacecraftPopup.display();
-                }
+                    landedSpacecraftPopup.display(key);
+                };
         }
         else {
             shipPos.textContent = "Moving...";
             newRecord.onclick =
                 function() {
-                    selectedShip = key;
-                    document.querySelector("#flyingspacecraft-name")
-                            .textContent = selectedShip;
-
-                    flyingSpacecraftPopup.display();
-                }
+                    flyingSpacecraftPopup.display(key);
+                };
         }
 
         document.getElementById("ships-list").append(newRecord);

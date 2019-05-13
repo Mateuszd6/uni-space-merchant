@@ -57,9 +57,9 @@
     <div class="ingame-popup">
         <a class="close" href="javascript:void(0);">&times;</a>
         <h2>Spacecraft: <span id="flyingspacecraft-name" class="highlighted-info">Goliath</span></h2>
-        <h3>Moving towards: <a href="#planet-details-popup">Earth</a></h3>
+        <h3>Moving towards: <a id="flyingspacecraft-dest" href="javascript:void(0);">Earth</a></h3>
         <h3>Arrival in: <span class="highlighted-info">10 sec</span></h3>
-        <h3>Current load: <span class="highlighted-info">100 / 128</span></h3>
+        <h3>Current load: <span id="flyingspacecraft-load" class="highlighted-info">100 / 128</span></h3>
 
         <div class="space">
             <img src="./art/Goliath.png", class="spacecraft-icon", alt="">
@@ -80,8 +80,8 @@
     <div class="ingame-popup">
         <a class="close" href="#">&times;</a>
         <h2>Spacecraft: <span id="landedspacecraft-name" class="highlighted-info">Goliath</span></h2>
-        <h3>On planet: <a href="#planet-details-popup">Earth</a></h3>
-        <h3>Current load: <span class="highlighted-info">100 / 128</span></h3>
+        <h3>On planet: <a id="landedspacecraft-dest" href="#planet-details-popup">Earth</a></h3>
+        <h3>Current load: <span id="landedspacecraft-load" class="highlighted-info">100 / 128</span></h3>
 
         <div class="trade-list-scrollarea">
             <!-- Wether the button should be clickable or not will be decied
@@ -256,7 +256,7 @@
 <div id="planet-details-popup" class="popup-screenfader">
     <div class="ingame-popup">
         <a class="close" href="javascript:void(0);" onclick="popupPlanetDetailsClose()">&times;</a>
-        <h2>Planet <span class="highlighted-info">Earth</span>:</h2>
+        <h2>Planet <span id="planet-details-name" class="highlighted-info">Earth</span>:</h2>
         <div style="border-radius: 5px; border-top: 2px solid #fff; border-bottom: 2px solid #fff; width: 100%; height: 60vh; overflow: hidden; overflow-y: auto;">
             <h2>Minerals:</h2>
             <div style="margin:auto; width: 95%; border-top: 2px solid #fff; border-bottom: 2px solid #fff; border-radius: 5px;">
