@@ -815,8 +815,10 @@ export interface IShip {
     [name: string]: {
         cargo_hold_size: number,
         position: string,
-        cargo: number,
-        moving: boolean
+        cargo: number, // Currently holded cargo.
+        moving: boolean, // Is the spacecraft moving?
+        destTime : number, // Time point in which dest is reach (only if moving)
+        available_items?: IItem
     }
 }
 
@@ -859,6 +861,7 @@ console.log(dataStructure.planets);
 
 const planets = dataStructure.planets as IPlanet;
 const ships = dataStructure.starships as IShip;
+let items: string[] = dataStructure.items;
 
 let planetPopup : Popup;
 let flyingSpacecraftPopup : Popup;
@@ -879,18 +882,18 @@ function populatePlanetsList(recordPrototype: HTMLElement,
 window.onload = () =>  {
     console.log("Hello world!");
 
-    planetPopup = 
-        new Popup("#planet-details-popup", 
+    planetPopup =
+        new Popup("#planet-details-popup",
                   function(obj : HTMLDivElement, val : any) {
                       console.log("Planet popup displayed!");
                       let planetName : string = val;
-                      
+
                       obj.querySelector("#planet-details-name").textContent = planetName;
 
                       let shipRecordProto = <HTMLElement>(obj.querySelector("#planet-details-stationed-spaceship"));
                       shipRecordProto.hidden = false;
 
-                      // We may have some garbage in the list from the previous call, so 
+                      // We may have some garbage in the list from the previous call, so
                       // we just remove all but the prototype.
                       obj.querySelectorAll("#planet-details-stationed-spaceship")
                          .forEach(function(x) { if (x !== shipRecordProto) { x.remove(); }});
@@ -905,36 +908,48 @@ window.onload = () =>  {
                               (<HTMLImageElement>newRecord.querySelector("#planet-details-ship-name")).textContent = ship;
                               newRecord.onclick = function() {
                                   planetPopup.close();
-                                  landedSpacecraftPopup.display(ship);    
+                                  landedSpacecraftPopup.display(ship);
                               }
 
                               obj.querySelector("#planet-detials-ship-list").append(newRecord);
                           }
+                      shipRecordProto.hidden = true;
 
-                      shipRecordProto.hidden = true;    
 
-                      // TOOD: copypaste
                       let mineralRecordProto = <HTMLElement>(obj.querySelector("#planet-details-mineral"));
                       mineralRecordProto.hidden = false;
+                      obj.querySelectorAll("#planet-details-mineral")
+                          .forEach(function(x) { if (x !== shipRecordProto) { x.remove(); }});
 
-                    //   let newRecord = <HTMLElement>(mineralRecordProto.cloneNode());
-                    //   newRecord.querySelector("#planet-details-mineral-name").textContent = "foobar";
-                    //   newRecord.querySelector("#planet-details-mineral-price").textContent = "troll";
-                    //   newRecord.querySelector("#planet-details-mineral-amount").textContent = "hehe";
-                    //   obj.querySelector("#planet-detials-mineral-list").append(newRecord);
+                      for (let itemName in planets[planetName].available_items)
+                      {
+                          let newRecord = mineralRecordProto.cloneNode(true) as HTMLElement;
+                          let item = planets[planetName].available_items[itemName];
+
+                          (newRecord.querySelector("#planet-details-mineral-img") as HTMLImageElement).src =
+                              "./art/" + itemName + ".png";
+                          newRecord.querySelector("#planet-details-mineral-name").textContent = itemName;
+                          newRecord.querySelector("#planet-details-mineral-price").textContent =
+                              item.buy_price.toString() + " / " + item.sell_price.toString();
+                          newRecord.querySelector("#planet-details-mineral-amount").textContent =
+                              item.available.toString();
+                          obj.querySelector("#planet-detials-mineral-list").append(newRecord);
+                      }
 
                       mineralRecordProto.hidden = true;
                   });
 
-    flyingSpacecraftPopup = 
-        new Popup("#flyingspacecraft-popup", 
+    flyingSpacecraftPopup =
+        new Popup("#flyingspacecraft-popup",
                   function(obj : HTMLDivElement, val : any) {
                       let shipName : string = val;
 
                       obj.querySelector("#flyingspacecraft-name").textContent = shipName;
                       obj.querySelector("#flyingspacecraft-dest").textContent = ships[shipName].position;
-                      obj.querySelector("#flyingspacecraft-load").textContent = 
+                      obj.querySelector("#flyingspacecraft-load").textContent =
                           ships[shipName].cargo + " / " + ships[shipName].cargo_hold_size;
+                      (obj.querySelector("#flyingspacecraft-ship") as HTMLImageElement).src =
+                          "./art/" + shipName + ".png";
 
                       let planetLnk = <HTMLElement>(obj.querySelector("#flyingspacecraft-dest"));
                       planetLnk.onclick = function() {
@@ -942,17 +957,38 @@ window.onload = () =>  {
                           planetPopup.display(ships[shipName].position);
                       };
                   });
-    
-    landedSpacecraftPopup = 
-        new Popup("#landedspacecraft-popup", 
+
+    landedSpacecraftPopup =
+        new Popup("#landedspacecraft-popup",
                   function(obj : HTMLDivElement, val : any) {
                     let shipName : string = <string>(val);
                       console.log("Landed spacecraft popup displ. Ship name: " + shipName);
-  
+
                       obj.querySelector("#landedspacecraft-name").textContent = shipName;
                       obj.querySelector("#landedspacecraft-dest").textContent = ships[shipName].position;
-                      obj.querySelector("#landedspacecraft-load").textContent = 
-                          ships[shipName].cargo + " / " + ships[shipName].cargo_hold_size;                  
+                      obj.querySelector("#landedspacecraft-load").textContent =
+                          ships[shipName].cargo + " / " + ships[shipName].cargo_hold_size;
+
+                      items.forEach(
+                          function(itemName : string)
+                          {
+                              console.log("Checking item: " + itemName);
+
+                              let curPlanetName = ships[shipName].position;
+                              let canBuy : boolean = false;
+                              let canSell : boolean = false;
+
+                              if (planets[curPlanetName].available_items[itemName] != null) {
+                                  canBuy = true;
+                              }
+
+                              if (ships[shipName].available_items[itemName] != null) {
+                                  canSell = true;
+                              }
+
+                              console.log("Name: " + itemName + " can [buy/sell]: " + canBuy + "/" + canSell);
+                          }
+                      );
 
                       let planetLnk = <HTMLElement>(obj.querySelector("#landedspacecraft-dest"));
                       planetLnk.onclick = function() {
