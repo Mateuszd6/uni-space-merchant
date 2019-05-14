@@ -1,60 +1,60 @@
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Space Merchant</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script type="module" src="dist/game.js"></script>
     <link rel="stylesheet" type="text/css" media="screen" href="main.css">
-</head>
-<body class="ingame-walp">
-<div class="player-stats heavy-bordered shadowed">
-    <div>
+  </head>
+  <body class="ingame-walp">
+    <div class="player-stats heavy-bordered shadowed">
+      <div>
         <img src="./art/clock.png", class="info-icon", alt="Time:">
         <p id="info-time" class="info-txt">2h 14min</p>
-    </div>
-    <div>
+      </div>
+      <div>
         <img src="./art/user.png", class="info-icon", alt="User:">
         <p id="info-player_name" class="info-txt">Mateusz</p>
-    </div>
-    <div>
+      </div>
+      <div>
         <img src="./art/credit.png", class="info-icon", alt="Credits:">
         <p id="info-credits" class="info-txt">100$</p>
+      </div>
     </div>
-</div>
 
-<ul class="game-container">
-    <li class="game-panel heavy-bordered shadowed">
+    <ul class="game-container">
+      <li class="game-panel heavy-bordered shadowed">
         <div class="game-list-item">Planets</div>
         <div id="planets-list" class="game-list-scrollarea">
-            <div class="planet-record lightly-bordered">
-                <!-- Make this appear as a ref, but logic is handled with JS -->
-                <a href="javascript:void(0);">
-                    <img id="planet-icon" src=""></img>
-                    <p id="planet-name">NAME</p>
-                    <p id="planet-coord">COORDS</p>
-                </a>
-            </div>
+          <div class="planet-record lightly-bordered">
+            <!-- Make this appear as a ref, but logic is handled with JS -->
+            <a href="javascript:void(0);">
+              <img id="planet-icon" src=""></img>
+              <p id="planet-name">NAME</p>
+              <p id="planet-coord">COORDS</p>
+            </a>
+          </div>
         </div>
-    </li>
-    <li class="game-panel heavy-bordered shadowed">
+      </li>
+      <li class="game-panel heavy-bordered shadowed">
         <div class="game-list-item">Spaceships</div>
         <div id="ships-list" class="game-list-scrollarea">
-            <div class="ship-record lightly-bordered">
-                <a href="javascript:void(0);">
-                    <img id="ship-icon" class="icon" src=""></img>
-                    <p id="ship-name">NAME</p>
-                    <p id="ship-pos">STATE</p>
-                </a>
-            </div>
+          <div class="ship-record lightly-bordered">
+            <a href="javascript:void(0);">
+              <img id="ship-icon" class="icon" src=""></img>
+              <p id="ship-name">NAME</p>
+              <p id="ship-pos">STATE</p>
+            </a>
+          </div>
         </div>
-    </li>
-</ul>
+      </li>
+    </ul>
 
-<!-- This is the popup for displaying flying spaceship. -->
-<div id="flyingspacecraft-popup" class="popup-screenfader">
-    <div class="ingame-popup">
+    <!-- This is the popup for displaying flying spaceship. -->
+    <div id="flyingspacecraft-popup" class="popup-screenfader">
+      <div class="ingame-popup">
         <a class="close" href="javascript:void(0);">&times;</a>
         <h2>Spacecraft: <span id="flyingspacecraft-name" class="highlighted-info">Goliath</span></h2>
         <h3>Moving towards: <a id="flyingspacecraft-dest" href="javascript:void(0);">Earth</a></h3>
@@ -62,153 +62,62 @@
         <h3>Current load: <span id="flyingspacecraft-load" class="highlighted-info">100 / 128</span></h3>
 
         <div class="space">
-            <img id="flyingspacecraft-ship" src="", class="spacecraft-icon", alt="">
-            <div class="spark" id="sp-one"></div>
-            <div class="spark" id="sp-two"></div>
-            <div class="spark" id="sp-three"></div>
-            <div class="spark" id="sp-four"></div>
-            <div class="spark" id="sp-five"></div>
-            <div class="spark" id="sp-six"></div>
-            <div class="spark" id="sp-seven"></div>
-            <div class="spark" id="sp-eigth"></div>
+          <img id="flyingspacecraft-ship" src="", class="spacecraft-icon", alt="">
+          <div class="spark" id="sp-one"></div>
+          <div class="spark" id="sp-two"></div>
+          <div class="spark" id="sp-three"></div>
+          <div class="spark" id="sp-four"></div>
+          <div class="spark" id="sp-five"></div>
+          <div class="spark" id="sp-six"></div>
+          <div class="spark" id="sp-seven"></div>
+          <div class="spark" id="sp-eigth"></div>
         </div>
+      </div>
     </div>
-</div>
 
-<!-- This is the popup for displaying landed spaceship. -->
-<div id="landedspacecraft-popup" class="popup-screenfader">
-    <div class="ingame-popup">
+    <!-- This is the popup for displaying landed spaceship. -->
+    <div id="landedspacecraft-popup" class="popup-screenfader">
+      <div class="ingame-popup">
         <a class="close" href="javascript:void(0);">&times;</a>
         <h2>Spacecraft: <span id="landedspacecraft-name" class="highlighted-info">Goliath</span></h2>
         <h3>On planet: <a id="landedspacecraft-dest" href="javascript:void(0);">Earth</a></h3>
         <h3>Current load: <span id="landedspacecraft-load" class="highlighted-info">100 / 128</span></h3>
 
         <div id="trade-list" class="trade-list-scrollarea">
-            <!-- Wether the button should be clickable or not will be decied
-                by the backend code. This is just an example.-->
-            <div id="trade-record" class="list-record lightly-bordered">
-              <img id="trade-img" style="float: left; margin-left: 0.5vh; width: 8vh; height: 8vh;"
-                   src="./art/Dwimeryt.png"></img>
-              <p id="trade-name" style="margin-left: 1vh; float: left; vertical-align: middle;">Dwimeryt</p>
-              <a id="trade-sell-btn" href="javascript:void(0);" class="button trade-start-button">Sell</a>
-              <a id="trade-buy-btn" href="javascript:void(0);" class="button trade-start-button">Buy</a> <!-- disabled -->
-            </div>
+          <!-- Wether the button should be clickable or not will be decied
+               by the backend code. This is just an example.-->
+          <div id="trade-record" class="list-record lightly-bordered">
+            <img id="trade-img" style="float: left; margin-left: 0.5vh; width: 8vh; height: 8vh;"
+                 src="./art/Dwimeryt.png"></img>
+            <p id="trade-name" style="margin-left: 1vh; float: left; vertical-align: middle;">Dwimeryt</p>
+            <a id="trade-sell-btn" href="javascript:void(0);" class="button trade-start-button">Sell</a>
+            <a id="trade-buy-btn" href="javascript:void(0);" class="button trade-start-button">Buy</a> <!-- disabled -->
+          </div>
         </div>
-        <a class="button" id="leaveplanet" href="#lunch-popup">Leave planet</a>
+        <a class="button" id="leaveplanet" href="javascript:void(0);">Leave planet</a>
+      </div>
     </div>
-</div>
 
-<!-- This is displayed when we are leaving the planet -->
-<div id="lunch-popup" class="popup-screenfader">
-    <div class="ingame-popup">
-        <a class="close" href="#landedspacecraft-popup">&times;</a>
+    <!-- This is displayed when we are leaving the planet -->
+    <div id="lunch-popup" class="popup-screenfader">
+      <div class="ingame-popup">
+        <a class="close" href="javascript:void(0);">&times;</a>
         <h2>Select next planet to explore:</h2>
-        <div class="game-list-scrollarea" style="height: 60vh;">
-            <div class="planet-record lightly-bordered">
-            <a href="#flyingspacecraft-popup">
-                <img src="./art/Alderaan.png" id="planet-icon"></img>
-                <p id="planet-name">Alderaan</p>
-                <p id="planet-coord">35sec</p>
+        <div id="lunch-planet-list" class="game-list-scrollarea" style="height: 60vh;">
+          <div class="planet-record lightly-bordered">
+            <a id="lunch-btn" href="javascript:void(0);">
+              <img id="planet-icon" src="./art/Alderaan.png" ></img>
+              <p id="planet-name">Alderaan</p>
+              <p id="planet-coord">35sec</p>
             </a>
-            </div>
-            <div class="planet-record lightly-bordered">
-            <a href="#flyingspacecraft-popup">
-                <img src="./art/Argoland.png" id="planet-icon"></img>
-                <p id="planet-name">Argoland</p>
-                <p id="planet-coord">1min 13sec</p>
-            </a>
-            </div>
-            <div class="planet-record lightly-bordered">
-            <a href="#flyingspacecraft-popup">
-                <img src="./art/Arrakis.png" id="planet-icon"></img>
-                <p id="planet-name">Arrakis</p>
-                <p id="planet-coord">1min 27sec</p>
-            </a>
-            </div>
-            <div class="planet-record lightly-bordered">
-            <a href="#flyingspacecraft-popup">
-                <img src="./art/Corellia.png" id="planet-icon"></img>
-                <p id="planet-name">Corellia</p>
-                <p id="planet-coord">1min 21sec</p>
-            </a>
-            </div>
-            <div class="planet-record lightly-bordered">
-            <a href="#flyingspacecraft-popup">
-                <img src="./art/Encja.png" id="planet-icon"></img>
-                <p id="planet-name">Encja</p>
-                <p id="planet-coord">1min 36sec</p>
-            </a>
-            </div>
-            <div class="planet-record lightly-bordered">
-            <a href="#flyingspacecraft-popup">
-                <img src="./art/Gaia.png" id="planet-icon"></img>
-                <p id="planet-name">Gaia</p>
-                <p id="planet-coord">1min 46sec</p>
-            </a>
-            </div>
-            <div class="planet-record lightly-bordered">
-            <a href="#flyingspacecraft-popup">
-                <img src="./art/Ksi.png" id="planet-icon"></img>
-                <p id="planet-name">Ksi</p>
-                <p id="planet-coord">1min 55sec</p>
-            </a>
-            </div>
-            <div class="planet-record lightly-bordered">
-            <a href="#flyingspacecraft-popup">
-                <img src="./art/Leonida.png" id="planet-icon"></img>
-                <p id="planet-name">Leonida</p>
-                <p id="planet-coord">32sec</p>
-            </a>
-            </div>
-            <div class="planet-record lightly-bordered">
-            <a href="#flyingspacecraft-popup">
-                <img src="./art/NowWhat.png" id="planet-icon"></img>
-                <p id="planet-name">NowWhat</p>
-                <p id="planet-coord">53sec</p>
-            </a>
-            </div>
-            <div class="planet-record lightly-bordered">
-            <a href="#flyingspacecraft-popup">
-                <img src="./art/Sur'Kesh.png" id="planet-icon"></img>
-                <p id="planet-name">Sur'Kesh</p>
-                <p id="planet-coord">49sec</p>
-            </a>
-            </div>
-            <div class="planet-record lightly-bordered">
-            <a href="#flyingspacecraft-popup">
-                <img src="./art/Tairia.png" id="planet-icon"></img>
-                <p id="planet-name">Tairia</p>
-                <p id="planet-coord">1min 31sec</p>
-            </a>
-            </div>
-            <div class="planet-record lightly-bordered">
-            <a href="#flyingspacecraft-popup">
-                <img src="./art/Tatooine.png" id="planet-icon"></img>
-                <p id="planet-name">Tatooine</p>
-                <p id="planet-coord">1min 22sec</p>
-            </a>
-            </div>
-            <div class="planet-record lightly-bordered">
-            <a href="#flyingspacecraft-popup">
-                <img src="./art/Tuchanka.png" id="planet-icon"></img>
-                <p id="planet-name">Tuchanka</p>
-                <p id="planet-coord">1min 20sec</p>
-            </a>
-            </div>
-            <div class="planet-record lightly-bordered">
-            <a href="#flyingspacecraft-popup">
-                <img src="./art/Ziemia.png" id="planet-icon"></img>
-                <p id="planet-name">Ziemia</p>
-                <p id="planet-coord">1min 37sec</p>
-            </a>
-            </div>
+          </div>
         </div>
+      </div>
     </div>
-</div>
 
-<!-- This is displayed to accept the trade -->
-<div id="trade-popup" class="popup-screenfader">
-    <div class="ingame-popup">
+    <!-- This is displayed to accept the trade -->
+    <div id="trade-popup" class="popup-screenfader">
+      <div class="ingame-popup">
         <a class="close" href="javascript:void(0);">&times;</a>
         <h2>Buy <span id="trade-mat-name" class="highlighted-info">Dwimeryt</span>:</h2>
 
@@ -218,36 +127,36 @@
         <h3 id="trade-txt">Available: <span id="trade-mat-amount-they" class="highlighted-info">2000</span></h3>
         <h3 id="trade-txt">Price: <span id="trade-mat-price" class="highlighted-info">10$</span></h3>
         <h3 id="trade-txt">Total: <span id="trade-mat-input-numb">0</span> * <span id="trade-mat-price" class="highlighted-info">10$</span> = <span id="trade-mat-sum">0</span></h3>
-        <form class="trade-form"><input id="trade-mat-input" class="input" type="text" name="tname"></form>
-        <a class="button" id="tradebtn" href="#landedspacecraft-popup">Trade</a>
+        <form autocomplete="off" class="trade-form"><input id="trade-mat-input" class="input" type="text" name="tname"></form>
+        <a class="button" id="tradebtn" href="javascript:void(0);">Trade</a>
+      </div>
     </div>
-</div>
 
-<!-- This is the popup displayed when asking for the planet details. -->
-<div id="planet-details-popup" class="popup-screenfader">
-    <div class="ingame-popup">
+    <!-- This is the popup displayed when asking for the planet details. -->
+    <div id="planet-details-popup" class="popup-screenfader">
+      <div class="ingame-popup">
         <a class="close" href="javascript:void(0);" onclick="popupPlanetDetailsClose()">&times;</a>
         <h2>Planet <span id="planet-details-name" class="highlighted-info">Earth</span>:</h2>
         <div style="border-radius: 5px; border-top: 2px solid #fff; border-bottom: 2px solid #fff; width: 100%; height: 60vh; overflow: hidden; overflow-y: auto;">
-            <h2>Minerals:</h2>
-            <div id="planet-detials-mineral-list" style="margin:auto; width: 95%; border-top: 2px solid #fff; border-bottom: 2px solid #fff; border-radius: 5px;">
-                <div id="planet-details-mineral" class="list-record lightly-bordered">
-                    <img id="planet-details-mineral-img" style="float: left; margin-left: 0.5vh; width: 8vh; height: 8vh;" src="./art/Dwimeryt.png"></img>
-                    <h3 id="planet-details-mineral-name" style="margin-top: 3vh; margin-left: 1vh; float: left; vertical-align: middle;">Dwimeryt</h3>
-                    <h3 style="margin-left: 1vh; margin-right: 1vh; float: right; vertical-align: middle;">Price: <span id="planet-details-mineral-price" class="highlighted-info">10$</span></h3>
-                    <h3 style="margin-left: 1vh; margin-right: 1vh; float: right; vertical-align: middle;">Available: <span id="planet-details-mineral-amount" class="highlighted-info">4</span></h3>
-                </div>
+          <h2>Minerals:</h2>
+          <div id="planet-detials-mineral-list" style="margin:auto; width: 95%; border-top: 2px solid #fff; border-bottom: 2px solid #fff; border-radius: 5px;">
+            <div id="planet-details-mineral" class="list-record lightly-bordered">
+              <img id="planet-details-mineral-img" style="float: left; margin-left: 0.5vh; width: 8vh; height: 8vh;" src="./art/Dwimeryt.png"></img>
+              <h3 id="planet-details-mineral-name" style="margin-top: 3vh; margin-left: 1vh; float: left; vertical-align: middle;">Dwimeryt</h3>
+              <h3 style="margin-left: 1vh; margin-right: 1vh; float: right; vertical-align: middle;">Price: <span id="planet-details-mineral-price" class="highlighted-info">10$</span></h3>
+              <h3 style="margin-left: 1vh; margin-right: 1vh; float: right; vertical-align: middle;">Available: <span id="planet-details-mineral-amount" class="highlighted-info">4</span></h3>
             </div>
+          </div>
 
-            <h2 style="margin-top: 5vh;">Stationed spaceships:</h2>
-            <div id="planet-detials-ship-list" style="margin:auto; margin-bottom: 1vh; width: 95%; border-top: 2px solid #fff; border-bottom: 2px solid #fff; border-radius: 5px;">
-                <div id="planet-details-stationed-spaceship" class="list-record lightly-bordered">
-                    <img id="planet-details-ship-img" style="float: left; margin-left: 0.5vh; width: auto; height: 8vh;" src="./art/Axiom.png"></img>
-                    <h3><a id="planet-details-ship-name" href="javascript:void(0);" style="margin-bottom: 3vh; margin-top: 3vh; margin-left: 1vh; float: left; vertical-align: middle;">Goliath</a></h3>
-                </div>
+          <h2 style="margin-top: 5vh;">Stationed spaceships:</h2>
+          <div id="planet-detials-ship-list" style="margin:auto; margin-bottom: 1vh; width: 95%; border-top: 2px solid #fff; border-bottom: 2px solid #fff; border-radius: 5px;">
+            <div id="planet-details-stationed-spaceship" class="list-record lightly-bordered">
+              <img id="planet-details-ship-img" style="float: left; margin-left: 0.5vh; width: auto; height: 8vh;" src="./art/Axiom.png"></img>
+              <h3><a id="planet-details-ship-name" href="javascript:void(0);" style="margin-bottom: 3vh; margin-top: 3vh; margin-left: 1vh; float: left; vertical-align: middle;">Goliath</a></h3>
             </div>
+          </div>
         </div>
+      </div>
     </div>
-</div>
 
-</body>
+  </body>
