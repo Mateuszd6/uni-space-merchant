@@ -950,6 +950,24 @@ window.onload = () =>  {
     }
     sessionStorage.setItem("var_gameStarted", "");
 
+    // This super dirty hack will disable return inside of forms so that the
+    // page is not refreshed.
+    window.addEventListener(
+        'keydown',
+        function(e : any) {
+            if(e.keyIdentifier == 'U+000A'
+               || e.keyIdentifier == 'Enter'
+               || e.keyCode==13)
+            {
+                if (e.target.nodeName=='INPUT' && e.target.type == 'text') {
+                    e.preventDefault();
+                    return false;
+                }
+            }
+        },
+        true);
+
+
     // Make sure every ship and every planet has all available items.
     for (let planetName in planets) {
         items.forEach(function(x) {
@@ -967,7 +985,7 @@ window.onload = () =>  {
     }
 
     for (let shipName in ships) {
-        ships[shipName].moving = true;
+        ships[shipName].moving = false;
         ships[shipName].destTime = new Date().getTime() + 10000;
         ships[shipName].cargo = 0;
         items.forEach(function(x) {
@@ -992,6 +1010,7 @@ window.onload = () =>  {
                                console.log("Trading material " + tradeData.mineralName +
                                            " for price: " + tradeData.price)
 
+                               obj.querySelector("#trade-error-msg").textContent = "";
                                obj.querySelectorAll("#trade-mat-name")
                                    .forEach(x => x.textContent = tradeData.mineralName);
                                obj.querySelectorAll("#trade-mat-price")
@@ -1008,6 +1027,9 @@ window.onload = () =>  {
                                    tradeData.iHave.toString();
                                obj.querySelector("#trade-mat-amount-they").textContent =
                                    tradeData.theyHave.toString();
+                               obj.querySelector("#trade-mat-free-cargo").textContent =
+                                   (ships[tradeData.shipName].cargo_hold_size -
+                                    ships[tradeData.shipName].cargo).toString();
 
                                obj.querySelector("#trade-mat-input-numb").textContent =
                                    tradeData.inputValue.toString();
@@ -1016,7 +1038,6 @@ window.onload = () =>  {
                                    (tradeData.inputValue * tradeData.price).toString();
 
                                let btn = obj.querySelector("#tradebtn") as HTMLButtonElement;
-
                                let inputFiled = obj.querySelector("#trade-mat-input") as HTMLInputElement;
                                inputFiled.value = "0";
                                inputFiled.oninput = function() {
@@ -1026,9 +1047,10 @@ window.onload = () =>  {
                                        tradeData.inputValue = Number(x);
 
                                        // Make sure the value is clamped.
-                                       if (Number(x) > tradeData.theyHave)
+                                       let clampTop = tradeData.sell ? tradeData.iHave : tradeData.theyHave;
+                                       if (Number(x) > clampTop)
                                        {
-                                           tradeData.inputValue = tradeData.theyHave;
+                                           tradeData.inputValue = clampTop;
                                            inputFiled.value = tradeData.inputValue.toString();
                                        }
                                        else if (Number(x) < 0)
@@ -1087,10 +1109,6 @@ window.onload = () =>  {
                                                landedSpacecraftPopup.refresh();
                                                tradePopup.close();
                                            }
-                                           else
-                                           {
-                                               console.warn("Couldn't complete the trade, becasue input is NaN.");
-                                           }
                                        }
                                }
                                else {
@@ -1104,35 +1122,40 @@ window.onload = () =>  {
                                                            " elements of " + tradeData.mineralName);
 
                                                if ((ships[tradeData.shipName].cargo_hold_size
-                                                    - ships[tradeData.shipName].cargo) >= tradeData.inputValue
-                                                   && cashUpdater.tryPay(tradeData.inputValue * tradeData.price))
+                                                    - ships[tradeData.shipName].cargo) >= tradeData.inputValue)
                                                {
-                                                   console.log("Ship name: " + tradeData.shipName);
-                                                   console.log("Planet name: " + tradeData.planetName);
+                                                   if (cashUpdater.tryPay(tradeData.inputValue * tradeData.price))
+                                                   {
+                                                       console.log("Ship name: " + tradeData.shipName);
+                                                       console.log("Planet name: " + tradeData.planetName);
 
-                                                   planets[tradeData.planetName]
-                                                       .available_items[tradeData.mineralName]
-                                                       .available -= tradeData.inputValue;
+                                                       planets[tradeData.planetName]
+                                                           .available_items[tradeData.mineralName]
+                                                           .available -= tradeData.inputValue;
 
-                                                   ships[tradeData.shipName]
-                                                       .available_items[tradeData.mineralName]
-                                                       .available += tradeData.inputValue;
+                                                       ships[tradeData.shipName]
+                                                           .available_items[tradeData.mineralName]
+                                                           .available += tradeData.inputValue;
 
-                                                   ships[tradeData.shipName].cargo += tradeData.inputValue;
+                                                       ships[tradeData.shipName].cargo += tradeData.inputValue;
 
-                                                   console.log("Transiaction completed.");
+                                                       console.log("Transiaction completed.");
+
+                                                       // Refresh the landedSpacecraftpopup state and close this one.
+                                                       landedSpacecraftPopup.refresh();
+                                                       tradePopup.close();
+                                                   }
+                                                   else
+                                                   {
+                                                       obj.querySelector("#trade-error-msg").textContent =
+                                                           "Not enough credits!";
+                                                   }
                                                }
                                                else
-                                                   console.error("Not enough cash or cargo space " +
-                                                                 "to pay for the minerals!");
-
-                                               // Refresh the landedSpacecraftpopup state and close this one.
-                                               landedSpacecraftPopup.refresh();
-                                               tradePopup.close();
-                                           }
-                                           else
-                                           {
-                                               console.warn("Couldn't complete the trade, becasue input is NaN.");
+                                               {
+                                                   obj.querySelector("#trade-error-msg").textContent =
+                                                       "Not enough cargo space!";
+                                               }
                                            }
                                        };
                                }
@@ -1175,7 +1198,7 @@ window.onload = () =>  {
                       let mineralRecordProto = <HTMLElement>(obj.querySelector("#planet-details-mineral"));
                       mineralRecordProto.hidden = false;
                       obj.querySelectorAll("#planet-details-mineral")
-                          .forEach(function(x) { if (x !== shipRecordProto) { x.remove(); }});
+                          .forEach(function(x) { if (x !== mineralRecordProto) { x.remove(); }});
 
                       for (let itemName in planets[planetName].available_items)
                       {
@@ -1252,7 +1275,7 @@ window.onload = () =>  {
                           elem.removeAttribute('href');
                       }
 
-                      items.forEach(
+                      items.sort().forEach(
                           function(itemName : string)
                           {
                               let curPlanetName = ships[shipName].position;
