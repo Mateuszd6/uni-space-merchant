@@ -62,7 +62,7 @@
         <h3>Current load: <span id="flyingspacecraft-load" class="highlighted-info">100 / 128</span></h3>
 
         <div class="space">
-            <img id="flyingspacecraft-ship" src="./art/Goliath.png", class="spacecraft-icon", alt="">
+            <img id="flyingspacecraft-ship" src="", class="spacecraft-icon", alt="">
             <div class="spark" id="sp-one"></div>
             <div class="spark" id="sp-two"></div>
             <div class="spark" id="sp-three"></div>
@@ -78,49 +78,20 @@
 <!-- This is the popup for displaying landed spaceship. -->
 <div id="landedspacecraft-popup" class="popup-screenfader">
     <div class="ingame-popup">
-        <a class="close" href="#">&times;</a>
+        <a class="close" href="javascript:void(0);">&times;</a>
         <h2>Spacecraft: <span id="landedspacecraft-name" class="highlighted-info">Goliath</span></h2>
         <h3>On planet: <a id="landedspacecraft-dest" href="javascript:void(0);">Earth</a></h3>
         <h3>Current load: <span id="landedspacecraft-load" class="highlighted-info">100 / 128</span></h3>
 
-        <div class="trade-list-scrollarea">
+        <div id="trade-list" class="trade-list-scrollarea">
             <!-- Wether the button should be clickable or not will be decied
                 by the backend code. This is just an example.-->
-            <div class="list-record lightly-bordered">
-                <img style="float: left; margin-left: 0.5vh; width: 8vh; height: 8vh;" src="./art/Dwimeryt.png"></img>
-                <p style="margin-left: 1vh; float: left; vertical-align: middle;">Dwimeryt</p>
-                <a href="#trade-popup" class="button trade-start-button">Sell</a>
-                <a class="button trade-start-button" disabled>Buy</a>
-            </div>
-            <div class="list-record lightly-bordered">
-                <img style="float: left; margin-left: 0.5vh; width: 8vh; height: 8vh;" src="./art/Unobtainium.png"></img>
-                <p style="margin-left: 1vh; float: left; vertical-align: middle;">Unobtainium</p>
-                <a href="#trade-popup" class="button trade-start-button">Sell</a>
-                <a class="button trade-start-button" disabled>Buy</a>
-            </div>
-            <div class="list-record lightly-bordered">
-                <img style="float: left; margin-left: 0.5vh; width: 8vh; height: 8vh;" src="./art/Cynamon.png"></img>
-                <p style="margin-left: 1vh; float: left; vertical-align: middle;">Cynamon</p>
-                <a class="button trade-start-button" disabled>Sell</a>
-                <a href="#trade-popup" class="button trade-start-button">Buy</a>
-            </div>
-            <div class="list-record lightly-bordered">
-                <img style="float: left; margin-left: 0.5vh; width: 8vh; height: 8vh;" src="./art/Lyrium.png"></img>
-                <p style="margin-left: 1vh; float: left; vertical-align: middle;">Lyrium</p>
-                <a href="#trade-popup" class="button trade-start-button">Sell</a>
-                <a href="#trade-popup" class="button trade-start-button">Buy</a>
-            </div>
-            <div class="list-record lightly-bordered">
-                <img style="float: left; margin-left: 0.5vh; width: 8vh; height: 8vh;" src="./art/Nuka-Cola.png"></img>
-                <p style="margin-left: 1vh; float: left; vertical-align: middle;">Nuka-Cola</p>
-                <a href="#trade-popup" class="button trade-start-button">Sell</a>
-                <a class="button trade-start-button" disabled>Buy</a>
-            </div>
-            <div class="list-record lightly-bordered">
-                <img style="float: left; margin-left: 0.5vh; width: 8vh; height: 8vh;" src="./art/Woda.png"></img>
-                <p style="margin-left: 1vh; float: left; vertical-align: middle;">Woda</p>
-                <a class="button trade-start-button" disabled>Sell</a>
-                <a href="#trade-popup" class="button trade-start-button">Buy</a>
+            <div id="trade-record" class="list-record lightly-bordered">
+              <img id="trade-img" style="float: left; margin-left: 0.5vh; width: 8vh; height: 8vh;"
+                   src="./art/Dwimeryt.png"></img>
+              <p id="trade-name" style="margin-left: 1vh; float: left; vertical-align: middle;">Dwimeryt</p>
+              <a id="trade-sell-btn" href="javascript:void(0);" class="button trade-start-button">Sell</a>
+              <a id="trade-buy-btn" href="javascript:void(0);" class="button trade-start-button">Buy</a> <!-- disabled -->
             </div>
         </div>
         <a class="button" id="leaveplanet" href="#lunch-popup">Leave planet</a>
@@ -238,16 +209,16 @@
 <!-- This is displayed to accept the trade -->
 <div id="trade-popup" class="popup-screenfader">
     <div class="ingame-popup">
-        <a class="close" href="#landedspacecraft-popup">&times;</a>
-        <h2>Buy <span class="highlighted-info">Dwimeryt</span>:</h2>
+        <a class="close" href="javascript:void(0);">&times;</a>
+        <h2>Buy <span id="trade-mat-name" class="highlighted-info">Dwimeryt</span>:</h2>
 
-        <img style="display: block; margin: auto; height: 20vh; width: auto;" src="./art/Dwimeryt.png"></img>
-        <h3 id="trade-txt">Mineral: <span class="highlighted-info">Dwimeryt</span></h3>
-        <h3 id="trade-txt">Possessed: <span class="highlighted-info">30</span></h3>
-        <h3 id="trade-txt">Available: <span class="highlighted-info">2000</span></h3>
-        <h3 id="trade-txt">Price: <span class="highlighted-info">10$</span></h3>
-        <h3 id="trade-txt">Total: 0 * <span class="highlighted-info">10$</span> = 0</h3>
-        <form class="trade-form"><input class="input" type="text" name="tname"></form>
+        <img id="trade-mat-img" style="display: block; margin: auto; height: 20vh; width: auto;" src="./art/Dwimeryt.png"></img>
+        <h3 id="trade-txt">Mineral: <span id="trade-mat-name" class="highlighted-info">Dwimeryt</span></h3>
+        <h3 id="trade-txt">Possessed: <span id="trade-mat-amount-we" class="highlighted-info">30</span></h3>
+        <h3 id="trade-txt">Available: <span id="trade-mat-amount-they" class="highlighted-info">2000</span></h3>
+        <h3 id="trade-txt">Price: <span id="trade-mat-price" class="highlighted-info">10$</span></h3>
+        <h3 id="trade-txt">Total: <span id="trade-mat-input-numb">0</span> * <span id="trade-mat-price" class="highlighted-info">10$</span> = <span id="trade-mat-sum">0</span></h3>
+        <form class="trade-form"><input id="trade-mat-input" class="input" type="text" name="tname"></form>
         <a class="button" id="tradebtn" href="#landedspacecraft-popup">Trade</a>
     </div>
 </div>
