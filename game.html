@@ -58,7 +58,7 @@
         <a class="close" href="javascript:void(0);">&times;</a>
         <h2>Spacecraft: <span id="flyingspacecraft-name" class="highlighted-info">Goliath</span></h2>
         <h3>Moving towards: <a id="flyingspacecraft-dest" href="javascript:void(0);">Earth</a></h3>
-        <h3>Arrival in: <span class="highlighted-info">10 sec</span></h3>
+        <h3>Arrival in: <span id="flyingspacecraft-arrival" class="highlighted-info">10 sec</span></h3>
         <h3>Current load: <span id="flyingspacecraft-load" class="highlighted-info">100 / 128</span></h3>
 
         <div class="space">
@@ -119,7 +119,7 @@
     <div id="trade-popup" class="popup-screenfader">
       <div class="ingame-popup">
         <a class="close" href="javascript:void(0);">&times;</a>
-        <h2>Buy <span id="trade-mat-name" class="highlighted-info">Dwimeryt</span>:</h2>
+        <h2><span id="trade-action">Buy</span> <span id="trade-mat-name" class="highlighted-info">Dwimeryt</span>:</h2>
 
         <img id="trade-mat-img" style="display: block; margin: auto; height: 20vh; width: auto;" src="./art/Dwimeryt.png"></img>
         <h3 id="trade-txt">Mineral: <span id="trade-mat-name" class="highlighted-info">Dwimeryt</span></h3>
@@ -129,6 +129,7 @@
         <h3 id="trade-txt">Total: <span id="trade-mat-input-numb">0</span> * <span id="trade-mat-price" class="highlighted-info">10$</span> = <span id="trade-mat-sum">0</span></h3>
         <form autocomplete="off" class="trade-form"><input id="trade-mat-input" class="input" type="text" name="tname"></form>
         <a class="button" id="tradebtn" href="javascript:void(0);">Trade</a>
+        <h3 id="trade-error-msg">Cargo is too small!</h3>
       </div>
     </div>
 

@@ -694,13 +694,15 @@ let jsonString: string = `{
 }`;
 
 function formatTime(timeMS: number) {
-    // TODO: Substract elapsed seconds from the total game time
+    if (timeMS < 0)
+        return "0sec ";
+
     let allSeconds: number = Math.floor(timeMS / 1000);
     let minutes: number = Math.floor(allSeconds / 60);
     let seconds: number = allSeconds % 60;
 
     let minutesStr: string = minutes == 0 ? "" : (minutes.toString() + "min ");
-    let secondsStr: string = seconds == 0 ? "" : (seconds.toString() + "sec");
+    let secondsStr: string = seconds.toString() + "sec ";
 
     return minutesStr + secondsStr;
 }
@@ -715,8 +717,6 @@ class TimeUpdater {
         this.element.textContent = "This works!";
         this.startTimePoint = new Date();
     }
-
-
 
     start() {
         this.element.textContent = formatTime(0);
@@ -813,15 +813,18 @@ export interface IShip {
 class Popup {
     content : HTMLDivElement;
     onOpen : Function;
+    counter : number;
     val : any; // This is value that can be interpreted by the fucntions passed in ctor.
+    refreshPeriodically : boolean;
 
-    constructor(id : string, onOpen : Function) {
+    constructor(id : string, refreshPeriodically : boolean, onOpen : Function) {
         let popup = <HTMLDivElement>(document.querySelector(id));
         let closeBtn = <HTMLElement>(popup.querySelector(".close"));
 
         closeBtn.onclick = () => this.close();
         this.content = popup;
         this.onOpen = onOpen;
+        this.refreshPeriodically = refreshPeriodically;
     }
 
     display(val : any)
@@ -833,6 +836,9 @@ class Popup {
         // this.content.scrollTop = 0;
         this.content.style.visibility = "visible";
         this.content.style.opacity = "1";
+
+        if (this.refreshPeriodically)
+            this.counter = setInterval(() => this.refresh(), 500);
     }
 
     refresh() {
@@ -840,10 +846,11 @@ class Popup {
     }
 
     close() {
-        console.log("Closing popup!");
-
         this.content.style.visibility = "hidden";
         this.content.style.opacity = "0";
+
+        if (this.refreshPeriodically)
+            clearTimeout(this.counter);
     }
 }
 
@@ -883,7 +890,17 @@ function populatePlanetsList(recordPrototype: HTMLElement,
     // TODO.
 }
 
+let mainScrUpdateToken : number;
 function updateMainScrShipList() {
+    for (let shipName in ships)
+    {
+        if (ships[shipName].moving
+            && ships[shipName].destTime - new Date().getTime() < 0)
+        {
+            ships[shipName].moving = false;
+        }
+    }
+
     let list = document.getElementById("ships-list");
     let shipRecordProto = list.querySelector(".ship-record") as HTMLElement;
     list.querySelectorAll(".ship-record")
@@ -950,7 +967,8 @@ window.onload = () =>  {
     }
 
     for (let shipName in ships) {
-        ships[shipName].moving = Math.floor(Math.random() * 10) < 5 ? true : false;
+        ships[shipName].moving = true;
+        ships[shipName].destTime = new Date().getTime() + 10000;
         ships[shipName].cargo = 0;
         items.forEach(function(x) {
             if (ships[shipName].available_items == null)
@@ -966,7 +984,7 @@ window.onload = () =>  {
         });
     }
 
-    tradePopup = new Popup("#trade-popup",
+    tradePopup = new Popup("#trade-popup", false,
                            function(obj : HTMLDivElement, val : any) {
                                let tradeData : ITradeData = val;
                                tradeData.inputValue = 0;
@@ -980,6 +998,12 @@ window.onload = () =>  {
                                    .forEach(x => x.textContent = tradeData.price + "cr");
                                (obj.querySelector("#trade-mat-img") as HTMLImageElement)
                                    .src = "./art/" + tradeData.mineralName + ".png";
+
+                               let actionTxt = obj.querySelector("#trade-action");
+                               if (tradeData.sell === true)
+                                   actionTxt.textContent = "Sell";
+                               else
+                                   actionTxt.textContent = "Buy";
                                obj.querySelector("#trade-mat-amount-we").textContent =
                                    tradeData.iHave.toString();
                                obj.querySelector("#trade-mat-amount-they").textContent =
@@ -1033,51 +1057,89 @@ window.onload = () =>  {
                                    }
                                };
 
-                               btn.onclick =
-                                   function() {
-                                       let input = obj.querySelector("#trade-mat-input") as HTMLInputElement;
-                                       if (Number.isInteger(Number(input.value)))
-                                       {
-                                           let inputNum : number = Number(input.value);
-                                           console.log("Submitting trading of: " + inputNum +
-                                                       " elements of " + tradeData.mineralName);
-
-                                           if ((ships[tradeData.shipName].cargo_hold_size
-                                                - ships[tradeData.shipName].cargo) >= tradeData.inputValue
-                                               && cashUpdater.tryPay(tradeData.inputValue * tradeData.price))
+                               if (tradeData.sell)
+                               {
+                                   btn.onclick =
+                                       function() {
+                                           let input = obj.querySelector("#trade-mat-input") as HTMLInputElement;
+                                           if (Number.isInteger(Number(input.value)))
                                            {
-                                               console.log("Ship name: " + tradeData.shipName);
-                                               console.log("Planet name: " + tradeData.planetName);
+                                               let inputNum : number = Number(input.value);
+                                               console.log("Submitting selling of " + inputNum +
+                                                           " elements of " + tradeData.mineralName);
 
                                                planets[tradeData.planetName]
                                                    .available_items[tradeData.mineralName]
-                                                   .available -= tradeData.inputValue;
+                                                   .available += tradeData.inputValue;
 
                                                ships[tradeData.shipName]
                                                    .available_items[tradeData.mineralName]
-                                                   .available += tradeData.inputValue;
+                                                   .available -= tradeData.inputValue;
 
-                                               ships[tradeData.shipName].cargo += tradeData.inputValue;
+                                               ships[tradeData.shipName].cargo -= tradeData.inputValue;
+                                               if (ships[tradeData.shipName].cargo < 0)
+                                                   ships[tradeData.shipName].cargo = 0;
 
+                                               cashUpdater.give(tradeData.inputValue * tradeData.price);
                                                console.log("Transiaction completed.");
+
+                                               // Refresh the landedSpacecraftpopup state and close this one.
+                                               landedSpacecraftPopup.refresh();
+                                               tradePopup.close();
                                            }
                                            else
-                                               console.error("Not enough cash or cargo space " +
-                                                             "to pay for the minerals!");
+                                           {
+                                               console.warn("Couldn't complete the trade, becasue input is NaN.");
+                                           }
+                                       }
+                               }
+                               else {
+                                   btn.onclick =
+                                       function() {
+                                           let input = obj.querySelector("#trade-mat-input") as HTMLInputElement;
+                                           if (Number.isInteger(Number(input.value)))
+                                           {
+                                               let inputNum : number = Number(input.value);
+                                               console.log("Submitting trading of: " + inputNum +
+                                                           " elements of " + tradeData.mineralName);
 
-                                           // Refresh the landedSpacecraftpopup state and close this one.
-                                           landedSpacecraftPopup.refresh();
-                                           tradePopup.close();
-                                       }
-                                       else
-                                       {
-                                           console.warn("Couldn't complete the trade, becasue input is NaN.");
-                                       }
-                                   };
+                                               if ((ships[tradeData.shipName].cargo_hold_size
+                                                    - ships[tradeData.shipName].cargo) >= tradeData.inputValue
+                                                   && cashUpdater.tryPay(tradeData.inputValue * tradeData.price))
+                                               {
+                                                   console.log("Ship name: " + tradeData.shipName);
+                                                   console.log("Planet name: " + tradeData.planetName);
+
+                                                   planets[tradeData.planetName]
+                                                       .available_items[tradeData.mineralName]
+                                                       .available -= tradeData.inputValue;
+
+                                                   ships[tradeData.shipName]
+                                                       .available_items[tradeData.mineralName]
+                                                       .available += tradeData.inputValue;
+
+                                                   ships[tradeData.shipName].cargo += tradeData.inputValue;
+
+                                                   console.log("Transiaction completed.");
+                                               }
+                                               else
+                                                   console.error("Not enough cash or cargo space " +
+                                                                 "to pay for the minerals!");
+
+                                               // Refresh the landedSpacecraftpopup state and close this one.
+                                               landedSpacecraftPopup.refresh();
+                                               tradePopup.close();
+                                           }
+                                           else
+                                           {
+                                               console.warn("Couldn't complete the trade, becasue input is NaN.");
+                                           }
+                                       };
+                               }
                            });
 
     planetPopup =
-        new Popup("#planet-details-popup",
+        new Popup("#planet-details-popup", true,
                   function(obj : HTMLDivElement, val : any) {
                       console.log("Planet popup displayed!");
                       let planetName : string = val;
@@ -1136,14 +1198,25 @@ window.onload = () =>  {
                   });
 
     flyingSpacecraftPopup =
-        new Popup("#flyingspacecraft-popup",
+        new Popup("#flyingspacecraft-popup", true,
                   function(obj : HTMLDivElement, val : any) {
                       let shipName : string = val;
+
+                      // If ship is no longer moving switch back to landed screen.
+                      if (!ships[shipName].moving)
+                      {
+                          flyingSpacecraftPopup.close();
+                          landedSpacecraftPopup.display(shipName);
+                          return;
+                      }
 
                       obj.querySelector("#flyingspacecraft-name").textContent = shipName;
                       obj.querySelector("#flyingspacecraft-dest").textContent = ships[shipName].position;
                       obj.querySelector("#flyingspacecraft-load").textContent =
                           ships[shipName].cargo + " / " + ships[shipName].cargo_hold_size;
+
+                      obj.querySelector("#flyingspacecraft-arrival").textContent =
+                          formatTime(ships[shipName].destTime - new Date().getTime());
                       (obj.querySelector("#flyingspacecraft-ship") as HTMLImageElement).src =
                           "./art/" + shipName + ".png";
 
@@ -1155,7 +1228,7 @@ window.onload = () =>  {
                   });
 
     landedSpacecraftPopup =
-        new Popup("#landedspacecraft-popup",
+        new Popup("#landedspacecraft-popup", false,
                   function(obj : HTMLDivElement, val : any) {
                       let shipName : string = <string>(val);
                       console.log("Landed spacecraft popup displ. Ship name: " + shipName);
@@ -1202,7 +1275,15 @@ window.onload = () =>  {
                               if (canSell)
                               {
                                   sellBtnLink.onclick = function() {
-                                      tradePopup.display(true);
+                                      tradePopup.display({
+                                          "sell": true,
+                                          "mineralName": itemName,
+                                          "shipName": shipName,
+                                          "planetName": curPlanetName,
+                                          "iHave" : (canSell ? ships[shipName].available_items[itemName].available : 0),
+                                          "theyHave": planets[curPlanetName].available_items[itemName].available,
+                                          "price": planets[curPlanetName].available_items[itemName].sell_price
+                                      });
                                   };
                               }
                               else
@@ -1212,12 +1293,10 @@ window.onload = () =>  {
                               {
                                   buyBtnLink.onclick = function() {
                                       tradePopup.display({
-                                          "sell": "false",
+                                          "sell": false,
                                           "mineralName": itemName,
-
                                           "shipName": shipName,
                                           "planetName": curPlanetName,
-
                                           "iHave" : (canSell ? ships[shipName].available_items[itemName].available : 0),
                                           "theyHave": planets[curPlanetName].available_items[itemName].available,
                                           "price": planets[curPlanetName].available_items[itemName].buy_price
@@ -1252,7 +1331,7 @@ window.onload = () =>  {
                   });
 
     lunchPopup = new Popup(
-        "#lunch-popup",
+        "#lunch-popup", false,
         function(obj : HTMLDivElement, val : any) {
             let lunchData : ILunchData = val;
             let curPlanetName = lunchData.planetName;
@@ -1269,21 +1348,25 @@ window.onload = () =>  {
                     continue;
 
                 let newRecord = recordProto.cloneNode(true) as HTMLElement;
+                let travelTimeMS = calculatePlanetTravelTime(curPlanetName, planetName) * 1000;
                 (newRecord.querySelector("#planet-icon") as HTMLImageElement)
                     .src = "./art/" + planetName + ".png";
                 newRecord.querySelector("#planet-name").textContent = planetName;
-                newRecord.querySelector("#planet-coord").textContent =
-                    formatTime(calculatePlanetTravelTime(curPlanetName, planetName) * 1000);
+                newRecord.querySelector("#planet-coord").textContent = formatTime(travelTimeMS);
 
                 (newRecord.querySelector("#lunch-btn") as HTMLElement).onclick =
                     function() {
                         console.log(curShipName + " starts a travel to: " + planetName);
                         ships[curShipName].moving = true;
                         ships[curShipName].position = planetName;
+                        ships[curShipName].destTime = new Date().getTime() + travelTimeMS;
 
+                        // Update main screen hide old popups and display one
+                        // for flying spaceship.
                         updateMainScrShipList();
                         lunchPopup.close();
                         landedSpacecraftPopup.close();
+                        flyingSpacecraftPopup.display(curShipName);
                     };
 
                 list.append(newRecord);
@@ -1294,6 +1377,7 @@ window.onload = () =>  {
 
     timeUpdater = new TimeUpdater(document.getElementById("info-time"));
     cashUpdater = new CashUpdater(document.getElementById("info-credits"), 1008);
+    mainScrUpdateToken = setInterval(() => updateMainScrShipList(), 500);
 
     timeUpdater.start();
 

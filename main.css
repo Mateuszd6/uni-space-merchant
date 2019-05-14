@@ -620,3 +620,9 @@ a {
 #trade-txt {
     text-align: center;
 }
+
+#trade-error-msg {
+    margin-top: 1vh;
+    text-align: center;
+    color: #e11;
+}
