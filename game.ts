@@ -730,7 +730,7 @@ function finishGame() {
 
     highscores.push(
         {
-            "name": document.getElementById("info-player_name").textContent,
+            "name": playerName,
             "score": score
         });
 
@@ -754,6 +754,8 @@ class TimeUpdater {
         this.element = element;
         this.startTimePoint = new Date();
         this.timeLimit = timeLimit;
+
+        this.element.textContent = formatTime(this.timeLimit);
     }
 
     start() {
@@ -926,6 +928,7 @@ let lunchPopup : Popup;
 
 let timeUpdater : TimeUpdater;
 let cashUpdater : CashUpdater;
+let playerName : string;
 
 // Some prototypes.
 let planetRecordProto : HTMLElement;
@@ -984,6 +987,12 @@ function updateMainScrShipList() {
 
 window.onload = () =>  {
     console.log("Hello world!");
+
+    timeUpdater = new TimeUpdater(document.getElementById("info-time"), dataStructure.game_duration);
+    cashUpdater = new CashUpdater(document.getElementById("info-credits"), dataStructure.initial_credits);
+    playerName = sessionStorage.getItem("var_playerName");
+    if (playerName == null || playerName == "")
+        playerName = "Anonymus";
 
     // Check if game was started through the menu screen. If it was not
     // (e.g. page was reloaded), var_gameStarted variable won't be empty and we
@@ -1224,8 +1233,8 @@ window.onload = () =>  {
                           .forEach(function(x) { if (x !== shipRecordProto) { x.remove(); }});
 
                       for (let ship in ships)
-                          if (ships[ship].position === planetName)
-                      {
+                          if (ships[ship].position === planetName && ships[ship].moving === false)
+                          {
                               console.log("Ship " + ship + " is avail. on " + planetName);
 
                               let newRecord = <HTMLElement>(shipRecordProto.cloneNode(true));
@@ -1444,14 +1453,12 @@ window.onload = () =>  {
             recordProto.hidden = true;
         });
 
-    timeUpdater = new TimeUpdater(document.getElementById("info-time"), 20);
-    cashUpdater = new CashUpdater(document.getElementById("info-credits"), 1008);
     mainScrUpdateToken = setInterval(() => updateMainScrShipList(), 500);
 
     timeUpdater.start();
 
-    document.getElementById("info-player_name").textContent =
-        sessionStorage.getItem("var_playerName");
+    document.getElementById("info-player_name").textContent = playerName;
+
 
     // Get and save planet record prototype.
     planetRecordProto = document.querySelector(".planet-record");
