@@ -762,7 +762,8 @@ class TimeUpdater {
         this.element.textContent = formatTime(0);
         this.timerToken = setInterval(
             () => {
-                let timeLeft = this.timeLimit * 1000 - (new Date().getTime()-this.startTimePoint.getTime());
+                let timeLeft = this.timeLimit * 1000 - (
+                    new Date().getTime()-this.startTimePoint.getTime());
                 if (timeLeft < 0)
                 {
                     console.log("The game will now finish");
@@ -770,6 +771,7 @@ class TimeUpdater {
                 }
 
                 this.element.textContent = formatTime(timeLeft);
+                updateMainScrShipList();
             },
             500
         );
@@ -939,7 +941,6 @@ function populatePlanetsList(recordPrototype: HTMLElement,
     // TODO.
 }
 
-let mainScrUpdateToken : number;
 function updateMainScrShipList() {
     for (let shipName in ships)
     {
@@ -1452,8 +1453,6 @@ window.onload = () =>  {
 
             recordProto.hidden = true;
         });
-
-    mainScrUpdateToken = setInterval(() => updateMainScrShipList(), 500);
 
     timeUpdater.start();
 
