@@ -6,10 +6,11 @@ import {TimeManager} from '../src/timeManager'
 import {initialDataJSONString} from '../src/initial_data'
 import { before } from 'mocha';
 
-describe('timeManagerValue', function () {
-    it('should say something', async function() {
-        await driver.get('file:///home/mateusz/work/wwwapps/space_merchant/game.html');
+import {game_html_url} from './uri'
 
+describe('timeManagerValue', function () {
+    it('make sure timer is 0-initialized', async function() {
+        await driver.get(game_html_url);
         let content = await driver.find("#info-time").getText();
         expect(content).to.be.equal("0sec");
      });
@@ -18,7 +19,7 @@ describe('timeManagerValue', function () {
 
 describe('Every planet', function () {
     it('all planets are displayed', async function() {
-        await driver.get('file:///home/mateusz/work/wwwapps/space_merchant/game.html');
+        await driver.get(game_html_url);
 
         let initialPlanets = JSON.parse(initialDataJSONString).planets;
         let content = await driver.findAll("#planets-list .planet-record");
@@ -42,7 +43,7 @@ describe('Every planet', function () {
 
 describe('Every ship', function () {
     it('all ships are displayed', async function() {
-        await driver.get('file:///home/mateusz/work/wwwapps/space_merchant/game.html');
+        await driver.get(game_html_url);
 
         let initialShips = JSON.parse(initialDataJSONString).ships;
         let content = await driver.findAll("#ships-list .ship-record");
@@ -66,7 +67,7 @@ describe('Every ship', function () {
 
 describe('Check popups', function () {
     it('popups should be disabled', async function() {
-        await driver.get('file:///home/mateusz/work/wwwapps/space_merchant/game.html');
+        await driver.get(game_html_url);
 
         let popupIds = [
             "#flyingspacecraft-popup", "#landedspacecraft-popup",
@@ -82,7 +83,7 @@ describe('Check popups', function () {
 
 describe("Cash Manager", () => {
     it("should create cash manager instance", async function() {
-        await driver.get('file:///home/mateusz/work/wwwapps/space_merchant/game.html');
+        await driver.get(game_html_url);
         let cash = JSON.parse(initialDataJSONString).initial_credits;
         let textContent = await driver.find("#info-credits").getText();
         expect(textContent).to.be.equal(cash.toString() + "cr");
@@ -91,7 +92,7 @@ describe("Cash Manager", () => {
 
 describe("Click on planet", () => {
     before(async function() {
-        await driver.get('file:///home/mateusz/work/wwwapps/space_merchant/game.html');
+        await driver.get(game_html_url);
         let initialPlanets = JSON.parse(initialDataJSONString).planets;
         let content = await driver.findAll("#planets-list .planet-record");
 
