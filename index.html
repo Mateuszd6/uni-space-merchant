@@ -1,49 +1,37 @@
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Space Merchant</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="dist/app.js"></script>
     <link rel="stylesheet" type="text/css" media="screen" href="main.css">
-</head>
-<body class="title-walp">
-    <h1 class="main-title fadein">Space Merchant</h1> 
+  </head>
+  <body class="title-walp">
+    <h1 class="main-title fadein">Space Merchant</h1>
     <div class="highscores-field heavy-bordered fadein shadowed">
-        <h2 class=highscores-title>High scores</h2>
-        <nav>
-            <ul class="highscores-scrollarea heavy-bordered-vert-only">
-                <div class="highscores-record lightly-bordered">
-                    <div class="uname">Mateusz</div>
-                    <div class="score">1024</div>
-                </div>
-                <div class="highscores-record lightly-bordered">
-                    <div class="uname">Bjarne Stroustrup</div>
-                    <div class="score">765</div>
-                </div>
-                <div class="highscores-record lightly-bordered">
-                    <div class="uname">Bill Gates</div>
-                    <div class="score">512</div>
-                </div>
-                <div class="highscores-record lightly-bordered">
-                    <div class="uname">Satya Narayana Nadella</div>
-                    <div class="score">400</div>
-                </div>
-            </ul>
-        </nav>
+      <h2 class=highscores-title>High scores</h2>
+      <nav>
+        <ul id="highscore-list" class="highscores-scrollarea heavy-bordered-vert-only">
+          <div id="highscore-record" class="highscores-record lightly-bordered">
+            <div class="uname">NAME</div>
+            <div class="score">SCORE</div>
+          </div>
+        </ul>
+      </nav>
     </div>
     <a class="button menu-button fadein shadowed" id="menu-startnew" href="#popup">New game</a>
     <a class="button menu-button fadein shadowed" id="menu-howtoplay" href="#popup">How to play</a>
 
     <div id="popup" class="popup-screenfader">
-        <div class="ingame-popup" id="startgame-popup">
-            <a class="close" href="#">&times;</a>
-            <p class="title">Enter your name:</p>
-            <form class="username-input">
-                <input class="form" type="text" id="fname" name="fname">
-            </form>
-            <a class="button menu-button fadein" id="startgame-button" href="./game.html" onclick="myFunction()">Start</a>
-        </div>
+      <div class="ingame-popup" id="startgame-popup">
+        <a class="close" href="#">&times;</a>
+        <p class="title">Enter your name:</p>
+        <form class="username-input">
+          <input class="form" type="text" id="fname" name="fname">
+        </form>
+        <a class="button menu-button fadein" id="startgame-button" href="./game.html" onclick="myFunction()">Start</a>
+      </div>
     </div>
-</body>
+  </body>
