@@ -44,4 +44,19 @@ window.onload = () => {
         list.append(newRecord);
     });
     recordProto.hidden = true;
+
+    let endedWell = localStorage.getItem("var_gameHasEndedSafetly");
+    let score = localStorage.getItem("var_scoreReached");
+    let wasHighscore = localStorage.getItem("var_highscoreReached");
+    localStorage.setItem("var_gameHasEndedSafetly", null);
+    localStorage.setItem("var_scoreReached", null);
+
+    if (endedWell === "TRUE")
+    {
+        let scoreTxt = score;
+        if (wasHighscore)
+            score += " (HIGHSCORE)!";
+        document.querySelector("#popup-highscores-score").textContent = score;
+        window.location.href = "#popup-highscores";
+    }
 }

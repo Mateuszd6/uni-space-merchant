@@ -707,22 +707,68 @@ function formatTime(timeMS: number) {
     return minutesStr + secondsStr;
 }
 
+export interface IScore {
+    name: string
+    score: number;
+}
+
+function finishGame() {
+    let score = cashUpdater.credits;
+
+    let highscoresJSON = localStorage.getItem("var_highscoresJSON");
+    let highscores = JSON.parse(highscoresJSON) as IScore[];
+    if (highscores == null)
+    {
+        highscores = [
+            { "name": "Bill Gates", "score": 2413 },
+            { "name": "Steve Jobs", "score": 2108 },
+            { "name": "Satya Nadella", "score": 2072 },
+            { "name": "Biarne Stroustroup", "score": 1998 },
+            { "name": "Steve Ballmer", "score": 1963 }
+        ];
+    }
+
+    highscores.push(
+        {
+            "name": document.getElementById("info-player_name").textContent,
+            "score": score
+        });
+
+    highscores.sort((x, y) => y.score - x.score);
+    let wasHighscore = (highscores.length < 10 || highscores[9].score < score);
+    localStorage.setItem("var_highscoresJSON", JSON.stringify(highscores.slice(0, 10)));
+
+    localStorage.setItem("var_highscoreReached", wasHighscore ? "TRUE" : "");
+    localStorage.setItem("var_gameHasEndedSafetly", "TRUE");
+    localStorage.setItem("var_scoreReached", score.toString());
+    window.location.href = "index.html";
+}
+
 class TimeUpdater {
     element: HTMLElement;
     startTimePoint: Date;
     timerToken: number;
+    timeLimit : number;
 
-    constructor(element: HTMLElement) {
+    constructor(element: HTMLElement, timeLimit : number) {
         this.element = element;
-        this.element.textContent = "This works!";
         this.startTimePoint = new Date();
+        this.timeLimit = timeLimit;
     }
 
     start() {
         this.element.textContent = formatTime(0);
         this.timerToken = setInterval(
-            () => this.element.textContent =
-                formatTime(new Date().getTime()-this.startTimePoint.getTime()),
+            () => {
+                let timeLeft = this.timeLimit * 1000 - (new Date().getTime()-this.startTimePoint.getTime());
+                if (timeLeft < 0)
+                {
+                    console.log("The game will now finish");
+                    finishGame();
+                }
+
+                this.element.textContent = formatTime(timeLeft);
+            },
             500
         );
     }
@@ -1398,7 +1444,7 @@ window.onload = () =>  {
             recordProto.hidden = true;
         });
 
-    timeUpdater = new TimeUpdater(document.getElementById("info-time"));
+    timeUpdater = new TimeUpdater(document.getElementById("info-time"), 20);
     cashUpdater = new CashUpdater(document.getElementById("info-credits"), 1008);
     mainScrUpdateToken = setInterval(() => updateMainScrShipList(), 500);
 
