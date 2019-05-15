@@ -1,4 +1,4 @@
-{
+let initialDataJSONString = `{
         "game_duration": 300,
         "initial_credits": 1984,
         "items": [
@@ -731,4 +731,6 @@
                 "position": "Arrakis"
             }
     }
-}
+}`;
+
+export {initialDataJSONString};

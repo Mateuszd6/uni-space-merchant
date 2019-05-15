@@ -1,3 +1,5 @@
+import * as constants from './constants.js'
+
 export interface IScore {
     name: string
     score: number;
@@ -64,4 +66,8 @@ window.onload = () => {
         document.querySelector("#popup-highscores-score").textContent = score;
         window.location.href = "#popup-highscores";
     }
+
+    // Setup the startgame button onclick:
+    (document.querySelector("#startgame-button") as HTMLButtonElement).onclick =
+        () => startGame();
 }

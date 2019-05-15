@@ -1,0 +1,29 @@
+{
+  "name": "space_merchant",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mateuszd6/space_merchant.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Mateuszd6/space_merchant/issues"
+  },
+  "homepage": "https://github.com/Mateuszd6/space_merchant#readme",
+  "dependencies": {
+    "@types/chai": "^4.1.7",
+    "@types/mocha": "^5.2.6",
+    "chai": "^4.2.0",
+    "mocha": "^6.1.4",
+    "selenium-webdriver": "^4.0.0-alpha.1",
+    "ts-node": "^8.1.0",
+    "typescript": "^3.4.5"
+  }
+}
