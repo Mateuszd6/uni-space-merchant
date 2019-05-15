@@ -1,46 +1,92 @@
 import * as constants from './constants.js'
 
+import {HighscoreManager} from './highscoreManager.js'
+
 export interface IScore {
     name: string
     score: number;
 }
 
+class Popup {
+    content : HTMLDivElement;
+    onOpen : Function;
+    counter : number;
+    val : any; // This is value that can be interpreted by the fucntions passed in ctor.
+    refreshPeriodically : boolean;
+
+    constructor(id : string, refreshPeriodically : boolean, onOpen : Function) {
+        let popup = <HTMLDivElement>(document.querySelector(id));
+        let closeBtn = <HTMLElement>(popup.querySelector(".close"));
+
+        closeBtn.onclick = () => this.close();
+        this.content = popup;
+        this.onOpen = onOpen;
+        this.refreshPeriodically = refreshPeriodically;
+    }
+
+    display(val : any)
+    {
+        this.val = val;
+        this.onOpen(this.content, this.val);
+        this.content.style.visibility = "visible";
+        this.content.style.opacity = "1";
+
+        if (this.refreshPeriodically)
+            this.counter = setInterval(() => this.refresh(), 500);
+    }
+
+    refresh() {
+        this.onOpen(this.content, this.val);
+    }
+
+    close() {
+        this.content.style.visibility = "hidden";
+        this.content.style.opacity = "0";
+
+        if (this.refreshPeriodically)
+            clearTimeout(this.counter);
+    }
+}
+
+let namePopup : Popup;
+let howToPlayPopup : Popup;
+let endgamePopup : Popup;
+
 // Starts the game.
 function startGame() {
     let playerNameInput = (<HTMLInputElement>document.getElementById("fname")).value;
-    sessionStorage.setItem("var_playerName", playerNameInput);
-    sessionStorage.setItem("var_gameStarted", "session_OK");
+    sessionStorage.setItem(constants.playerNameSessionVar, playerNameInput);
+    sessionStorage.setItem(constants.gameStartedSessionVar, "session_OK");
     window.location.href = "game.html";
 }
 
 window.onload = () => {
-    let highscoresJSON = localStorage.getItem("var_highscoresJSON");
-    let highscores = JSON.parse(highscoresJSON) as IScore[];
-    if (highscores == null)
-    {
-        highscores = [
-            { "name": "Bill Gates", "score": 2413 },
-            { "name": "Steve Jobs", "score": 2108 },
-            { "name": "Satya Nadella", "score": 2072 },
-            { "name": "Biarne Stroustroup", "score": 1998 },
-            { "name": "Steve Ballmer", "score": 1963 }
-        ];
-    }
+    let hm = new HighscoreManager(localStorage.getItem(constants.highscoresLocalVar));
 
-    console.log(highscores);
-    console.log(highscores.length);
-    highscores.sort((x, y) => y.score - x.score);
-    console.log(highscores);
+    namePopup = new Popup("#popup", false, () => {});
+    howToPlayPopup = new Popup("#popup-howtoplay", false, () => {});
+    endgamePopup = new Popup(
+        "#popup-highscores", false,
+        () => {
+            (document.querySelector("#popup-highscores #startgame-button") as HTMLElement).onclick =
+                () => endgamePopup.close();
+        });
 
-    localStorage.setItem("var_highscoresJSON", JSON.stringify(highscores));
-    console.log(localStorage.getItem("var_highscoresJSON"));
+    (document.querySelector("#menu-startnew") as HTMLElement).onclick =
+        () => namePopup.display(0);
+
+    (document.querySelector("#menu-howtoplay") as HTMLElement).onclick =
+        () => howToPlayPopup.display(0);
+
+    localStorage.setItem(constants.highscoresLocalVar, hm.getAsJson());
+    console.log(localStorage.getItem(constants.highscoresLocalVar));
 
     let list = document.getElementById("highscore-list");
     let recordProto = list.querySelector("#highscore-record") as HTMLElement;
     list.querySelectorAll("#highscore-record")
         .forEach(x => { if (x != recordProto) x.remove(); });
     recordProto.hidden = false;
-    highscores.forEach(function(x) {
+    hm.highscores.forEach((x) => {
         let newRecord = recordProto.cloneNode(true) as HTMLElement;
         newRecord.querySelector(".uname").textContent = x.name;
         newRecord.querySelector(".score").textContent = x.score.toString();
@@ -51,12 +97,12 @@ window.onload = () => {
 
     // If we came here after the game (use local storage to determine if we
     // did), show the summary screen to the user.
-    let endedWell = localStorage.getItem("var_gameHasEndedSafetly");
-    let score = localStorage.getItem("var_scoreReached");
-    let wasHighscore = localStorage.getItem("var_highscoreReached");
-    localStorage.setItem("var_gameHasEndedSafetly", null);
-    localStorage.setItem("var_scoreReached", null);
-    localStorage.setItem("var_highscoreReached", null);
+    let endedWell = localStorage.getItem(constants.gameHasEndedLocalVar);
+    let score = localStorage.getItem(constants.scoreReachedLocalVar);
+    let wasHighscore = localStorage.getItem(constants.highscoreLocalVar);
+    localStorage.setItem(constants.gameHasEndedLocalVar, null);
+    localStorage.setItem(constants.scoreReachedLocalVar, null);
+    localStorage.setItem(constants.highscoreLocalVar, null);
 
     if (endedWell === "TRUE")
     {
@@ -64,8 +110,9 @@ window.onload = () => {
         if (wasHighscore)
             score += " (HIGHSCORE)!";
         document.querySelector("#popup-highscores-score").textContent = score;
-        window.location.href = "#popup-highscores";
+        endgamePopup.display(0);
     }
+
 
     // Setup the startgame button onclick:
     (document.querySelector("#startgame-button") as HTMLButtonElement).onclick =

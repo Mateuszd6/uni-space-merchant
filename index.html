@@ -21,12 +21,12 @@
         </ul>
       </nav>
     </div>
-    <a class="button menu-button fadein shadowed" id="menu-startnew" href="#popup">New game</a>
-    <a class="button menu-button fadein shadowed" id="menu-howtoplay" href="#popup">How to play</a>
+    <a class="button menu-button fadein shadowed" id="menu-startnew" href="javascript:void(0);">New game</a>
+    <a class="button menu-button fadein shadowed" id="menu-howtoplay" href="javascript:void(0);">How to play</a>
 
     <div id="popup" class="popup-screenfader">
       <div class="ingame-popup" id="startgame-popup">
-        <a class="close" href="#">&times;</a>
+        <a class="close" href="javascript:void(0);">&times;</a>
         <p class="title">Enter your name:</p>
         <form class="username-input">
           <input class="form" id="fname">
@@ -37,8 +37,22 @@
 
     <div id="popup-highscores" class="popup-screenfader">
       <div class="ingame-popup" id="startgame-popup">
+        <a class="close" href="javascript:void(0);">&times;</a>
         <p class="title">Your score was: <span id="popup-highscores-score">0</span></p>
-        <a class="button menu-button fadein" id="startgame-button" href="#">OK</a>
+        <a class="button menu-button fadein" id="startgame-button" href="javascript:void(0);">OK</a>
+      </div>
+    </div>
+
+    <div id="popup-howtoplay" class="popup-screenfader">
+      <div class="ingame-popup" id="startgame-popup">
+        <a class="close" href="javascript:void(0);">&times;</a>
+        <div>
+          <p>
+            Travel between planets and collect minerals.  Each
+            ship has a cargo hold limit, so be careful. The more credits you
+            have after the game time the higher your score. Good luck.
+          </p>
+        </div>
       </div>
     </div>
   </body>

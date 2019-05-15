@@ -1,47 +1,14 @@
 // The .js is with some reason required and cannot be changed.
-import {initialDataJSONString} from './initial_data.js'
+import * as constants from './constants.js'
+
+import {initialDataJSONString, IItem, IPlanet, IShip} from './initial_data.js'
 import {TimeManager, formatTime} from './timeManager.js'
 import {CashManager} from './cashManager.js'
-
-// Single mineral iface.
-export interface IItem {
-    [name: string]: {
-        available: number;
-        buy_price: number;
-        sell_price: number;
-    }
-}
-
-// Planet iface.
-export interface IPlanet {
-    [name: string]: {
-        available_items?: IItem;
-        x: number;
-        y: number;
-    }
-}
-
-// Ship iface.
-export interface IShip {
-    [name: string]: {
-        cargo_hold_size: number,
-        position: string,
-        cargo: number, // Currently holded cargo.
-        moving: boolean, // Is the spacecraft moving?
-        destTime : number, // Time point in which dest is reach (only if moving)
-        available_items?: IItem
-    }
-}
-
-// Simple score interface - user name + score.
-export interface IScore {
-    name: string
-    score: number;
-}
+import {IScore, HighscoreManager} from './highscoreManager.js'
 
 // This iface is used by the trade popup and displays all the data related to a
 // single trade.
-export interface ITradeData {
+interface ITradeData {
     sell : boolean;
     mineralName: string;
     planetName : string;
@@ -53,7 +20,7 @@ export interface ITradeData {
 }
 
 // Used by lunch popup to select next planet.
-export interface ILunchData {
+interface ILunchData {
     planetName : string;
     shipName : string;
 }
@@ -62,22 +29,14 @@ export interface ILunchData {
 // to greet screen.
 function finishGame() {
     let score = cashManager.credits;
-    let highscoresJSON = localStorage.getItem("var_highscoresJSON");
-    let highscores = JSON.parse(highscoresJSON) as IScore[];
-    if (highscores == null)
-        highscores = [];
+    let hm = new HighscoreManager(localStorage.getItem(constants.highscoresLocalVar));
+    let wasHighscore = hm.tryAddToHighscores(playerName, score);
 
-    highscores.push({
-        "name": playerName,
-        "score": score
-    });
-
-    highscores.sort((x, y) => y.score - x.score);
-    let wasHighscore = (highscores.length < 10 || highscores[9].score < score);
-    localStorage.setItem("var_highscoresJSON", JSON.stringify(highscores.slice(0, 10)));
-    localStorage.setItem("var_highscoreReached", wasHighscore ? "TRUE" : "");
-    localStorage.setItem("var_gameHasEndedSafetly", "TRUE");
-    localStorage.setItem("var_scoreReached", score.toString());
+    // Use local storage to pass this info to the menu and change the page.
+    localStorage.setItem(constants.highscoresLocalVar, hm.getAsJson());
+    localStorage.setItem(constants.highscoreLocalVar, wasHighscore ? "TRUE" : "");
+    localStorage.setItem(constants.gameHasEndedLocalVar, "TRUE");
+    localStorage.setItem(constants.scoreReachedLocalVar, score.toString());
     window.location.href = "index.html";
 }
 
@@ -102,9 +61,6 @@ class Popup {
     {
         this.val = val;
         this.onOpen(this.content, this.val);
-
-        // TODO: Find the scrollarea and reset the scrollbar.
-        // this.content.scrollTop = 0;
         this.content.style.visibility = "visible";
         this.content.style.opacity = "1";
 
@@ -632,20 +588,20 @@ function initShipsList() {
 }
 
 window.onload = () =>  {
-    playerName = sessionStorage.getItem("var_playerName");
+    playerName = sessionStorage.getItem(constants.playerNameSessionVar);
     if (playerName == null || playerName == "")
         playerName = "Anonymus";
 
     // Check if game was started through the menu screen. If it was not
     // (e.g. page was reloaded), var_gameStarted variable won't be empty and we
     // will redirect the user to the index.html page.
-    let gameStarted = sessionStorage.getItem("var_gameStarted");
-    if (gameStarted !== "session_OK")
+    let gameStarted = sessionStorage.getItem(constants.gameStartedSessionVar);
+    if (false && gameStarted !== "session_OK")
     {
         console.error("It appears user has now entered from the menu. Redirecting...");
         window.location.href = "index.html";
     }
-    sessionStorage.setItem("var_gameStarted", "");
+    sessionStorage.setItem(constants.gameStartedSessionVar, "");
 
     // This super dirty hack will disable return inside of forms so that the
     // page is not refreshed.

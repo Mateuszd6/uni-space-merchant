@@ -1,10 +1,5 @@
-import { CashManager } from "../src/cashManager"
 import { expect } from "chai";
+import {driver} from 'mocha-webdriver';
 import "mocha";
 
 
-describe("Cash Manager", () => {
-    it("should create cash manager instance", () => {
-        ;
-    });
-});

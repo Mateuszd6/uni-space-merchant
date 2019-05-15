@@ -2,7 +2,7 @@ all:
 	tsc --build --pretty false
 
 validate:
-	./validate.sh
+	@./validate.sh
 
 clean:
 	rm dist/*

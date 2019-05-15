@@ -1,5 +1,5 @@
 let initialDataJSONString = `{
-        "game_duration": 300,
+        "game_duration": 20,
         "initial_credits": 1984,
         "items": [
             "Dwimeryt",
@@ -733,4 +733,34 @@ let initialDataJSONString = `{
     }
 }`;
 
-export {initialDataJSONString};
+// Single mineral iface.
+interface IItem {
+    [name: string]: {
+        available: number;
+        buy_price: number;
+        sell_price: number;
+    }
+}
+
+// Planet iface.
+interface IPlanet {
+    [name: string]: {
+        available_items?: IItem;
+        x: number;
+        y: number;
+    }
+}
+
+// Ship iface.
+interface IShip {
+    [name: string]: {
+        cargo_hold_size: number,
+        position: string,
+        cargo: number, // Currently holded cargo.
+        moving: boolean, // Is the spacecraft moving?
+        destTime : number, // Time point in which dest is reach (only if moving)
+        available_items?: IItem
+    }
+}
+
+export {initialDataJSONString, IItem, IPlanet, IShip};

@@ -1,6 +1,6 @@
 // Formats the time so thats in can be nicely display to the user.
 function formatTime(timeMS: number) {
-    if (timeMS < 0)
+    if (Number.isNaN(timeMS) || timeMS < 1000)
         return "0sec ";
 
     let allSeconds: number = Math.floor(timeMS / 1000);
@@ -8,7 +8,7 @@ function formatTime(timeMS: number) {
     let seconds: number = allSeconds % 60;
 
     let minutesStr: string = minutes == 0 ? "" : (minutes.toString() + "min ");
-    let secondsStr: string = seconds.toString() + "sec ";
+    let secondsStr: string = seconds == 0 ? "" : (seconds.toString() + "sec ");
 
     return minutesStr + secondsStr;
 }
