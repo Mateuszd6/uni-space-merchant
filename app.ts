@@ -3,10 +3,12 @@ export interface IScore {
     score: number;
 }
 
-function myFunction() {
+// Starts the game.
+function startGame() {
     let playerNameInput = (<HTMLInputElement>document.getElementById("fname")).value;
     sessionStorage.setItem("var_playerName", playerNameInput);
     sessionStorage.setItem("var_gameStarted", "session_OK");
+    window.location.href = "game.html";
 }
 
 window.onload = () => {
@@ -45,11 +47,14 @@ window.onload = () => {
     });
     recordProto.hidden = true;
 
+    // If we came here after the game (use local storage to determine if we
+    // did), show the summary screen to the user.
     let endedWell = localStorage.getItem("var_gameHasEndedSafetly");
     let score = localStorage.getItem("var_scoreReached");
     let wasHighscore = localStorage.getItem("var_highscoreReached");
     localStorage.setItem("var_gameHasEndedSafetly", null);
     localStorage.setItem("var_scoreReached", null);
+    localStorage.setItem("var_highscoreReached", null);
 
     if (endedWell === "TRUE")
     {

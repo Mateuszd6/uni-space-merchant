@@ -1,12 +1,14 @@
 {
-  "compilerOptions": {
-      "outDir": "./dist/",
-      "allowJs": true,
-      "resolveJsonModule": true,
-      "noImplicitAny": false,
-      "moduleResolution": "node",
-      "module": "esnext",
-      "target": "es2017"
-  },
-  "include": [ "*" ]
+    "compilerOptions": {
+        "module": "commonjs",
+        "resolveJsonModule": true,
+        "esModuleInterop": true,
+        "outDir": "./dist/",
+        "allowJs": true,
+        "noImplicitAny": false,
+        "moduleResolution": "node",
+        "module": "esnext",
+        "target": "es2017"
+    },
+    "include": [ "*" ]
 }
