@@ -1,5 +1,5 @@
 let initialDataJSONString = `{
-        "game_duration": 20,
+        "game_duration": 300,
         "initial_credits": 1984,
         "items": [
             "Dwimeryt",

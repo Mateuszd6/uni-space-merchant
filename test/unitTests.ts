@@ -7,30 +7,29 @@ import * as game from '../src/misc'
 import "mocha";
 
 describe('FormatTime', function () {
-    it('should format correctly', async function() {
+    it('only seconds', async function() {
         expect(formatTime(0)).to.be.equal("0sec ");
     });
 
-    it('should format correctly', async function() {
+    it('only minutes', async function() {
         expect(formatTime(60 * 1000)).to.be.equal("1min ");
     });
 
-    it('should format correctly', async function() {
+    it('both', async function() {
         expect(formatTime(119 * 1000)).to.be.equal("1min 59sec ");
     });
-
 });
 
 describe('FormatTimeInvalidInput', function () {
-    it('should default', async function() {
+    it('negaive', async function() {
         expect(formatTime(-1)).to.be.equal("0sec ");
     });
 
-    it('should default', async function() {
+    it('negative large', async function() {
         expect(formatTime(-60 * 1000)).to.be.equal("0sec ");
     });
 
-    it('should default', async function() {
+    it('NaN', async function() {
         expect(formatTime(Number("foo"))).to.be.equal("0sec ");
     });
 });
