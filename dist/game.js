@@ -68,7 +68,7 @@ function updateMainScrShipList() {
         let shipPos = newRecord.querySelector("#ship-pos");
         let shipIcon = newRecord.querySelector("#ship-icon");
         shipName.textContent = key;
-        shipIcon.src = "./art/" + key + ".png";
+        shipIcon.src = constants.shipsArtPath + key + ".png";
         if (!value.moving) {
             shipPos.classList.add("highlighted-info");
             shipPos.textContent = value.position;
@@ -93,7 +93,7 @@ function initPopups() {
         obj.querySelectorAll("#trade-mat-price")
             .forEach(x => x.textContent = tradeData.price + "cr");
         obj.querySelector("#trade-mat-img")
-            .src = "./art/" + tradeData.mineralName + ".png";
+            .src = constants.mineralsArtPath + tradeData.mineralName + ".png";
         let actionTxt = obj.querySelector("#trade-action");
         if (tradeData.sell === true)
             actionTxt.textContent = "Sell";
@@ -213,7 +213,7 @@ function initPopups() {
                 return;
             }
             newRecord.querySelector("#planet-details-ship-img")
-                .src = "./art/" + key + ".png";
+                .src = constants.shipsArtPath + key + ".png";
             newRecord.querySelector("#planet-details-ship-name")
                 .textContent = key;
             newRecord.onclick = () => {
@@ -229,7 +229,7 @@ function initPopups() {
                 return;
             }
             newRecord.querySelector("#planet-details-mineral-img")
-                .src = "./art/" + key + ".png";
+                .src = constants.mineralsArtPath + key + ".png";
             newRecord.querySelector("#planet-details-mineral-name").textContent = key;
             newRecord.querySelector("#planet-details-mineral-price").textContent =
                 item.buy_price.toString() + " / " + item.sell_price.toString();
@@ -253,7 +253,7 @@ function initPopups() {
         obj.querySelector("#flyingspacecraft-arrival").textContent =
             formatTime(ships[shipName].destTime - new Date().getTime());
         obj.querySelector("#flyingspacecraft-ship").src =
-            "./art/" + shipName + ".png";
+            constants.shipsArtPath + shipName + ".png";
         let planetLnk = (obj.querySelector("#flyingspacecraft-dest"));
         planetLnk.onclick = function () {
             flyingSpacecraftPopup.close();
@@ -294,7 +294,7 @@ function initPopups() {
                 return;
             }
             newRecord.querySelector("#trade-img").src =
-                "./art/" + key + ".png";
+                constants.mineralsArtPath + key + ".png";
             newRecord.querySelector("#trade-name").textContent = key;
             if (canSell) {
                 sellBtnLink.onclick = () => {
@@ -353,7 +353,7 @@ function initPopups() {
             }
             let travelTimeMS = calculatePlanetTravelTime(curPlanetName, key) * 1000;
             newRecord.querySelector("#planet-icon")
-                .src = "./art/" + key + ".png";
+                .src = constants.planetsArtPath + key + ".png";
             newRecord.querySelector("#planet-name").textContent = key;
             newRecord.querySelector("#planet-coord").textContent = formatTime(travelTimeMS);
             newRecord.querySelector("#lunch-btn").onclick =
@@ -450,7 +450,7 @@ window.onload = () => {
         let planetIcon = newRecord.querySelector("#planet-icon");
         planetName.textContent = key;
         planetCoords.textContent = "(" + value.x + ", " + value.y + ")";
-        planetIcon.src = "./art/" + key + ".png";
+        planetIcon.src = constants.planetsArtPath + key + ".png";
         newRecord.onclick = function () { planetPopup.display(key); };
         list.append(newRecord);
     });

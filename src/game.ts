@@ -107,7 +107,7 @@ function updateMainScrShipList() {
             let shipPos = newRecord.querySelector("#ship-pos") as HTMLElement;
             let shipIcon = newRecord.querySelector("#ship-icon") as HTMLImageElement;
             shipName.textContent = key;
-            shipIcon.src = "./art/" + key + ".png";
+            shipIcon.src =  constants.shipsArtPath + key + ".png";
 
             if (!value.moving) {
                 shipPos.classList.add("highlighted-info");
@@ -139,7 +139,7 @@ function initPopups() {
             obj.querySelectorAll("#trade-mat-price")
                 .forEach(x => x.textContent = tradeData.price + "cr");
             (obj.querySelector("#trade-mat-img") as HTMLImageElement)
-                .src = "./art/" + tradeData.mineralName + ".png";
+                .src = constants.mineralsArtPath + tradeData.mineralName + ".png";
 
             let actionTxt = obj.querySelector("#trade-action");
             if (tradeData.sell === true)
@@ -299,7 +299,7 @@ function initPopups() {
                     }
 
                     (newRecord.querySelector("#planet-details-ship-img") as HTMLImageElement)
-                        .src = "./art/" + key + ".png";
+                        .src = constants.shipsArtPath + key + ".png";
                     (newRecord.querySelector("#planet-details-ship-name") as HTMLImageElement)
                         .textContent = key;
                     newRecord.onclick = () => {
@@ -322,7 +322,7 @@ function initPopups() {
                     }
 
                     (newRecord.querySelector("#planet-details-mineral-img") as HTMLImageElement)
-                        .src = "./art/" + key + ".png";
+                        .src = constants.mineralsArtPath + key + ".png";
                     newRecord.querySelector("#planet-details-mineral-name").textContent = key;
                     newRecord.querySelector("#planet-details-mineral-price").textContent =
                         item.buy_price.toString() + " / " + item.sell_price.toString();
@@ -353,7 +353,7 @@ function initPopups() {
             obj.querySelector("#flyingspacecraft-arrival").textContent =
                 formatTime(ships[shipName].destTime - new Date().getTime());
             (obj.querySelector("#flyingspacecraft-ship") as HTMLImageElement).src =
-                "./art/" + shipName + ".png";
+                constants.shipsArtPath + shipName + ".png";
 
             let planetLnk = <HTMLElement>(obj.querySelector("#flyingspacecraft-dest"));
             planetLnk.onclick = function() {
@@ -411,7 +411,7 @@ function initPopups() {
                     }
 
                     (newRecord.querySelector("#trade-img") as HTMLImageElement).src =
-                        "./art/" + key + ".png";
+                        constants.mineralsArtPath + key + ".png";
                     newRecord.querySelector("#trade-name").textContent = key;
 
                     if (canSell) {
@@ -486,7 +486,7 @@ function initPopups() {
 
                     let travelTimeMS = calculatePlanetTravelTime(curPlanetName, key) * 1000;
                     (newRecord.querySelector("#planet-icon") as HTMLImageElement)
-                        .src = "./art/" + key + ".png";
+                        .src = constants.planetsArtPath + key + ".png";
                     newRecord.querySelector("#planet-name").textContent = key;
                     newRecord.querySelector("#planet-coord").textContent = formatTime(travelTimeMS);
 
@@ -609,7 +609,7 @@ window.onload = () =>  {
             let planetIcon = newRecord.querySelector("#planet-icon") as HTMLImageElement;
             planetName.textContent = key;
             planetCoords.textContent = "(" + value.x + ", " + value.y + ")";
-            planetIcon.src = "./art/" + key + ".png";
+            planetIcon.src = constants.planetsArtPath + key + ".png";
             newRecord.onclick = function() { planetPopup.display(key); };
             list.append(newRecord);
         });

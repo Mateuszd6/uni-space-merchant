@@ -10,10 +10,13 @@ const gameStartedSessionVar : string = "var_gameStarted";
 
 const backToMenuOnRefresh : boolean = false;
 
-export { highscoresLocalVar,
-         gameHasEndedLocalVar,
-         scoreReachedLocalVar,
-         highscoreLocalVar,
-         playerNameSessionVar,
-         gameStartedSessionVar,
-         backToMenuOnRefresh };
+const planetsArtPath : string = "./art/planets/";
+const shipsArtPath : string = "./art/ships/";
+const mineralsArtPath : string = "./art/minerals/";
+const miscArtPath : string = "./art/misc/";
+
+export {
+    highscoresLocalVar, gameHasEndedLocalVar, scoreReachedLocalVar, highscoreLocalVar,
+    playerNameSessionVar, gameStartedSessionVar, backToMenuOnRefresh,
+    planetsArtPath, shipsArtPath, mineralsArtPath, miscArtPath
+};
