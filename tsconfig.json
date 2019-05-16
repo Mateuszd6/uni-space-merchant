@@ -1,7 +1,5 @@
 {
     "compilerOptions": {
-        "module": "commonjs",
-        "resolveJsonModule": true,
         "esModuleInterop": true,
         "outDir": "./dist/",
         "allowJs": true,

@@ -1,0 +1,1 @@
+let game_url = "file:///home/mateusz/www2/game.html"; let index_url = "file:///home/mateusz/www2/index.html"; export {game_url, index_url};

@@ -7,9 +7,11 @@ all:
 # with that works everywere and does not require user to install one million
 # additional libraries just to read some files.
 validate: update all
-	@echo -n 'let game_html_url = "file://' > ./test/uri.ts
+	@echo -n 'let game_url = "file://' > ./test/uri.ts
 	@echo -n $(shell pwd) >> ./test/uri.ts
-	@echo -n '/game.html"; export {game_html_url};' >> ./test/uri.ts
+	@echo -n '/game.html"; let index_url = "file://' >> ./test/uri.ts
+	@echo -n $(shell pwd) >> ./test/uri.ts
+	@echo -n '/index.html"; export {game_url, index_url};' >> ./test/uri.ts
 	@./validate.sh
 
 update:

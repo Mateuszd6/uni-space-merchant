@@ -17,9 +17,12 @@ class HighscoreManager {
             "name": name,
             "score": score
         };
-        if ((this.highscores.length < 10 ||
-            (this.highscores.length === 10 && this.highscores[9].score > scr.score))) {
+        if ((this.highscores.length < 10)) {
             this.highscores.push(scr);
+            retval = true;
+        }
+        else if (this.highscores.length === 10 && this.highscores[9].score <= scr.score) {
+            this.highscores[9] = scr;
             retval = true;
         }
         this.highscores = this.highscores

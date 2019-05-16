@@ -1,5 +1,6 @@
 // The .js is with some reason required and cannot be changed.
 import * as constants from './constants.js'
+import * as misc from './misc.js'
 
 import {initialDataJSONString, IItem, IPlanet, IShip} from './initial_data.js'
 import {TimeManager, formatTime} from './timeManager.js'
@@ -40,15 +41,6 @@ function finishGame() {
     localStorage.setItem(constants.gameHasEndedLocalVar, "TRUE");
     localStorage.setItem(constants.scoreReachedLocalVar, score.toString());
     window.location.href = "index.html";
-}
-
-function calculatePlanetTravelTime(p1Name : string, p2Name : string) {
-    let p1 = planets[p1Name];
-    let p2 = planets[p2Name];
-    let distSquare = (p1.x - p2.x) * (p1.x - p2.x) + (p1.y - p2.y) * (p1.y - p2.y);
-    let dist = Math.round(Math.sqrt(distSquare));
-
-    return dist;
 }
 
 let gameInitialState = JSON.parse(initialDataJSONString);
@@ -484,7 +476,9 @@ function initPopups() {
                         return;
                     }
 
-                    let travelTimeMS = calculatePlanetTravelTime(curPlanetName, key) * 1000;
+                    let p1 = planets[curPlanetName];
+                    let p2 = planets[key];
+                    let travelTimeMS = misc.calculatePlanetTravelTime(p1.x, p1.y, p2.x, p2.y) * 1000;
                     (newRecord.querySelector("#planet-icon") as HTMLImageElement)
                         .src = constants.planetsArtPath + key + ".png";
                     newRecord.querySelector("#planet-name").textContent = key;
@@ -589,6 +583,7 @@ window.onload = () =>  {
                                   gameInitialState.game_duration,
                                   () => updateMainScrShipList(),
                                   () => finishGame());
+
     cashManager = new CashManager(document.getElementById("info-credits"),
                                   gameInitialState.initial_credits);
     timeManager.start();
