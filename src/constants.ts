@@ -8,9 +8,12 @@ const highscoreLocalVar : string = "var_highscoreReached";
 const playerNameSessionVar : string = "var_playerName";
 const gameStartedSessionVar : string = "var_gameStarted";
 
+const backToMenuOnRefresh : boolean = false;
+
 export { highscoresLocalVar,
          gameHasEndedLocalVar,
          scoreReachedLocalVar,
          highscoreLocalVar,
          playerNameSessionVar,
-         gameStartedSessionVar };
+         gameStartedSessionVar,
+         backToMenuOnRefresh };

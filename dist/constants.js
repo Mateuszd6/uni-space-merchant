@@ -5,4 +5,5 @@ const scoreReachedLocalVar = "var_scoreReached";
 const highscoreLocalVar = "var_highscoreReached";
 const playerNameSessionVar = "var_playerName";
 const gameStartedSessionVar = "var_gameStarted";
-export { highscoresLocalVar, gameHasEndedLocalVar, scoreReachedLocalVar, highscoreLocalVar, playerNameSessionVar, gameStartedSessionVar };
+const backToMenuOnRefresh = false;
+export { highscoresLocalVar, gameHasEndedLocalVar, scoreReachedLocalVar, highscoreLocalVar, playerNameSessionVar, gameStartedSessionVar, backToMenuOnRefresh };

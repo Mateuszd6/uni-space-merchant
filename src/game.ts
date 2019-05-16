@@ -556,8 +556,11 @@ window.onload = () =>  {
     // Check if game was started through the menu screen. If it was not
     // (e.g. page was reloaded), var_gameStarted variable won't be empty and we
     // will redirect the user to the index.html page.
+    // NOTE: This feature is disabled so that its easier to validate my
+    //       project. This can be enabled back by switching the constant in
+    //       constants.ts and rebuilding the project.
     let gameStarted = sessionStorage.getItem(constants.gameStartedSessionVar);
-    if (false && gameStarted !== "session_OK")
+    if (constants.backToMenuOnRefresh && gameStarted !== "session_OK")
     {
         console.error("It appears user has now entered from the menu. Redirecting...");
         window.location.href = "index.html";
