@@ -34,6 +34,7 @@ function finishGame() {
     let wasHighscore = hm.tryAddToHighscores(playerName, score);
 
     // Use local storage to pass this info to the menu and change the page.
+    console.log("Saving: " + hm.getAsJson());
     localStorage.setItem(constants.highscoresLocalVar, hm.getAsJson());
     localStorage.setItem(constants.highscoreLocalVar, wasHighscore ? "TRUE" : "");
     localStorage.setItem(constants.gameHasEndedLocalVar, "TRUE");

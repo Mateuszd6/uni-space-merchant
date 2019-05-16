@@ -22,17 +22,17 @@ class HighscoreManager
     }
 
     tryAddToHighscores(name : string, score : number) : boolean {
-        let retval = true;
+        let retval = false;
         let scr : IScore = {
             "name": name,
             "score": score
         };
 
-        if ((this.highscores.length > 10 ||
+        if ((this.highscores.length < 10 ||
              (this.highscores.length === 10 && this.highscores[9].score > scr.score)))
         {
             this.highscores.push(scr);
-            retval = false;
+            retval = true;
         }
 
         this.highscores = this.highscores
