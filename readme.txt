@@ -8,3 +8,5 @@ zmiennych srodowiskowych i wskazac adres strony do odpalenia testow Selenium.
 
 `make update` pobiera zaleznosci kozystajac z npm. Wszystkie potrzebne zaleznosci
 do testow powinny pobrac sie automatycznie przy `make validate`.
+
+Zdeployowana wersje strony mozna znalezc na: https://mateuszd6.github.io/space_merchant/

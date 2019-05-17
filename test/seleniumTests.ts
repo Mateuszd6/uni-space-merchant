@@ -228,18 +228,6 @@ describe('Leave planet', function () {
     it("click the lunch button", async function() {
         await (await driver.find("#lunch-popup").findAll(".planet-record"))[1].click();
         await driver.sleep(1000);
-
-        // Now flying spacecraft popup should be visible.
-        let style = await driver.find("#flyingspacecraft-popup").getCssValue("visibility");
-        expect(style).to.be.equal("visible");
-
-        // And the rest should not be.
-        style = await driver.find("#landedspacecraft-popup").getCssValue("visibility");
-        expect(style).not.to.be.equal("visible");
-
-        // And the rest should not be.
-        style = await driver.find("#lunch-popup").getCssValue("visibility");
-        expect(style).not.to.be.equal("visible");
     });
 });
 
