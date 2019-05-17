@@ -2,7 +2,7 @@ import { expect } from "chai";
 import { formatTime, TimeManager} from '../src/timeManager'
 import { IScore, HighscoreManager} from '../src/highscoreManager'
 import {initialDataJSONString} from '../src/initial_data'
-import * as game from '../src/misc'
+import * as misc from '../src/misc'
 
 import "mocha";
 
@@ -67,131 +67,131 @@ describe('Planet time traveltimems', function () {
     it('calc distance between Alderaan nad Argoland', async function() {
         let planetAlderaan = JSON.parse(initialDataJSONString).planets['Alderaan'];
         let planetArgoland = JSON.parse(initialDataJSONString).planets['Argoland'];
-        game.calculatePlanetTravelTime(planetAlderaan.x, planetAlderaan.y, planetArgoland.x, planetArgoland.y) == 2080;
+        misc.calculatePlanetTravelTime(planetAlderaan.x, planetAlderaan.y, planetArgoland.x, planetArgoland.y) == 2080;
     });
     it('calc distance between Alderaan nad Arrakis', async function() {
         let planetAlderaan = JSON.parse(initialDataJSONString).planets['Alderaan'];
         let planetArrakis = JSON.parse(initialDataJSONString).planets['Arrakis'];
-        game.calculatePlanetTravelTime(planetAlderaan.x, planetAlderaan.y, planetArrakis.x, planetArrakis.y) == 4360;
+        misc.calculatePlanetTravelTime(planetAlderaan.x, planetAlderaan.y, planetArrakis.x, planetArrakis.y) == 4360;
     });
     it('calc distance between Alderaan nad Corellia', async function() {
         let planetAlderaan = JSON.parse(initialDataJSONString).planets['Alderaan'];
         let planetCorellia = JSON.parse(initialDataJSONString).planets['Corellia'];
-        game.calculatePlanetTravelTime(planetAlderaan.x, planetAlderaan.y, planetCorellia.x, planetCorellia.y) == 2153;
+        misc.calculatePlanetTravelTime(planetAlderaan.x, planetAlderaan.y, planetCorellia.x, planetCorellia.y) == 2153;
     });
     it('calc distance between Alderaan nad Encja', async function() {
         let planetAlderaan = JSON.parse(initialDataJSONString).planets['Alderaan'];
         let planetEncja = JSON.parse(initialDataJSONString).planets['Encja'];
-        game.calculatePlanetTravelTime(planetAlderaan.x, planetAlderaan.y, planetEncja.x, planetEncja.y) == 5776;
+        misc.calculatePlanetTravelTime(planetAlderaan.x, planetAlderaan.y, planetEncja.x, planetEncja.y) == 5776;
     });
     it('calc distance between Alderaan nad Gaia', async function() {
         let planetAlderaan = JSON.parse(initialDataJSONString).planets['Alderaan'];
         let planetGaia = JSON.parse(initialDataJSONString).planets['Gaia'];
-        game.calculatePlanetTravelTime(planetAlderaan.x, planetAlderaan.y, planetGaia.x, planetGaia.y) == 5536;
+        misc.calculatePlanetTravelTime(planetAlderaan.x, planetAlderaan.y, planetGaia.x, planetGaia.y) == 5536;
     });
     it('calc distance between Alderaan nad Ksi', async function() {
         let planetAlderaan = JSON.parse(initialDataJSONString).planets['Alderaan'];
         let planetKsi = JSON.parse(initialDataJSONString).planets['Ksi'];
-        game.calculatePlanetTravelTime(planetAlderaan.x, planetAlderaan.y, planetKsi.x, planetKsi.y) == 7297;
+        misc.calculatePlanetTravelTime(planetAlderaan.x, planetAlderaan.y, planetKsi.x, planetKsi.y) == 7297;
     });
     it('calc distance between Alderaan nad Leonida', async function() {
         let planetAlderaan = JSON.parse(initialDataJSONString).planets['Alderaan'];
         let planetLeonida = JSON.parse(initialDataJSONString).planets['Leonida'];
-        game.calculatePlanetTravelTime(planetAlderaan.x, planetAlderaan.y, planetLeonida.x, planetLeonida.y) == 1018;
+        misc.calculatePlanetTravelTime(planetAlderaan.x, planetAlderaan.y, planetLeonida.x, planetLeonida.y) == 1018;
     });
     it('calc distance between Alderaan nad NowWhat', async function() {
         let planetAlderaan = JSON.parse(initialDataJSONString).planets['Alderaan'];
         let planetNowWhat = JSON.parse(initialDataJSONString).planets['NowWhat'];
-        game.calculatePlanetTravelTime(planetAlderaan.x, planetAlderaan.y, planetNowWhat.x, planetNowWhat.y) == 481;
+        misc.calculatePlanetTravelTime(planetAlderaan.x, planetAlderaan.y, planetNowWhat.x, planetNowWhat.y) == 481;
     });
     it('calc distance between Alderaan nad Sur\'Kesh', async function() {
         let planetAlderaan = JSON.parse(initialDataJSONString).planets['Alderaan'];
         let planetSurKesh = JSON.parse(initialDataJSONString).planets['Sur\'Kesh'];
-       game.calculatePlanetTravelTime(planetAlderaan.x, planetAlderaan.y, planetSurKesh.x, planetSurKesh.y) == 577;
+       misc.calculatePlanetTravelTime(planetAlderaan.x, planetAlderaan.y, planetSurKesh.x, planetSurKesh.y) == 577;
       });
          it('calc distance between Alderaan nad Tairia', async function() {
              let planetAlderaan = JSON.parse(initialDataJSONString).planets['Alderaan'];
              let planetTairia = JSON.parse(initialDataJSONString).planets['Tairia'];
-             game.calculatePlanetTravelTime(planetAlderaan.x, planetAlderaan.y, planetTairia.x, planetTairia.y) == 3145;
+             misc.calculatePlanetTravelTime(planetAlderaan.x, planetAlderaan.y, planetTairia.x, planetTairia.y) == 3145;
          });
          it('calc distance between Alderaan nad Tatooine', async function() {
              let planetAlderaan = JSON.parse(initialDataJSONString).planets['Alderaan'];
              let planetTatooine = JSON.parse(initialDataJSONString).planets['Tatooine'];
-             game.calculatePlanetTravelTime(planetAlderaan.x, planetAlderaan.y, planetTatooine.x, planetTatooine.y) == 2320;
+             misc.calculatePlanetTravelTime(planetAlderaan.x, planetAlderaan.y, planetTatooine.x, planetTatooine.y) == 2320;
          });
          it('calc distance between Alderaan nad Tuchanka', async function() {
              let planetAlderaan = JSON.parse(initialDataJSONString).planets['Alderaan'];
              let planetTuchanka = JSON.parse(initialDataJSONString).planets['Tuchanka'];
-             game.calculatePlanetTravelTime(planetAlderaan.x, planetAlderaan.y, planetTuchanka.x, planetTuchanka.y) == 2080;
+             misc.calculatePlanetTravelTime(planetAlderaan.x, planetAlderaan.y, planetTuchanka.x, planetTuchanka.y) == 2080;
          });
          it('calc distance between Alderaan nad Ziemia', async function() {
              let planetAlderaan = JSON.parse(initialDataJSONString).planets['Alderaan'];
              let planetZiemia = JSON.parse(initialDataJSONString).planets['Ziemia'];
-             game.calculatePlanetTravelTime(planetAlderaan.x, planetAlderaan.y, planetZiemia.x, planetZiemia.y) == 6305;
+             misc.calculatePlanetTravelTime(planetAlderaan.x, planetAlderaan.y, planetZiemia.x, planetZiemia.y) == 6305;
          });
          it('calc distance between Argoland nad Arrakis', async function() {
              let planetArgoland = JSON.parse(initialDataJSONString).planets['Argoland'];
              let planetArrakis = JSON.parse(initialDataJSONString).planets['Arrakis'];
-             game.calculatePlanetTravelTime(planetArgoland.x, planetArgoland.y, planetArrakis.x, planetArrakis.y) == 584;
+             misc.calculatePlanetTravelTime(planetArgoland.x, planetArgoland.y, planetArrakis.x, planetArrakis.y) == 584;
          });
          it('calc distance between Argoland nad Corellia', async function() {
              let planetArgoland = JSON.parse(initialDataJSONString).planets['Argoland'];
              let planetCorellia = JSON.parse(initialDataJSONString).planets['Corellia'];
-             game.calculatePlanetTravelTime(planetArgoland.x, planetArgoland.y, planetCorellia.x, planetCorellia.y) == 881;
+             misc.calculatePlanetTravelTime(planetArgoland.x, planetArgoland.y, planetCorellia.x, planetCorellia.y) == 881;
          });
          it('calc distance between Argoland nad Encja', async function() {
              let planetArgoland = JSON.parse(initialDataJSONString).planets['Argoland'];
              let planetEncja = JSON.parse(initialDataJSONString).planets['Encja'];
-             game.calculatePlanetTravelTime(planetArgoland.x, planetArgoland.y, planetEncja.x, planetEncja.y) == 1168;
+             misc.calculatePlanetTravelTime(planetArgoland.x, planetArgoland.y, planetEncja.x, planetEncja.y) == 1168;
          });
          it('calc distance between Argoland nad Gaia', async function() {
              let planetArgoland = JSON.parse(initialDataJSONString).planets['Argoland'];
              let planetGaia = JSON.parse(initialDataJSONString).planets['Gaia'];
-             game.calculatePlanetTravelTime(planetArgoland.x, planetArgoland.y, planetGaia.x, planetGaia.y) == 1280;
+             misc.calculatePlanetTravelTime(planetArgoland.x, planetArgoland.y, planetGaia.x, planetGaia.y) == 1280;
          });
          it('calc distance between Argoland nad Ksi', async function() {
              let planetArgoland = JSON.parse(initialDataJSONString).planets['Argoland'];
              let planetKsi = JSON.parse(initialDataJSONString).planets['Ksi'];
-             game.calculatePlanetTravelTime(planetArgoland.x, planetArgoland.y, planetKsi.x, planetKsi.y) == 1753;
+             misc.calculatePlanetTravelTime(planetArgoland.x, planetArgoland.y, planetKsi.x, planetKsi.y) == 1753;
          });
          it('calc distance between Argoland nad Leonida', async function() {
              let planetArgoland = JSON.parse(initialDataJSONString).planets['Argoland'];
              let planetLeonida = JSON.parse(initialDataJSONString).planets['Leonida'];
-             game.calculatePlanetTravelTime(planetArgoland.x, planetArgoland.y, planetLeonida.x, planetLeonida.y) == 2250;
+             misc.calculatePlanetTravelTime(planetArgoland.x, planetArgoland.y, planetLeonida.x, planetLeonida.y) == 2250;
          });
          it('calc distance between Argoland nad NowWhat', async function() {
              let planetArgoland = JSON.parse(initialDataJSONString).planets['Argoland'];
              let planetNowWhat = JSON.parse(initialDataJSONString).planets['NowWhat'];
-             game.calculatePlanetTravelTime(planetArgoland.x, planetArgoland.y, planetNowWhat.x, planetNowWhat.y) == 585;
+             misc.calculatePlanetTravelTime(planetArgoland.x, planetArgoland.y, planetNowWhat.x, planetNowWhat.y) == 585;
          });
          it('calc distance between Tairia nad Tatooine', async function() {
              let planetTairia = JSON.parse(initialDataJSONString).planets['Tairia'];
              let planetTatooine = JSON.parse(initialDataJSONString).planets['Tatooine'];
-             game.calculatePlanetTravelTime(planetTairia.x, planetTairia.y, planetTatooine.x, planetTatooine.y) == 377;
+             misc.calculatePlanetTravelTime(planetTairia.x, planetTairia.y, planetTatooine.x, planetTatooine.y) == 377;
          });
          it('calc distance between Tairia nad Tuchanka', async function() {
              let planetTairia = JSON.parse(initialDataJSONString).planets['Tairia'];
              let planetTuchanka = JSON.parse(initialDataJSONString).planets['Tuchanka'];
-             game.calculatePlanetTravelTime(planetTairia.x, planetTairia.y, planetTuchanka.x, planetTuchanka.y) == 145;
+             misc.calculatePlanetTravelTime(planetTairia.x, planetTairia.y, planetTuchanka.x, planetTuchanka.y) == 145;
          });
          it('calc distance between Tairia nad Ziemia', async function() {
              let planetTairia = JSON.parse(initialDataJSONString).planets['Tairia'];
              let planetZiemia = JSON.parse(initialDataJSONString).planets['Ziemia'];
-             game.calculatePlanetTravelTime(planetTairia.x, planetTairia.y, planetZiemia.x, planetZiemia.y) == 6964;
+             misc.calculatePlanetTravelTime(planetTairia.x, planetTairia.y, planetZiemia.x, planetZiemia.y) == 6964;
          });
          it('calc distance between Tatooine nad Tuchanka', async function() {
              let planetTatooine = JSON.parse(initialDataJSONString).planets['Tatooine'];
              let planetTuchanka = JSON.parse(initialDataJSONString).planets['Tuchanka'];
-             game.calculatePlanetTravelTime(planetTatooine.x, planetTatooine.y, planetTuchanka.x, planetTuchanka.y) == 464;
+             misc.calculatePlanetTravelTime(planetTatooine.x, planetTatooine.y, planetTuchanka.x, planetTuchanka.y) == 464;
          });
          it('calc distance between Tatooine nad Ziemia', async function() {
              let planetTatooine = JSON.parse(initialDataJSONString).planets['Tatooine'];
              let planetZiemia = JSON.parse(initialDataJSONString).planets['Ziemia'];
-             game.calculatePlanetTravelTime(planetTatooine.x, planetTatooine.y, planetZiemia.x, planetZiemia.y) == 4145;
+             misc.calculatePlanetTravelTime(planetTatooine.x, planetTatooine.y, planetZiemia.x, planetZiemia.y) == 4145;
          });
          it('calc distance between Tuchanka nad Ziemia', async function() {
              let planetTuchanka = JSON.parse(initialDataJSONString).planets['Tuchanka'];
              let planetZiemia = JSON.parse(initialDataJSONString).planets['Ziemia'];
-             game.calculatePlanetTravelTime(planetTuchanka.x, planetTuchanka.y, planetZiemia.x, planetZiemia.y) == 7193;
+             misc .calculatePlanetTravelTime(planetTuchanka.x, planetTuchanka.y, planetZiemia.x, planetZiemia.y) == 7193;
          });
         });
