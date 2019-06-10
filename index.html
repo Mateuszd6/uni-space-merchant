@@ -11,7 +11,7 @@
   <body class="title-walp">
     <h1 class="main-title fadein">Space Merchant</h1>
     <div class="highscores-field heavy-bordered fadein shadowed">
-      <h2 class=highscores-title>High scores</h2>
+      <h2 class=highscores-title>Map: Default</h2>
       <nav>
         <ul id="highscore-list" class="highscores-scrollarea heavy-bordered-vert-only">
           <div id="highscore-record" class="highscores-record lightly-bordered">
@@ -22,7 +22,9 @@
       </nav>
     </div>
     <a class="button menu-button fadein shadowed" id="menu-startnew" href="javascript:void(0);">New game</a>
-    <a class="button menu-button fadein shadowed" id="menu-howtoplay" href="javascript:void(0);">How to play</a>
+    <a class="button menu-button fadein shadowed" id="menu-howtoplay" href="javascript:void(0);">Upload map</a>
+    <a class="button menu-button fadein shadowed" id="menu-select" href="javascript:void(0);">Select map</a>
+    <a class="button fadein shadowed" id="menu-log" href="javascript:void(0);">Log in</a>
 
     <div id="popup" class="popup-screenfader">
       <div class="ingame-popup" id="startgame-popup">
@@ -43,15 +45,42 @@
       </div>
     </div>
 
+    <div id="popup-login" class="popup-screenfader">
+      <div class="ingame-popup" id="startgame-popup">
+        <a class="close" href="javascript:void(0);">&times;</a>
+        <p class="title">Enter your user name & password:</p>
+        <a class="button menu-button fadein" id="startgame-button" href="javascript:void(0);">OK</a>
+        <form class="login-name-input">
+          <input class="form" id="fname" value="">
+        </form>
+        <form class="login-pass-input">
+          <input class="form" id="passwd" type="password" value="">
+        </form>
+      </div>
+    </div>
+
+    <div id="popup-select-map" class="popup-screenfader">
+      <div class="ingame-popup" id="startgame-popup">
+        <a class="close" href="javascript:void(0);">&times;</a>
+        <p class="title">Available:</p>
+      </div>
+    </div>
+
     <div id="popup-howtoplay" class="popup-screenfader">
       <div class="ingame-popup" id="startgame-popup">
         <a class="close" href="javascript:void(0);">&times;</a>
         <div>
-          <p style="margin-top=5vh;">
-            Travel between planets and collect minerals.  Each
-            ship has a cargo hold limit, so be careful. The more credits you
-            have after the game time the higher your score. Good luck.
-          </p>
+          <p class="title">Upload your map:</p>
+          <form class="usermap-input">
+            <input class="form" id="upload-file-name" value="my map">
+          </form>
+          <form class="usermap-description">
+            <textarea class="username-description-form" id="upload-file-description">My very own map.</textarea>
+          </form>
+          <form class="usermap-file" enctype="multipart/form-data">
+            <input style="margin-top: 0.5vh;" id="file-upload" type="file" accept=".json" name="files[]" size="30"></input>
+          </form>
+          <a class="button menu-button fadein" id="upload-map-button" href="javascript:void(0);">Upload</a>
         </div>
       </div>
     </div>

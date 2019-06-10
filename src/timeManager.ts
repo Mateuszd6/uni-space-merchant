@@ -33,7 +33,7 @@ class TimeManager {
 
     start() {
         this.element.textContent = formatTime(0);
-        this.timerToken = setInterval(
+        this.timerToken = window.setInterval(
             () => {
                 let timeLeft = this.timeLimit * 1000 -
                     (new Date().getTime()-this.startTimePoint.getTime());

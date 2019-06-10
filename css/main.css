@@ -66,7 +66,7 @@ a {
     padding: 0;
     width: 90%;
     max-width: 550px;
-    height: calc(75vh - 7vh - 2.5vh);
+    height: calc(60vh - 7vh - 2.5vh + 5vh);
 }
 
 .highscores-title {
@@ -96,7 +96,7 @@ a {
     margin-right: 2vh;
     padding-left: 0;
     padding-right: 0;
-    height: 52vh;
+    height: 45vh;
     overflow: hidden;
     overflow-y: auto;
 }
@@ -166,6 +166,20 @@ a {
     font-size: 4vh;
     bottom: 2.5vh;
 }
+
+#menu-select {
+    position: absolute;
+    font-size: 4vh;
+    bottom: 22vh;
+}
+
+#menu-log {
+    position: absolute;
+    font-size: 4vh;
+    top: 1vh;
+    righht: 0vh;
+}
+
 
 .game-container {
     margin: 0;
@@ -356,7 +370,7 @@ a {
     margin-top: 35vh;
     margin-bottom: 35vh;
     width: 30%;
-    height: 30vh;
+    height: 40vh;
     background-color: #333333;
 }
 
@@ -559,6 +573,14 @@ a {
     bottom: 2.5vh;
 }
 
+#upload-map-button {
+    width: 66%;
+    font-size: 2.5vh;
+
+    position: absolute;
+    bottom: 2.5vh;
+}
+
 .username-input {
     position: absolute;
     margin: auto;
@@ -586,6 +608,140 @@ a {
     color: white;
     background: rgb(0, 0, 0); /* Fallback */
     background-color: rgba(0, 0, 0, 0);
+}
+
+.usermap-input {
+    position: absolute;
+    margin: auto;
+    margin-top: 1.5vh;
+    border: 2px solid white;
+    width: 66%;
+    height: 4vh;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 27vh;
+
+    border-radius: 5px;
+}
+
+.login-name-input {
+    position: absolute;
+    margin: auto;
+    margin-top: 1.5vh;
+    border: 2px solid white;
+    width: 66%;
+    height: 4vh;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 16vh;
+
+    border-radius: 5px;
+}
+
+.login-name-input .form {
+    border: 0;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    vertical-align: middle;
+    width: 100%;
+    font-size: 2.5vh;
+    color: white;
+    background: rgb(0, 0, 0); /* Fallback */
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.login-pass-input {
+    position: absolute;
+    margin: auto;
+    margin-top: 1.5vh;
+    border: 2px solid white;
+    width: 66%;
+    height: 4vh;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 10vh;
+
+    border-radius: 5px;
+}
+
+.login-pass-input .form {
+    border: 0;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    vertical-align: middle;
+    width: 100%;
+    font-size: 2.5vh;
+    color: white;
+    background: rgb(0, 0, 0); /* Fallback */
+    background-color: rgba(0, 0, 0, 0);
+}
+
+
+.usermap-description {
+    background: transparent;
+    position: absolute;
+    margin: auto;
+    margin-top: 1.5vh;
+    border: 2px solid white;
+    width: 66%;
+    height: 10vh;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 15.5vh;
+
+    border-radius: 5px;
+}
+
+.username-description-form {
+    resize: none;
+    border: 0;
+    margin: 0;
+    padding: 0;
+    vertical-align: middle;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    font-size: 1.5vh;
+    color: white;
+}
+
+
+.usermap-input .form {
+    border: 0;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    vertical-align: middle;
+    width: 100%;
+    font-size: 2.5vh;
+    color: white;
+    background: rgb(0, 0, 0); /* Fallback */
+    background-color: rgba(0, 0, 0, 0);
+}
+
+
+.usermap-file {
+    position: absolute;
+    margin: auto;
+    margin-top: 1.5vh;
+    width: 66%;
+    height: 4vh;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 10vh;
+
+    text-align: center;
+    vertical-align: middle;
+
+    border: 2px solid white;
+    border-radius: 5px;
 }
 
 #leaveplanet {

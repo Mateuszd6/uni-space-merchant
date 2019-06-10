@@ -1,5 +1,6 @@
 all:
 	tsc --build --pretty false
+	tsc --pretty false server.ts
 
 # Because the testing framework lacks of functionality we must pass to it the
 # uri of the web page we are testing. We create a .ts file with this uri in

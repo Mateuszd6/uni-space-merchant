@@ -23,7 +23,7 @@ class Popup {
         this.content.style.opacity = "1";
 
         if (this.refreshPeriodically)
-            this.counter = setInterval(() => this.refresh(), 500);
+            this.counter = window.setInterval(() => this.refresh(), 500);
     }
 
     refresh() {

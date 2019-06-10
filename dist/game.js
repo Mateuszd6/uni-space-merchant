@@ -1,7 +1,6 @@
 // The .js is with some reason required and cannot be changed.
 import * as constants from './constants.js';
 import * as misc from './misc.js';
-import { initialDataJSONString } from './initial_data.js';
 import { TimeManager, formatTime } from './timeManager.js';
 import { CashManager } from './cashManager.js';
 import { HighscoreManager } from './highscoreManager.js';
@@ -20,10 +19,10 @@ function finishGame() {
     localStorage.setItem(constants.scoreReachedLocalVar, score.toString());
     window.location.href = "index.html";
 }
-let gameInitialState = JSON.parse(initialDataJSONString);
-const planets = gameInitialState.planets;
-const ships = gameInitialState.starships;
-let items = gameInitialState.items;
+let gameInitialState = {};
+let planets;
+let ships;
+let items;
 let tradePopup;
 let planetPopup;
 let flyingSpacecraftPopup;
@@ -404,6 +403,12 @@ function initShipsList() {
     }
 }
 window.onload = () => {
+    let gameInitialState = JSON.parse(sessionStorage.getItem("scenario"));
+    planets = gameInitialState.planets;
+    ships = gameInitialState.starships;
+    items = gameInitialState.items;
+    console.log(sessionStorage.getItem("scenario"));
+    console.log(sessionStorage.getItem("scenario_name"));
     playerName = sessionStorage.getItem(constants.playerNameSessionVar);
     if (playerName == null || playerName == "")
         playerName = "Anonymus";

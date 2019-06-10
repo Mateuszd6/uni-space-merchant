@@ -2,7 +2,6 @@
 import * as constants from './constants.js'
 import * as misc from './misc.js'
 
-import {initialDataJSONString, IItem, IPlanet, IShip} from './initial_data.js'
 import {TimeManager, formatTime} from './timeManager.js'
 import {CashManager} from './cashManager.js'
 import {IScore, HighscoreManager} from './highscoreManager.js'
@@ -27,6 +26,36 @@ interface ILunchData {
     shipName : string;
 }
 
+// Single mineral iface.
+interface IItem {
+    [name: string]: {
+        available: number;
+        buy_price: number;
+        sell_price: number;
+    }
+}
+
+// Planet iface.
+interface IPlanet {
+    [name: string]: {
+        available_items?: IItem;
+        x: number;
+        y: number;
+    }
+}
+
+// Ship iface.
+interface IShip {
+    [name: string]: {
+        cargo_hold_size: number,
+        position: string,
+        cargo: number, // Currently holded cargo.
+        moving: boolean, // Is the spacecraft moving?
+        destTime : number, // Time point in which dest is reach (only if moving)
+        available_items?: IItem
+    }
+}
+
 // This will finish the game, save to highscores if result qualifies and go back
 // to greet screen.
 function finishGame() {
@@ -43,10 +72,10 @@ function finishGame() {
     window.location.href = "index.html";
 }
 
-let gameInitialState = JSON.parse(initialDataJSONString);
-const planets = gameInitialState.planets as IPlanet;
-const ships = gameInitialState.starships as IShip;
-let items: string[] = gameInitialState.items;
+let gameInitialState = {};
+let planets : IPlanet;
+let ships : IShip;
+let items: string[];
 
 let tradePopup : Popup;
 let planetPopup : Popup;
@@ -543,6 +572,14 @@ function initShipsList() {
 }
 
 window.onload = () =>  {
+    let gameInitialState = JSON.parse(sessionStorage.getItem("scenario"));
+    planets = gameInitialState.planets;
+    ships = gameInitialState.starships
+    items = gameInitialState.items;
+
+    console.log(sessionStorage.getItem("scenario"));
+    console.log(sessionStorage.getItem("scenario_name"));
+
     playerName = sessionStorage.getItem(constants.playerNameSessionVar);
     if (playerName == null || playerName == "")
         playerName = "Anonymus";

@@ -10,4 +10,5 @@ const planetsArtPath = "./art/planets/";
 const shipsArtPath = "./art/ships/";
 const mineralsArtPath = "./art/minerals/";
 const miscArtPath = "./art/misc/";
-export { highscoresLocalVar, gameHasEndedLocalVar, scoreReachedLocalVar, highscoreLocalVar, playerNameSessionVar, gameStartedSessionVar, backToMenuOnRefresh, planetsArtPath, shipsArtPath, mineralsArtPath, miscArtPath };
+const serverAddress = "http://127.0.0.1:8080/";
+export { highscoresLocalVar, gameHasEndedLocalVar, scoreReachedLocalVar, highscoreLocalVar, playerNameSessionVar, gameStartedSessionVar, backToMenuOnRefresh, planetsArtPath, shipsArtPath, mineralsArtPath, miscArtPath, serverAddress };
