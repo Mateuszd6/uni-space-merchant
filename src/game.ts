@@ -7,6 +7,8 @@ import {CashManager} from './cashManager.js'
 import {IScore, HighscoreManager} from './highscoreManager.js'
 import {Popup} from './popup.js'
 
+let refreshWindows : boolean = true;
+
 // This iface is used by the trade popup and displays all the data related to a
 // single trade.
 interface ITradeData {
@@ -110,6 +112,7 @@ function populateList(list : HTMLElement,
     recordProto.hidden = true;
 }
 
+let shipListPopulated = false;
 function updateMainScrShipList() {
     for (let shipName in ships)
     {
@@ -120,28 +123,55 @@ function updateMainScrShipList() {
         }
     }
 
-    populateList(
-        document.getElementById("ships-list"), ".ship-record", ships,
-        (key, newRecord : HTMLElement, list : HTMLElement) => {
-            let value = ships[key];
-            let shipName = newRecord.querySelector("#ship-name") as HTMLElement;
-            let shipPos = newRecord.querySelector("#ship-pos") as HTMLElement;
-            let shipIcon = newRecord.querySelector("#ship-icon") as HTMLImageElement;
-            shipName.textContent = key;
-            shipIcon.src =  constants.shipsArtPath + key + ".png";
+    if (!shipListPopulated)
+    {
+	populateList(
+            document.getElementById("ships-list"), ".ship-record", ships,
+            (key, newRecord : HTMLElement, list : HTMLElement) => {
+		let value = ships[key];
+		let shipName = newRecord.querySelector("#ship-name") as HTMLElement;
+		let shipPos = newRecord.querySelector("#ship-pos") as HTMLElement;
+		let shipIcon = newRecord.querySelector("#ship-icon") as HTMLImageElement;
+		shipName.textContent = key;
+		shipIcon.src =  constants.shipsArtPath + key + ".png";
 
-            if (!value.moving) {
-                shipPos.classList.add("highlighted-info");
-                shipPos.textContent = value.position;
-                newRecord.onclick = () => landedSpacecraftPopup.display(key);
-            }
-            else {
-                shipPos.textContent = "Moving...";
-                newRecord.onclick = () => flyingSpacecraftPopup.display(key);
-            }
+		if (!value.moving) {
+                    shipPos.classList.add("highlighted-info");
+                    shipPos.textContent = value.position;
+                    newRecord.onclick = () => landedSpacecraftPopup.display(key);
+		}
+		else {
+                    shipPos.textContent = "Moving...";
+                    newRecord.onclick = () => flyingSpacecraftPopup.display(key);
+		}
 
-            list.append(newRecord);
-        });
+		list.append(newRecord);
+            });
+	shipListPopulated = true;
+    }
+
+    {
+	let children = (document.getElementById("ships-list") as HTMLElement).children;
+	for (let i = 0; i < children.length; i++) {
+	    let tableChild = children[i] as HTMLElement;
+	    if (tableChild.hidden)
+		continue;
+	    
+	    let shipName = tableChild.querySelector("#ship-name") as HTMLElement;
+	    let shipPos = tableChild.querySelector("#ship-pos") as HTMLElement;
+	    let value = ships[shipName.textContent];
+	    
+	    if (!value.moving) {
+		shipPos.classList.add("highlighted-info");
+		shipPos.textContent = value.position;
+		tableChild.onclick = () => landedSpacecraftPopup.display(shipName.textContent );
+	    }
+	    else {
+		shipPos.textContent = "Moving...";
+		tableChild.onclick = () => flyingSpacecraftPopup.display(shipName.textContent);
+	    }
+	}
+    }
 }
 
 function initPopups() {
@@ -304,7 +334,7 @@ function initPopups() {
         });
 
     planetPopup = new Popup(
-        "#planet-details-popup", true,
+        "#planet-details-popup", false, // refreshWindows
         function(obj : HTMLDivElement, val : any) {
             let planetName : string = val;
             obj.querySelector("#planet-details-name").textContent = planetName;
@@ -354,7 +384,7 @@ function initPopups() {
         });
 
     flyingSpacecraftPopup = new Popup(
-        "#flyingspacecraft-popup", true,
+        "#flyingspacecraft-popup", refreshWindows,
         function(obj : HTMLDivElement, val : any) {
             let shipName : string = val;
 

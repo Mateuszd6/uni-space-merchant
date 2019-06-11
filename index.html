@@ -11,7 +11,7 @@
   <body class="title-walp">
     <h1 class="main-title fadein">Space Merchant</h1>
     <div class="highscores-field heavy-bordered fadein shadowed">
-      <h2 class=highscores-title>Map: Default</h2>
+      <h2 id="hs-title" class="highscores-title">No map available</h2>
       <nav>
         <ul id="highscore-list" class="highscores-scrollarea heavy-bordered-vert-only">
           <div id="highscore-record" class="highscores-record lightly-bordered">
@@ -25,7 +25,8 @@
     <a class="button menu-button fadein shadowed" id="menu-howtoplay" href="javascript:void(0);">Upload map</a>
     <a class="button menu-button fadein shadowed" id="menu-select" href="javascript:void(0);">Select map</a>
     <a class="button fadein shadowed" id="menu-log" href="javascript:void(0);">Log in</a>
-
+    <p id="loggedUsrName">Logged as: Foobar</p>
+    
     <div id="popup" class="popup-screenfader">
       <div class="ingame-popup" id="startgame-popup">
         <a class="close" href="javascript:void(0);">&times;</a>
@@ -49,12 +50,12 @@
       <div class="ingame-popup" id="startgame-popup">
         <a class="close" href="javascript:void(0);">&times;</a>
         <p class="title">Enter your user name & password:</p>
-        <a class="button menu-button fadein" id="startgame-button" href="javascript:void(0);">OK</a>
+        <a class="button menu-button fadein" id="login-button" href="javascript:void(0);">OK</a>
         <form class="login-name-input">
-          <input class="form" id="fname" value="">
+          <input class="form" id="login-name-input" value="">
         </form>
         <form class="login-pass-input">
-          <input class="form" id="passwd" type="password" value="">
+          <input class="form" id="login-pass-input" type="password" value="">
         </form>
       </div>
     </div>
@@ -63,6 +64,15 @@
       <div class="ingame-popup" id="startgame-popup">
         <a class="close" href="javascript:void(0);">&times;</a>
         <p class="title">Available:</p>
+	<ul id="available-maps-list">
+          <div id="available-maps-canvas">
+            <div class="available-map-record">
+	      <a id="map-name" href="javascript:void(0);">MAP_PROTO</a>
+	      <p id="map-description">MAP_PROTO</p>
+	      <p id="map-additional">MAP_PROTO</p>
+	    </div>
+          </div>
+        </ul>
       </div>
     </div>
 
@@ -78,7 +88,7 @@
             <textarea class="username-description-form" id="upload-file-description">My very own map.</textarea>
           </form>
           <form class="usermap-file" enctype="multipart/form-data">
-            <input style="margin-top: 0.5vh;" id="file-upload" type="file" accept=".json" name="files[]" size="30"></input>
+            <input id="file-upload" type="file" accept=".json" name="files[]" size="30"></input>
           </form>
           <a class="button menu-button fadein" id="upload-map-button" href="javascript:void(0);">Upload</a>
         </div>

@@ -5,6 +5,7 @@ import { TimeManager, formatTime } from './timeManager.js';
 import { CashManager } from './cashManager.js';
 import { HighscoreManager } from './highscoreManager.js';
 import { Popup } from './popup.js';
+let refreshWindows = true;
 // This will finish the game, save to highscores if result qualifies and go back
 // to greet screen.
 function finishGame() {
@@ -48,6 +49,7 @@ function populateList(list, recordSelector, objList, addFunc) {
     // Make the proto invisible.
     recordProto.hidden = true;
 }
+let shipListPopulated = false;
 function updateMainScrShipList() {
     for (let shipName in ships) {
         if (ships[shipName].moving
@@ -55,24 +57,47 @@ function updateMainScrShipList() {
             ships[shipName].moving = false;
         }
     }
-    populateList(document.getElementById("ships-list"), ".ship-record", ships, (key, newRecord, list) => {
-        let value = ships[key];
-        let shipName = newRecord.querySelector("#ship-name");
-        let shipPos = newRecord.querySelector("#ship-pos");
-        let shipIcon = newRecord.querySelector("#ship-icon");
-        shipName.textContent = key;
-        shipIcon.src = constants.shipsArtPath + key + ".png";
-        if (!value.moving) {
-            shipPos.classList.add("highlighted-info");
-            shipPos.textContent = value.position;
-            newRecord.onclick = () => landedSpacecraftPopup.display(key);
+    if (!shipListPopulated) {
+        populateList(document.getElementById("ships-list"), ".ship-record", ships, (key, newRecord, list) => {
+            let value = ships[key];
+            let shipName = newRecord.querySelector("#ship-name");
+            let shipPos = newRecord.querySelector("#ship-pos");
+            let shipIcon = newRecord.querySelector("#ship-icon");
+            shipName.textContent = key;
+            shipIcon.src = constants.shipsArtPath + key + ".png";
+            if (!value.moving) {
+                shipPos.classList.add("highlighted-info");
+                shipPos.textContent = value.position;
+                newRecord.onclick = () => landedSpacecraftPopup.display(key);
+            }
+            else {
+                shipPos.textContent = "Moving...";
+                newRecord.onclick = () => flyingSpacecraftPopup.display(key);
+            }
+            list.append(newRecord);
+        });
+        shipListPopulated = true;
+    }
+    {
+        let children = document.getElementById("ships-list").children;
+        for (let i = 0; i < children.length; i++) {
+            let tableChild = children[i];
+            if (tableChild.hidden)
+                continue;
+            let shipName = tableChild.querySelector("#ship-name");
+            let shipPos = tableChild.querySelector("#ship-pos");
+            let value = ships[shipName.textContent];
+            if (!value.moving) {
+                shipPos.classList.add("highlighted-info");
+                shipPos.textContent = value.position;
+                tableChild.onclick = () => landedSpacecraftPopup.display(shipName.textContent);
+            }
+            else {
+                shipPos.textContent = "Moving...";
+                tableChild.onclick = () => flyingSpacecraftPopup.display(shipName.textContent);
+            }
         }
-        else {
-            shipPos.textContent = "Moving...";
-            newRecord.onclick = () => flyingSpacecraftPopup.display(key);
-        }
-        list.append(newRecord);
-    });
+    }
 }
 function initPopups() {
     tradePopup = new Popup("#trade-popup", false, function (obj, val) {
@@ -197,7 +222,8 @@ function initPopups() {
                 };
         }
     });
-    planetPopup = new Popup("#planet-details-popup", true, function (obj, val) {
+    planetPopup = new Popup("#planet-details-popup", false, // refreshWindows
+    function (obj, val) {
         let planetName = val;
         obj.querySelector("#planet-details-name").textContent = planetName;
         populateList(obj.querySelector("#planet-detials-ship-list"), "#planet-details-stationed-spaceship", ships, (key, newRecord, list) => {
@@ -231,7 +257,7 @@ function initPopups() {
             list.append(newRecord);
         });
     });
-    flyingSpacecraftPopup = new Popup("#flyingspacecraft-popup", true, function (obj, val) {
+    flyingSpacecraftPopup = new Popup("#flyingspacecraft-popup", refreshWindows, function (obj, val) {
         let shipName = val;
         // If ship is no longer moving switch back to landed screen.
         if (!ships[shipName].moving) {

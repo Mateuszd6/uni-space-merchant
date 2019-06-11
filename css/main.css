@@ -115,6 +115,21 @@ a {
     text-align:center;
 }
 
+#available-maps-list {
+    margin-left: 2vh;
+    margin-right: 2vh;
+    padding-left: 0;
+    padding-right: 0;
+    height: 32vh;
+    overflow: hidden;
+    overflow-y: auto;
+}
+
+.available-map-record {
+    padding-top: 1vh;
+    padding-bottom: 1vh;
+}
+
 .player-stats {
     display: grid;
     position: absolute;
@@ -158,7 +173,7 @@ a {
 #menu-startnew {
     position: absolute;
     font-size: 4vh;
-    bottom: calc(2.5vh + 2.5vh + 7vh);
+    bottom: 22vh;
 }
 
 #menu-howtoplay {
@@ -170,16 +185,22 @@ a {
 #menu-select {
     position: absolute;
     font-size: 4vh;
-    bottom: 22vh;
+    bottom: calc(2.5vh + 2.5vh + 7vh);
 }
 
 #menu-log {
     position: absolute;
     font-size: 4vh;
     top: 1vh;
-    righht: 0vh;
+    right: 0.3em;
 }
 
+#loggedUsrName {
+    position: absolute;
+    font-size: 3vh;
+    top: 5vh;
+    right: 0.3em;
+}
 
 .game-container {
     margin: 0;
@@ -573,6 +594,14 @@ a {
     bottom: 2.5vh;
 }
 
+#login-button {
+    width: 66%;
+    font-size: 2.5vh;
+
+    position: absolute;
+    bottom: 2.5vh;
+}
+
 #upload-map-button {
     width: 66%;
     font-size: 2.5vh;
@@ -707,7 +736,7 @@ a {
     width: 100%;
     height: 100%;
     background: transparent;
-    font-size: 1.5vh;
+    font-size: 2vh;
     color: white;
 }
 
@@ -725,6 +754,19 @@ a {
     background-color: rgba(0, 0, 0, 0);
 }
 
+#map-name {
+    font-size: 1.5em;
+}
+
+#map-description {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+#map-additional {
+    margin-top: 0;
+    margin-bottom: 0;
+}
 
 .usermap-file {
     position: absolute;
